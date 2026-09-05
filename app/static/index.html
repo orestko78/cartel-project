@@ -17,10 +17,10 @@
             background-color: #0b0b0b;
             color: #FFF;
             font-family: 'Montserrat', sans-serif;
-            overflow: hidden; /* Ховаємо скрол на головній сторінці */
+            overflow: hidden;
         }
 
-        /* 🏛️ Офіційна шапка CARTEL */
+        /* 🏛️ Шапка */
         header {
             position: absolute;
             top: 0;
@@ -30,7 +30,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             z-index: 100;
         }
@@ -41,16 +42,19 @@
             color: #FFF;
             text-decoration: none;
             letter-spacing: 3px;
+            z-index: 102;
         }
 
+        /* Меню навігації для комп'ютера */
         nav {
             display: flex;
             align-items: center;
             gap: 25px;
+            transition: right 0.4s ease;
         }
 
         nav a {
-            color: #BBB;
+            color: #CCC;
             text-decoration: none;
             font-size: 13px;
             font-weight: 500;
@@ -74,6 +78,7 @@
             color: #888;
             display: flex;
             gap: 10px;
+            z-index: 102;
         }
 
         .lang-switch span.active-lang {
@@ -81,7 +86,41 @@
             font-weight: 600;
         }
 
-        /* 📹 Відео-бекграунд контейнер */
+        /* 🍔 Кнопка бутерброд */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 102;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 3px;
+            background-color: #FFF;
+            transition: all 0.3s ease;
+        }
+
+        /* 🏔️ Героїчна секція */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        /* 📹 Відео-бекграунд */
         .video-background {
             position: absolute;
             top: 0;
@@ -95,10 +134,9 @@
         .video-background video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Відео розтягується без спотворень */
+            object-fit: cover;
         }
 
-        /* Темна маска поверх відео, щоб текст «читався» ідеально */
         .video-overlay {
             position: absolute;
             top: 0;
@@ -109,45 +147,31 @@
             z-index: 2;
         }
 
-        /* 🏔️ Контент поверх відео */
-        .hero-content {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            z-index: 10; /* Контент вище за відео */
-        }
-
-        .hero-content h1 {
-            font-size: 54px;
+        .hero-section h1 {
+            font-size: 50px;
             font-weight: 300;
-            letter-spacing: 6px;
-            margin-bottom: 25px;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
             text-transform: uppercase;
         }
 
-        .hero-content h1 span {
+        .hero-section h1 span {
             font-weight: 600;
             color: #D4AF37;
         }
 
-        .hero-content p {
+        .hero-section p {
             font-size: 16px;
-            color: #DDD;
-            max-width: 750px;
+            color: #CCC;
+            max-width: 700px;
             line-height: 1.8;
-            margin-bottom: 45px;
+            margin-bottom: 40px;
             font-weight: 300;
-            letter-spacing: 0.5px;
         }
 
         .btn-discover {
             display: inline-block;
-            padding: 16px 45px;
+            padding: 15px 40px;
             border: 1px solid #D4AF37;
             color: #D4AF37;
             text-decoration: none;
@@ -163,18 +187,69 @@
         .btn-discover:hover {
             background: #D4AF37;
             color: #000;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* 📱 НАЛАШТУВАННЯ ПРОЗОРОГО МЕНЮ НА ТЕЛЕФОНІ */
+        @media (max-width: 991px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                
+                /* ✨ НАПІВПРОЗОРИЙ ФОН ТА ЕФЕКТ РОЗМИРТТЯ ДЛЯ БУТЕРБРОДА */
+                background: rgba(18, 18, 18, 0.90); /* Прозорість 75% */
+                backdrop-filter: blur(15px);        /* Красиве розмиття відео на фоні */
+                -webkit-backdrop-filter: blur(15px); /* Підтримка для iPhone (Safari) */
+                
+                border-left: 1px solid rgba(212, 175, 55, 0.2);
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                padding: 40px;
+                z-index: 101;
+            }
+
+            nav.mobile-active {
+                right: 0;
+            }
+
+            nav a {
+                font-size: 16px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger.open span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .hamburger.open span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.open span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- 🏛️ Навігація -->
     <header>
         <a href="/" class="logo">CARTEL</a>
-        <nav>
-            <a href="/" class="active-link">Про нас</a>
-            <a href="/restaurants.html">Ресторани</a>
+        
+        <nav id="navbar-links">
+            <a href="/">Про нас</a>
+            <a href="/restaurants.html" class="active-link">Ресторани</a>
             <a href="#">Готелі</a>
             <a href="#">SPA</a>
             <a href="#">Команда</a>
@@ -182,28 +257,38 @@
             <a href="#">Блог</a>
             <a href="#">Контакти</a>
         </nav>
+
+        <button class="hamburger" id="hamburger-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <div class="lang-switch">
             <span class="active-lang">UA</span>
             <span>EN</span>
         </div>
     </header>
 
-    <!-- 📹 Запускаємо відео на тлі -->
     <div class="video-background">
         <div class="video-overlay"></div>
         <video autoplay loop muted playsinline>
             <source src="/images/bg_video.mp4" type="video/mp4">
-            <!-- Заглушка на випадок, якщо відео не підтримується браузером -->
-            <img src="https://unsplash.com" alt="Bukovel Mountains">
         </video>
     </div>
 
-    <!-- 🏔️ Текст головної сторінки -->
-    <div class="hero-content">
+    <section class="hero-section">
         <h1>Сім'я ресторанів <span>CARTEL</span></h1>
-        <p>Головний оператор розваг та гастрономії на курорті Буковель. Ми створюємо преміальні концепції відпочинку, поєднуючи карпатську гостинність із європейським сервісом люкс-класу.</p>
+        <p>Головний operator розваг та гастрономії на курорті Буковель. Ми створюємо преміальні концепції відпочинку, поєднуючи карпатські традиції з європейським сервісом люкс-класу.</p>
         <a href="/restaurants.html" class="btn-discover">Відкрити заклади</a>
-    </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navbar-links').classList.toggle('mobile-active');
+            document.getElementById('hamburger-btn').classList.toggle('open');
+        }
+    </script>
 
 </body>
 </html>
