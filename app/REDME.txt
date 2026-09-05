@@ -1,0 +1,5 @@
+
+Запуск сервера     uvicorn app.main:app --reload
+Головна сторынка   http://localhost:8000/
+                   http://localhost:8000/docs
+Адмінпанель        http://localhost:8000/admin.html

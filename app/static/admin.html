@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адмін-панель — Cartel Network Management</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #121212; color: #E0E0E0; font-family: 'Montserrat', sans-serif; padding-bottom: 60px; }
+        header { padding: 30px 10%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(212, 175, 55, 0.1); background-color: #181818; }
+        .logo-admin { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #D4AF37; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; }
+        .logo-admin span { font-family: 'Montserrat', sans-serif; font-size: 12px; color: #888; letter-spacing: 1px; margin-left: 10px; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 10px; }
+        .btn-site { color: #A0A0A0; text-decoration: none; font-size: 14px; transition: color 0.3s; }
+        .btn-site:hover { color: #D4AF37; }
+        .admin-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+        h1 { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: #FFF; margin-bottom: 10px; }
+        .subtitle { font-size: 14px; color: #D4AF37; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 1px; }
+        .table-container { background: #181818; border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 4px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { background-color: #1F1F1F; color: #D4AF37; font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; padding: 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+        td { padding: 20px; font-size: 14px; color: #CCC; border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
+        tr:hover td { background-color: #1F1F1F; color: #FFF; }
+        .badge { background: rgba(212, 175, 55, 0.1); color: #D4AF37; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .time-badge { color: #FFF; font-weight: 600; }
+        .no-data { text-align: center; padding: 40px; color: #666; font-style: italic; }
+
+        /* 🔥 СТИЛЬ ДЛЯ ПРЕМІУМ-КНОПКИ ВИДАЛЕННЯ */
+        .btn-delete {
+            background: none;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: #FF5555;
+            padding: 6px 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-delete:hover {
+            background: #FF5555;
+            color: #FFF;
+            box-shadow: 0 0 10px rgba(255, 85, 85, 0.4);
+            border-color: #FF5555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo-admin">Cartel <span>Панель Менеджера</span></a>
+        <a href="/" class="btn-site">Перейти на сайт →</a>
+    </header>
+
+    <div class="admin-container">
+        <h1>Поточні бронювання</h1>
+        <div class="subtitle">Контроль заявок у реальному часі</div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Заклад</th>
+                        <th>Ім'я гостя</th>
+                        <th>Телефон</th>
+                        <th>Дата та час візиту</th>
+                        <th>Дія</th> <!-- Нова колонка -->
+                    </tr>
+                </thead>
+                <tbody id="bookings-table-body">
+                    <tr>
+                        <td colspan="6" class="no-data">Завантаження нових заявок...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function loadBookings() {
+            try {
+                const response = await fetch('/api/bookings/');
+                const bookings = await response.json();
+
+                const tableBody = document.getElementById('bookings-table-body');
+                tableBody.innerHTML = '';
+
+                if (bookings.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="6" class="no-data">Наразі немає активних бронювань у базі даних.</td></tr>';
+                    return;
+                }
+
+                bookings.forEach(booking => {
+                    const row = document.createElement('tr');
+                    const formattedDate = booking.booking_date.replace('T', ' ');
+
+                    row.innerHTML = `
+                        <td>#${booking.id}</td>
+                        <td><span class="badge">${booking.establishment_name}</span></td>
+                        <td style="font-weight: 600;">${booking.guest_name}</td>
+                        <td>${booking.guest_phone}</td>
+                        <td><span class="time-badge">${formattedDate}</span></td>
+                        <td>
+                            <!-- Кнопка, яка викликає функцію видалення та передає ID замовлення -->
+                            <button class="btn-delete" onclick="deleteBooking(${booking.id})">Видалити</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) { console.error("Помилка завантаження списку:", error); }
+        }
+
+        // 🔥 ФУНКЦІЯ НАДСИЛАННЯ ЗАПИТУ НА ВИДАЛЕННЯ В PYTHON
+        async function deleteBooking(bookingId) {
+            if (!confirm(`Ви впевнені, що хочете видалити бронювання #${bookingId}?`)) {
+                return; // Якщо менеджер натиснув "Скасувати" в діалоговому вікні
+            }
+
+            try {
+                const response = await fetch(`/api/bookings/${bookingId}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    alert(`Бронювання #${bookingId} успішно видалено!`);
+                    loadBookings(); // Перезавантажуємо таблицю, щоб рядок зник
+                } else {
+                    alert("Не вдалося видалити замовлення.");
+                }
+            } catch (error) {
+                console.error("Помилка при видаленні:", error);
+            }
+        }
+
+        window.onload = loadBookings;
+        
+        // Оскільки менеджер може працювати з таблицею (видаляти рядки), 
+        // збільшимо інтервал автооновлення до 20 секунд, щоб таблиця не стрибала перед очима занадто часто
+        setInterval(loadBookings, 20000);
+    </script>
+</body>
+</html>

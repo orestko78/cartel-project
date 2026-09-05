@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARTEL — Мережа готелів та ресторанів у Буковелі</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0b0b0b;
+            color: #FFF;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden; /* Ховаємо скрол на головній сторінці */
+        }
+
+        /* 🏛️ Офіційна шапка CARTEL */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #FFF;
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #BBB;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+        }
+
+        nav a:hover {
+            color: #FFF;
+        }
+
+        nav a.active-link {
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            color: #D4AF37;
+        }
+
+        .lang-switch {
+            font-size: 12px;
+            color: #888;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-switch span.active-lang {
+            color: #FFF;
+            font-weight: 600;
+        }
+
+        /* 📹 Відео-бекграунд контейнер */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Відео розтягується без спотворень */
+        }
+
+        /* Темна маска поверх відео, щоб текст «читався» ідеально */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 2;
+        }
+
+        /* 🏔️ Контент поверх відео */
+        .hero-content {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            z-index: 10; /* Контент вище за відео */
+        }
+
+        .hero-content h1 {
+            font-size: 54px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .hero-content h1 span {
+            font-weight: 600;
+            color: #D4AF37;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            color: #DDD;
+            max-width: 750px;
+            line-height: 1.8;
+            margin-bottom: 45px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-discover {
+            display: inline-block;
+            padding: 16px 45px;
+            border: 1px solid #D4AF37;
+            color: #D4AF37;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            background: transparent;
+            border-radius: 4px;
+        }
+
+        .btn-discover:hover {
+            background: #D4AF37;
+            color: #000;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🏛️ Навігація -->
+    <header>
+        <a href="/" class="logo">CARTEL</a>
+        <nav>
+            <a href="/" class="active-link">Про нас</a>
+            <a href="/restaurants.html">Ресторани</a>
+            <a href="#">Готелі</a>
+            <a href="#">SPA</a>
+            <a href="#">Команда</a>
+            <a href="#">Вакансії</a>
+            <a href="#">Блог</a>
+            <a href="#">Контакти</a>
+        </nav>
+        <div class="lang-switch">
+            <span class="active-lang">UA</span>
+            <span>EN</span>
+        </div>
+    </header>
+
+    <!-- 📹 Запускаємо відео на тлі -->
+    <div class="video-background">
+        <div class="video-overlay"></div>
+        <video autoplay loop muted playsinline>
+            <source src="/images/bg_video.mp4" type="video/mp4">
+            <!-- Заглушка на випадок, якщо відео не підтримується браузером -->
+            <img src="https://unsplash.com" alt="Bukovel Mountains">
+        </video>
+    </div>
+
+    <!-- 🏔️ Текст головної сторінки -->
+    <div class="hero-content">
+        <h1>Сім'я ресторанів <span>CARTEL</span></h1>
+        <p>Головний оператор розваг та гастрономії на курорті Буковель. Ми створюємо преміальні концепції відпочинку, поєднуючи карпатську гостинність із європейським сервісом люкс-класу.</p>
+        <a href="/restaurants.html" class="btn-discover">Відкрити заклади</a>
+    </div>
+
+</body>
+</html>
