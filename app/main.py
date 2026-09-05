@@ -9,8 +9,17 @@ from .routes.menu import router as menu_router
 from .database import engine, Base
 from .models.establishment import Establishment
 from .routes.establishment import router as establishment_router
+from .seed import seed_data
+from .database import SessionLocal
 
 Base.metadata.create_all(bind=engine)
+
+# Автонаповнення бази даних при запуску
+db = SessionLocal()
+try:
+    seed_data(db)
+finally:
+    db.close()
 
 app = FastAPI(
     title="Cartel Network API",
