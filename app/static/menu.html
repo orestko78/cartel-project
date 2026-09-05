@@ -340,19 +340,24 @@
                 menuItems.forEach(item => {
                     const itemElement = document.createElement('div');
                     itemElement.className = 'menu-item';
+                    
+                    // Якщо фото для страви не додано, використовуємо мінімалістичну темну заглушку
+                    const dishImg = item.image_url ? item.image_url : 'https://unsplash.com';
+
                     itemElement.innerHTML = `
+                        <!-- Новий блок для фото страви -->
+                        <img src="${dishImg}" alt="${item.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 4px; margin-right: 20px; border: 1px solid rgba(212, 175, 55, 0.2);">
+                        
                         <div class="item-info">
-                            <div class="item-name"></div>
-                            <div class="item-description"></div>
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-description">${item.description ? item.description : ''}</div>
                         </div>
                         <div class="item-dots"></div>
-                        <div class="item-price"></div>
+                        <div class="item-price">${item.price} грн</div>
                     `;
-                    itemElement.querySelector('.item-name').textContent = item.name;
-                    itemElement.querySelector('.item-description').textContent = item.description || '';
-                    itemElement.querySelector('.item-price').textContent = `${Number(item.price).toFixed(2)} грн`;
                     listContainer.appendChild(itemElement);
                 });
+
             } catch (error) {
                 console.error('Помилка завантаження меню:', error);
                 document.getElementById('rest-name').textContent = 'Помилка завантаження';
