@@ -13,7 +13,7 @@
 
     <div class="video-background">
         <div class="video-overlay"></div>
-        <video autoplay loop muted playsinline webkit-playsinline preload="metadata" poster="images/rebra.jpg" aria-hidden="true">
+        <video autoplay loop muted playsinline webkit-playsinline preload="auto" poster="images/rebra.jpg" aria-hidden="true">
             <source src="images/bg_video.mp4" type="video/mp4">
         </video>
     </div>
@@ -218,7 +218,19 @@
     document.addEventListener("DOMContentLoaded", function() {
         const video = document.querySelector("video");
         if (video) {
+            video.muted = true;
+            video.defaultMuted = true;
+
+            video.addEventListener('canplay', () => {
+                document.querySelector('.video-background').classList.add('video-ready');
+            }, { once: true });
+
+            video.addEventListener('error', () => {
+                document.querySelector('.video-background').classList.add('video-fallback');
+            }, { once: true });
+
             video.play().catch(error => {
+                document.querySelector('.video-background').classList.add('video-fallback');
                 console.log("Автозапуск відео заблоковано браузером:", error);
             });
         }

@@ -142,6 +142,7 @@
             height: 100vh;
             overflow: hidden;
             z-index: 1;
+            background: #0b0b0b url("images/rebra.jpg") center / cover no-repeat;
         }
 
         .video-background video {
@@ -149,7 +150,12 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            background: #0b0b0b url("images/rebra.jpg") center / cover no-repeat;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .video-background.video-ready video {
+            opacity: 1;
         }
 
         .video-overlay {
