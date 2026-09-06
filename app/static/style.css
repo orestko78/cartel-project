@@ -150,11 +150,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .video-background.video-ready video {
             opacity: 1;
         }
 
