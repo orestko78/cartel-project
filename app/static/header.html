@@ -1,6 +1,8 @@
 <header id="main-header" style="position: relative; background: #161616; transition: opacity 0.5s ease;">
     <a href="/" class="logo" style="font-size: 32px; font-weight: 700; color: #FFF; text-decoration: none; letter-spacing: 3px;">CARTEL</a>
-    <nav style="display: flex; align-items: center; gap: 25px;">
+    
+    <!-- Навігація (отримує id для мобільного керування) -->
+    <nav id="navbar-links" style="display: flex; align-items: center; gap: 25px;">
         <a href="/" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;" data-i18n="nav_about">Про нас</a>
         <a href="/restaurants.html" class="active-link" style="border: 1px solid rgba(212, 175, 55, 0.5); color: #D4AF37; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; padding: 8px 12px;" data-i18n="nav_restaurants">Ресторани</a>
         <a href="#" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;" data-i18n="nav_hotels">Готелі</a>
@@ -10,8 +12,18 @@
         <a href="#" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;" data-i18n="nav_blog">Блог</a>
         <a href="#" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;" data-i18n="nav_contact">Контакти</a>
     </nav>
-    <div class="lang-switch">
-        <span id="lang-uk" class="active-lang" onclick="setLanguage('uk')">UA</span>
-        <span id="lang-en" onclick="setLanguage('en')">EN</span>
+
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="lang-switch">
+            <span id="lang-uk" class="active-lang" onclick="setLanguage('uk')">UA</span>
+            <span id="lang-en" onclick="setLanguage('en')">EN</span>
+        </div>
+        
+        <!-- Кнопка-гамбургер -->
+        <button id="hamburger-btn" class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </header>
