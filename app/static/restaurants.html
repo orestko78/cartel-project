@@ -4,294 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartel Network — Преміум відпочинок у Буковелі</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://googleapis.com" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #121212;
-            color: #E0E0E0;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
-
-        header {
-            padding: 30px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            color: #D4AF37;
-            text-decoration: none;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 100px 20px 60px 20px;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 56px;
-            font-weight: 600;
-            color: #FFF;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        .hero p {
-            font-size: 16px;
-            color: #A0A0A0;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px 100px 40px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .card {
-            background: #1A1A1A;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 4px;
-            padding: 30px;
-            transition: all 0.4s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-type {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #D4AF37;
-            margin-bottom: 15px;
-        }
-
-        .card-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            color: #FFF;
-            margin-bottom: 10px;
-        }
-
-        .card-cuisine {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 20px;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 15px;
-            font-size: 13px;
-            color: #A0A0A0;
-        }
-
-        .rating {
-            color: #D4AF37;
-        }
-
-        /* 🏛️ Стилі для Преміум Модального Вікна */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-            z-index: 1000;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal {
-            background: #181818;
-            border: 1px solid #D4AF37;
-            padding: 40px;
-            width: 100%;
-            max-width: 450px;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .modal-close:hover {
-            color: #FFF;
-        }
-
-        .modal h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            color: #FFF;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .modal-subtitle {
-            font-size: 13px;
-            color: #D4AF37;
-            text-align: center;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .form-group input {
-            width: 100%;
-            background: #222;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 12px;
-            color: #FFF;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            border-radius: 4px;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #D4AF37;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: #D4AF37;
-            color: #121212;
-            border: none;
-            padding: 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 10px;
-            border-radius: 4px;
-        }
-
-        .btn-submit:hover {
-            background: #FFF;
-        }
-
-        /* Оновлюємо стиль картки, прибираємо внутрішній відступ зверху, щоб фото прилягало ідеально */
-        .card {
-            background: #1A1A1A;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 4px;
-            padding: 0 0 30px 0; /* Відступ залишаємо тільки знизу та з боків */
-            overflow: hidden;    /* Щоб куточки фото згладжувалися по радіусу картки */
-            transition: all 0.4s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        /* Стиль для контейнера фото */
-        .card-image {
-            width: 100%;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            background-color: #222; /* Заглушка, якщо фото немає */
-        }
-
-        /* Повертаємо відступи для текстового контенту всередині картки */
-        .card-content {
-            padding: 0 30px;
-        }
-    </style>
 </head>
-<body>
+<body class="restaurants-page">
 
     <!-- 🏛️ Оновлена преміум-шапка CARTEL -->
-    <header style="position: relative; background: #161616;">
-        <a href="/" class="logo" style="font-size: 32px; font-weight: 700; color: #FFF; text-decoration: none; letter-spacing: 3px;">CARTEL</a>
-        <nav style="display: flex; align-items: center; gap: 25px;">
-            <a href="/" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;">Про нас</a>
-            <a href="/restaurants.html" class="active-link" style="border: 1px solid rgba(212, 175, 55, 0.5); color: #D4AF37; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; padding: 8px 12px;">Ресторани</a>
-            <a href="#" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;">Готелі</a>
-            <a href="#" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;">SPA</a>
-            <a href="#" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;">Команда</a>
-            <a href="#" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;">Вакансії</a>
-            <a href="#" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;">Блог</a>
-            <a href="#" style="color: #CCC; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;">Контакти</a>
+    <header class="restaurants-header">
+        <a href="/" class="logo">CARTEL</a>
+        <nav>
+            <a href="/" data-i18n="nav_about">Про нас</a>
+            <a href="/restaurants.html" class="active-link" data-i18n="nav_restaurants">Ресторани</a>
+            <a href="#" data-i18n="nav_hotels">Готелі</a>
+            <a href="#" data-i18n="nav_spa">SPA</a>
+            <a href="#" data-i18n="nav_team">Команда</a>
+            <a href="#" data-i18n="nav_jobs">Вакансії</a>
+            <a href="#" data-i18n="nav_blog">Блог</a>
+            <a href="#" data-i18n="nav_contact">Контакти</a>
         </nav>
-        <div class="lang-switch" style="font-size: 12px; color: #888; display: flex; gap: 10px;">
-            <span style="color: #FFF; font-weight: 600;">UA</span>
-            <span>EN</span>
+        <div class="lang-switch">
+            <span id="lang-uk" class="active-lang" onclick="setLanguage('uk')">UA</span>
+            <span id="lang-en" onclick="setLanguage('en')">EN</span>
         </div>
     </header>
 
     <section class="hero">
-        <h1>Мережа готелів та ресторанів</h1>
-        <p>Преміальні концепції відпочинку, вишукана гастрономія та легендарна атмосфера в самому серці Карпат.</p>
-    </section>
+        <h1 data-i18n="hero_title">Мережа готелів та ресторанів <span>CARTEL</span></h1>
+        <p data-i18n="hero_desc">Головний operator розваг та гастрономії на курорті Буковель. Ми створюємо преміальні концепції відпочинку, поєднуючи карпатські традиції з європейським сервісом люкс-класу.</p>
+        <a href="/restaurants.html" class="btn-discover">Відкрити заклади</a>
+    </section>  
 
     <div class="container">
         <div class="grid" id="establishments-grid">
@@ -326,6 +67,54 @@
     </div>
 
     <script>
+        // 1. Словник перекладів для сторінки
+        const translations = {
+            uk: {
+                nav_about: "Про нас",
+                nav_restaurants: "Ресторани",
+                nav_hotels: "Готелі",
+                nav_spa: "SPA",
+                nav_team: "Команда",
+                nav_jobs: "Вакансії",
+                nav_blog: "Блог",
+                nav_contact: "Контакти",
+                hero_title: "Мережа готелів та ресторанів",
+                hero_desc: "Преміальні концепції відпочинку, вишукана гастрономія та легендарна атмосфера в самому серці Карпат."
+            },
+            en: {
+                nav_about: "About Us",
+                nav_restaurants: "Restaurants",
+                nav_hotels: "Hotels",
+                nav_spa: "SPA",
+                nav_team: "Team",
+                nav_jobs: "Careers",
+                nav_blog: "Blog",
+                nav_contact: "Contacts",
+                hero_title: "Hotels & Restaurants Network",
+                hero_desc: "Premium leisure concepts, exquisite gastronomy, and a legendary atmosphere in the heart of the Carpathians."
+            }
+        };
+
+        // 2. Функція зміни мови
+        function setLanguage(lang) {
+            localStorage.setItem('cartel_lang', lang);
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            const langUk = document.getElementById('lang-uk');
+            const langEn = document.getElementById('lang-en');
+            if (langUk && langEn) {
+                langUk.classList.remove('active-lang');
+                langEn.classList.remove('active-lang');
+                document.getElementById('lang-' + lang).classList.add('active-lang');
+            }
+        }
+
         let currentEstablishment = "";
 
         async function loadEstablishments() {
@@ -334,10 +123,12 @@
                 const data = await response.json();
                 
                 const grid = document.getElementById('establishments-grid');
+                if (!grid) return;
+                
                 grid.innerHTML = '';
 
-                if(data.length === 0) {
-                    grid.innerHTML = '<p style="color: #666;">Наразі немає доданих закладів. Додайте їх через /docs</p>';
+                if (data.length === 0) {
+                    grid.innerHTML = '<p class="empty-state">Наразі немає доданих закладів. Додайте їх через /docs</p>';
                     return;
                 }
 
@@ -347,11 +138,11 @@
                     card.onclick = () => {
                         window.location.href = `/menu.html?id=${item.id}`;
                     };
-                    // Якщо в базі немає фото, використовуємо красиву темну заглушку
+                    
                     const imageUrl = item.image_url ? item.image_url : 'https://unsplash.com';
 
                     card.innerHTML = `
-                        <div class="card-image" style="background-image: url('${imageUrl}')"></div>
+                        <div class="card-image"></div>
                         <div class="card-content">
                             <div class="card-type">${item.type === 'Restaurant' ? '🥩 Ресторан' : '🏨 Готель'}</div>
                             <div class="card-title">${item.name}</div>
@@ -362,6 +153,7 @@
                             </div>
                         </div>
                     `;
+                    card.querySelector('.card-image').style.backgroundImage = `url('${imageUrl}')`;
                     grid.appendChild(card);
                 });
             } catch (error) {
@@ -369,51 +161,11 @@
             }
         }
 
-        function openModal(name, type) {
-            currentEstablishment = name;
-            document.getElementById('modal-title').innerText = type === 'Restaurant' ? 'Бронювання столика' : 'Резерв номера';
-            document.getElementById('modal-establishment-name').innerText = name;
-            document.getElementById('form-establishment-name').value = name;
-            document.getElementById('booking-modal-overlay').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('booking-modal-overlay').classList.remove('active');
-            document.getElementById('booking-form').reset();
-        }
-
-        async function submitBooking(event) {
-            event.preventDefault();
-            const bookingData = {
-                establishment_name: document.getElementById('form-establishment-name').value,
-                guest_name: document.getElementById('guest-name').value,
-                guest_phone: document.getElementById('guest-phone').value,
-                booking_date: document.getElementById('booking-date').value
-            };
-
-            try {
-                const response = await fetch('/api/bookings/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(bookingData)
-                });
-
-                if (response.ok) {
-                    alert('Бронювання успішно створено!');
-                    closeModal();
-                } else {
-                    const errorData = await response.json();
-                    alert('Помилка при створенні бронювання: ' + (errorData.detail || 'Невідома помилка'));
-                }
-            } catch (error) {
-                console.error("Помилка при відправці даних:", error);
-                alert('Помилка при створенні бронювання. Спробуйте ще раз.');
-            }
-        }
-
-        window.onload = loadEstablishments;
+        window.addEventListener('DOMContentLoaded', () => {
+            loadEstablishments();
+            const savedLang = localStorage.getItem('cartel_lang') || 'uk';
+            setLanguage(savedLang);
+        });
     </script>
 </body>
 </html>
