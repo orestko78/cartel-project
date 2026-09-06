@@ -505,7 +505,7 @@
 
         /* Кнопка гамбургер за замовчуванням прихована на десктопі */
         .hamburger {
-            display: flex !important; /* Примусово показуємо всюди */
+            display: none;
             flex-direction: column;
             justify-content: space-between;
             width: 30px;

@@ -215,6 +215,15 @@
         }, 2500);
     }
 
+    document.addEventListener("DOMContentLoaded", function() {
+        const video = document.querySelector("video");
+        if (video) {
+            video.play().catch(error => {
+                console.log("Автозапуск відео заблоковано браузером:", error);
+            });
+        }
+    });
+
     window.addEventListener('mousemove', showUI);
     window.addEventListener('click', showUI);
     showUI();
