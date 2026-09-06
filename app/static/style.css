@@ -525,7 +525,20 @@
             transition: all 0.3s ease;
         }
 
-        @media (max-width: 991px) {
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 28px !important;
+                letter-spacing: 2px !important;
+                word-wrap: break-word;
+                max-width: 100%;
+            }
+
+            .hero-section p {
+                font-size: 14px !important;
+                padding: 0 10px;
+                box-sizing: border-box;
+                max-width: 100%;
+            }
             .restaurants-page nav {
                 position: fixed;
                 top: 0;
