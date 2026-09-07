@@ -1,521 +1,524 @@
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            background-color: #0b0b0b;
-            color: #FFF;
-            font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
-        }
+body {
+    background-color: #0b0b0b;
+    color: #FFF;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
 
-        body.restaurants-page {
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
+body.restaurants-page,
+body.hotels-page {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 
-        header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 25px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            z-index: 100;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-            opacity: 1;
-            visibility: visible;
-        }
+header, #main-header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #161616;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 100;
+}
 
-        .logo {
-            font-size: 32px;
-            font-weight: 700;
-            color: #FFF;
-            text-decoration: none;
-            letter-spacing: 3px;
-            z-index: 102;
-        }
+.logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #D4AF37;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 102;
+}
 
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            transition: right 0.4s ease;
-        }
+nav, #navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
 
-        nav a {
-            color: #CCC;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: all 0.3s ease;
-            padding: 8px 12px;
-        }
+nav a, #navbar-links a {
+    color: #CCC;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+}
 
-        nav a:hover {
-            color: #FFF;
-        }
+nav a:hover, #navbar-links a:hover {
+    color: #FFF;
+}
 
-        nav a.active-link {
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            color: #D4AF37;
-        }
+nav a.active-link, #navbar-links a.active-link {
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    color: #D4AF37;
+}
 
-        .lang-switch {
-            font-size: 12px;
-            color: #888;
-            display: flex;
-            gap: 10px;
-            z-index: 102;
-        }
+.lang-switch {
+    position: relative;
+    font-size: 12px;
+    color: #888;
+    display: flex;
+    gap: 10px;
+    z-index: 105;
+    cursor: pointer;
+}
 
-        /* Додано курсор та переходи для кнопок мови */
-        .lang-switch span {
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
+.lang-switch span {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
 
-        .lang-switch span:hover {
-            color: #CCC;
-        }
+.lang-switch span:hover {
+    color: #CCC;
+}
 
-        .lang-switch span.active-lang {
-            color: #FFF;
-            font-weight: 600;
-        }
+.lang-switch span.active-lang {
+    color: #D4AF37;
+    font-weight: 600;
+}
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 20px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 102;
-        }
+/* Гамбургер за замовчуванням прихований на десктопі */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
 
-        .hamburger span {
-            width: 100%;
-            height: 3px;
-            background-color: #FFF;
-            transition: all 0.3s ease;
-        }
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background-color: #D4AF37;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
 
-        .hero-section {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            z-index: 10;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-            opacity: 1;
-            visibility: visible;
-        }
+.restaurants-page .container,
+.hotels-page .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 100px 40px;
+}
 
-        .hidden-ui {
-            opacity: 0 !important;
-            visibility: hidden !important;
-            pointer-events: none;
-        }
+.restaurants-page .grid,
+.hotels-page .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px;
+}
 
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            z-index: 1;
-            background: #0b0b0b url("images/rebra.jpg") center / cover no-repeat;
-        }
+.restaurants-page .card,
+.hotels-page .card {
+    background: #1A1A1A;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    padding: 0 0 30px 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+    cursor: pointer;
+}
 
-        .video-background video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: 1;
-        }
+.restaurants-page .card-image,
+.hotels-page .card-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    background-color: #222;
+}
 
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            z-index: 2;
-        }
+.restaurants-page .card-content,
+.hotels-page .card-content {
+    padding: 0 30px;
+}
 
-        .hero-section h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 50px;
-            font-weight: 300;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
+.restaurants-page .card-title,
+.hotels-page .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: #FFF;
+    margin-bottom: 10px;
+}
 
-        .hero-section h1 span {
-            font-weight: 600;
-            color: #D4AF37;
-        }
+.restaurants-page .card-type,
+.hotels-page .card-type {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #D4AF37;
+    margin-bottom: 15px;
+}
 
-        .hero-section p {
-            font-size: 16px;
-            color: #CCC;
-            max-width: 700px;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
+.restaurants-page .card-footer,
+.hotels-page .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 15px;
+    font-size: 13px;
+    color: #A0A0A0;
+}
 
-        .lang-switch {
-            position: relative;
-            cursor: pointer;
-            z-index: 105; /* вище ніж у хедера та оверлеїв */
-            font-size: 12px;
-            color: #888;
-            display: flex;
-            gap: 10px;
-        }
+.restaurants-page .btn-discover {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 1px solid #D4AF37;
+    color: #D4AF37;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+    background: transparent;
+    border-radius: 4px;
+}
 
-        .lang-switch span.active-lang {
-            color: #D4AF37;
-        }
+.restaurants-page .btn-discover:hover {
+    background: #D4AF37;
+    color: #000;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+}
 
-        .restaurants-page .restaurants-header {
-            position: relative;
-            background: #161616;
-        }
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 0 10px;
+    padding-top: 130px;
+    z-index: 10;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    opacity: 1;
+    visibility: visible;
+}
 
-        .restaurants-page .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            color: #D4AF37;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+.hidden-ui {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none;
+}
 
-        .restaurants-page .hero {
-            text-align: center;
-            padding: 100px 20px 60px 20px;
-        }
+.hero-section h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
 
-        .restaurants-page .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 56px;
-            font-weight: 600;
-            color: #FFF;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
+.hero-section h1 span {
+    font-weight: 600;
+    color: #D4AF37;
+}
 
-        .restaurants-page .hero p {
-            font-size: 16px;
-            color: #A0A0A0;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            line-height: 1.6;
-        }
+.hero-section p {
+    font-size: 16px;
+    color: #CCC;
+    max-width: 700px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
 
-        .restaurants-page .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px 100px 40px;
-        }
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+    background: #0b0b0b url("images/rebra.jpg") center / cover no-repeat;
+}
 
-        .restaurants-page .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
-        }
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 1;
+}
 
-        .restaurants-page .card {
-            background: #1A1A1A;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 4px;
-            padding: 0 0 30px 0;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            position: relative;
-            cursor: pointer;
-        }
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 2;
+}
 
-        .restaurants-page .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
+/* Секції та сітки для сторінок ресторанів і готелів */
+.hero {
+    text-align: center;
+    padding: 100px 20px 60px 20px;
+}
 
-        .restaurants-page .card-type {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #D4AF37;
-            margin-bottom: 15px;
-        }
+.hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 600;
+    color: #FFF;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
 
-        .restaurants-page .card-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            color: #FFF;
-            margin-bottom: 10px;
-        }
+.hero h1 span {
+    color: #D4AF37;
+}
 
-        .restaurants-page .card-cuisine {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 20px;
-        }
+.hero p {
+    font-size: 16px;
+    color: #A0A0A0;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
 
-        .restaurants-page .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 15px;
-            font-size: 13px;
-            color: #A0A0A0;
-        }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 100px 40px;
+}
 
-        .restaurants-page .rating {
-            color: #D4AF37;
-        }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px;
+}
 
-        .restaurants-page .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-            z-index: 1000;
-        }
+.card {
+    background: #1A1A1A;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    padding: 0 0 30px 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+    cursor: pointer;
+}
 
-        .restaurants-page .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+.card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
 
-        .restaurants-page .modal {
-            background: #181818;
-            border: 1px solid #D4AF37;
-            padding: 40px;
-            width: 100%;
-            max-width: 450px;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            position: relative;
-        }
+.card-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    background-color: #222;
+}
 
-        .restaurants-page .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 24px;
-            cursor: pointer;
-        }
+.card-content {
+    padding: 0 30px;
+}
 
-        .restaurants-page .modal-close:hover {
-            color: #FFF;
-        }
+.card-type {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #D4AF37;
+    margin-bottom: 15px;
+}
 
-        .restaurants-page .modal h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            color: #FFF;
-            margin-bottom: 5px;
-            text-align: center;
-        }
+.card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: #FFF;
+    margin-bottom: 10px;
+}
 
-        .restaurants-page .modal-subtitle {
-            font-size: 13px;
-            color: #D4AF37;
-            text-align: center;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+.card-cuisine {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 20px;
+}
 
-        .restaurants-page .form-group {
-            margin-bottom: 20px;
-        }
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 15px;
+    font-size: 13px;
+    color: #A0A0A0;
+}
 
-        .restaurants-page .form-group label {
-            display: block;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
+.rating {
+    color: #D4AF37;
+}
 
-        .restaurants-page .form-group input {
-            width: 100%;
-            background: #222;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 12px;
-            color: #FFF;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            border-radius: 4px;
-            transition: border-color 0.3s;
-        }
+/* Модальні вікна */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 1000;
+}
 
-        .restaurants-page .form-group input:focus {
-            outline: none;
-            border-color: #D4AF37;
-        }
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-        .restaurants-page .btn-submit {
-            width: 100%;
-            background: #D4AF37;
-            color: #121212;
-            border: none;
-            padding: 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 10px;
-            border-radius: 4px;
-        }
+.modal {
+    background: #181818;
+    border: 1px solid #D4AF37;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    position: relative;
+}
 
-        .restaurants-page .btn-submit:hover {
-            background: #FFF;
-        }
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 24px;
+    cursor: pointer;
+}
 
-        .restaurants-page .card-image {
-            width: 100%;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            background-color: #222;
-        }
+.modal-close:hover {
+    color: #FFF;
+}
 
-        .restaurants-page .card-content {
-            padding: 0 30px;
-        }
+.modal h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: #FFF;
+    margin-bottom: 5px;
+    text-align: center;
+}
 
-        .restaurants-page .btn-discover {
-            display: inline-block;
-            padding: 15px 40px;
-            border: 1px solid #D4AF37;
-            color: #D4AF37;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            transition: all 0.4s ease;
-            background: transparent;
-            border-radius: 4px;
-        }
+.modal-subtitle {
+    font-size: 13px;
+    color: #D4AF37;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
 
-        .restaurants-page .btn-discover:hover {
-            background: #D4AF37;
-            color: #000;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
-        }
+.form-group {
+    margin-bottom: 20px;
+}
 
-        .restaurants-page .lang-switch {
-            position: relative;
-            z-index: 105;
-        }
+.form-group label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
 
-        .restaurants-page .lang-switch span {
-            cursor: pointer;
-        }
+.form-group input {
+    width: 100%;
+    background: #222;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 12px;
+    color: #FFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
 
-        .empty-state {
-            color: #666;
-        }
+.form-group input:focus {
+    outline: none;
+    border-color: #D4AF37;
+}
 
-        /* Кнопка гамбургер за замовчуванням прихована на десктопі */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 1001;
-            padding: 0;
-        }
+.btn-submit {
+    width: 100%;
+    background: #D4AF37;
+    color: #121212;
+    border: none;
+    padding: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+    border-radius: 4px;
+}
 
-        .hamburger span {
-            width: 100%;
-            height: 3px;
-            background-color: #D4AF37;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
+.btn-submit:hover {
+    background: #FFF;
+}
 
-        @media (max-width: 992px) {
-    #main-header {
+.empty-state {
+    color: #666;
+}
+
+/* Медіа-запити для мобільних пристроїв */
+@media (max-width: 992px) {
+    #main-header, header {
         padding: 12px 15px;
     }
 
-    /* Права частина: перемикач мов і гамбургер разом */
     #main-header > div:last-child {
         display: flex;
         align-items: center;
         gap: 15px;
     }
 
-    /* Гарантуємо, що мовна панель відображається на мобільних */
     .lang-switch {
         display: flex !important;
         font-size: 13px;
         z-index: 1002;
     }
 
-    .hero-section h1 {
-        font-size: clamp(24px, 7.5vw, 28px) !important;
-        letter-spacing: 1px !important;
-        line-height: 1.15;
-        overflow-wrap: anywhere;
-        max-width: min(100%, 380px);
-    }
-
-    .hero-section p {
-        font-size: 14px !important;
-        padding: 0 10px;
-        box-sizing: border-box;
-        max-width: 100%;
-    }
-
-    /* Мобільне виїжджаюче меню навігації */
     #navbar-links {
         position: fixed;
         top: 0;
@@ -544,11 +547,9 @@
     }
 
     .hamburger {
-        display: flex;
-        z-index: 1001;
+        display: flex !important;
     }
 
-    /* Анімація хрестика для гамбургера */
     #hamburger-btn.open span:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
     }

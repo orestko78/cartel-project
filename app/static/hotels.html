@@ -1,28 +1,28 @@
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CARTEL — Мережа готелів та ресторанів у Буковелі</title>
+    <title>Готелі — CARTEL у Буковелі</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="restaurants-page">
+<body class="hotels-page">
 
-    <!-- 🏛️ Оновлена преміум-шапка CARTEL -->
+    <!-- 🏛️ Преміум-шапка CARTEL -->
     <div id="header-placeholder"></div>
 
     <section class="hero">
-        <h1 data-i18n="hero_title">Мережа ресторанів <span>CARTEL</span></h1>
-        <p data-i18n="hero_desc">Вишукана гастрономія, авторські концепції від шеф-кухарів та незабутні смакові поєднання в самому серці Карпат.</p>
-        <a href="/restaurants.html" class="btn-discover">Відкрити заклади</a>
+        <h1 data-i18n="hotels_hero_title">Наші готелі у <span>Буковелі</span></h1>
+        <p data-i18n="hotels_hero_desc">Затишні номери, високий рівень сервісу та неймовірні пейзажі Карпат для вашого ідеального відпочинку.</p>
     </section>  
 
     <div class="container">
         <div class="grid" id="establishments-grid">
-            <!-- Сюди автоматично завантажуються картки -->
+            <!-- Сюди автоматично завантажуються картки готелів -->
         </div>
     </div>
 
@@ -30,8 +30,8 @@
     <div class="modal-overlay" id="booking-modal-overlay">
         <div class="modal">
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            <h2 id="modal-title">Бронювання</h2>
-            <div class="modal-subtitle" id="modal-establishment-name">Назва закладу</div>
+            <h2 id="modal-title">Резерв номера</h2>
+            <div class="modal-subtitle" id="modal-establishment-name">Назва готелю</div>
             
             <form id="booking-form" onsubmit="submitBooking(event)">
                 <input type="hidden" id="form-establishment-name">
@@ -44,7 +44,7 @@
                     <input type="tel" id="guest-phone" required placeholder="+380">
                 </div>
                 <div class="form-group">
-                    <label>Дата та час візиту</label>
+                    <label>Дата заїзду та виїзду</label>
                     <input type="datetime-local" id="booking-date" required>
                 </div>
                 <button type="submit" class="btn-submit">Підтвердити бронь</button>
@@ -53,7 +53,7 @@
     </div>
 
     <script>
-        // 1. Словник перекладів для сторінки
+        // 1. Словник перекладів
         const translations = {
             uk: {
                 nav_about: "Про нас",
@@ -64,8 +64,8 @@
                 nav_jobs: "Вакансії",
                 nav_blog: "Блог",
                 nav_contact: "Контакти",
-                hero_title: 'Мережа ресторанів CARTEL',
-                hero_desc: "Вишукана гастрономія, авторські концепції від шеф-кухарів та незабутні смакові поєднання в самому серці Карпат."
+                hotels_hero_title: "Наші готелі у Буковелі",
+                hotels_hero_desc: "Затишні номери, високий рівень сервісу та неймовірні пейзажі Карпат для вашого ідеального відпочинку."
             },
             en: {
                 nav_about: "About Us",
@@ -76,53 +76,37 @@
                 nav_jobs: "Careers",
                 nav_blog: "Blog",
                 nav_contact: "Contacts",
-                hero_title: "Hotels & Restaurants Network",
-                hero_desc: "Premium leisure concepts, exquisite gastronomy, and a legendary atmosphere in the heart of the Carpathians."
+                hotels_hero_title: "Our Hotels in Bukovel",
+                hotels_hero_desc: "Cozy rooms, high-level service, and incredible Carpathian landscapes for your ideal getaway."
             }
         };
 
         // 2. Функція зміни мови
         function setLanguage(lang) {
             localStorage.setItem('cartel_lang', lang);
-
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
                     element.textContent = translations[lang][key];
                 }
             });
-
-            const langUk = document.getElementById('lang-uk');
-            const langEn = document.getElementById('lang-en');
-            if (langUk && langEn) {
-                langUk.classList.remove('active-lang');
-                langEn.classList.remove('active-lang');
-                document.getElementById('lang-' + lang).classList.add('active-lang');
-            }
         }
 
-        // 3. Функція завантаження шапки з окремого файлу
+        // 3. Завантаження шапки
         async function loadHeader() {
             try {
                 const response = await fetch('header.html');
                 if (response.ok) {
                     const html = await response.text();
-                    const placeholder = document.getElementById('header-placeholder');
-                    if (placeholder) {
-                        placeholder.outerHTML = html;
-                    }
-                } else {
-                    console.error("Не вдалося завантажити header.html: статус", response.status);
+                    document.getElementById('header-placeholder').outerHTML = html;
                 }
             } catch (error) {
                 console.error("Помилка завантаження шапки:", error);
             }
         }
 
-        let currentEstablishment = "";
-
-        // 4. Завантаження закладів (тільки ресторани)
-        async function loadEstablishments() {
+        // 4. Завантаження лише готелів із бекенду
+        async function loadHotels() {
             try {
                 const response = await fetch('/api/establishments/');
                 const data = await response.json();
@@ -132,17 +116,15 @@
                 
                 grid.innerHTML = '';
 
-                // Фільтруємо заклади, залишаючи тільки ресторани
-                const restaurants = data.filter(item => 
-                    item.type && item.type.toLowerCase() === 'restaurant'
-                );
+                // Фільтруємо заклади, залишаючи тільки готелі
+                const hotels = data.filter(item => item.type === 'Hotel');
 
-                if (restaurants.length === 0) {
-                    grid.innerHTML = '<p class="empty-state">Наразі немає доданих ресторанів. Додайте їх через /docs</p>';
+                if (hotels.length === 0) {
+                    grid.innerHTML = '<p class="empty-state">Наразі немає доступних готелів.</p>';
                     return;
                 }
 
-                restaurants.forEach(item => {
+                hotels.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.onclick = () => {
@@ -154,7 +136,7 @@
                     card.innerHTML = `
                         <div class="card-image"></div>
                         <div class="card-content">
-                            <div class="card-type">🥩 Ресторан</div>
+                            <div class="card-type">🏨 Готель</div>
                             <div class="card-title">${item.name}</div>
                             <div class="card-cuisine">${item.cuisine ? item.cuisine : 'Преміум сервіс'}</div>
                             <div class="card-footer">
@@ -171,31 +153,23 @@
             }
         }
 
-        // 5. Модальне вікно (закриття)
-        function closeModal() {
-            const overlay = document.getElementById('booking-modal-overlay');
-            if (overlay) overlay.classList.remove('active');
-        }
-
-        // 6. Головна ініціалізація
-        window.addEventListener('DOMContentLoaded', async () => {
-            await loadHeader();          // Спочатку підтягуємо шапку в DOM
-            loadEstablishments();        // Завантажуємо картки
-            const savedLang = localStorage.getItem('cartel_lang') || 'uk';
-            setLanguage(savedLang);      // Застосовуємо мову
-        });
-
+        // 5. Керування мобільним меню та модалкою
         function toggleMenu() {
-            const links = document.getElementById('navbar-links');
-            const hamburger = document.getElementById('hamburger-btn');
-            
-            if (links) {
-                links.classList.toggle('mobile-active');
-            }
-            if (hamburger) {
-                hamburger.classList.toggle('open');
-            }
+            document.getElementById('navbar-links')?.classList.toggle('mobile-active');
+            document.getElementById('hamburger-btn')?.classList.toggle('open');
         }
+
+        function closeModal() {
+            document.getElementById('booking-modal-overlay')?.classList.remove('active');
+        }
+
+        // 6. Ініціалізація
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadHeader();
+            loadHotels();
+            const savedLang = localStorage.getItem('cartel_lang') || 'uk';
+            setLanguage(savedLang);
+        });
     </script>
 </body>
 </html>

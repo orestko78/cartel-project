@@ -39,3 +39,15 @@ def create_establishment(item: EstablishmentCreate, db: Session = Depends(get_db
 @router.get("/")
 def get_establishments(db: Session = Depends(get_db)):
     return db.query(Establishment).all()
+
+@router.delete("/{establishment_id}")
+def delete_establishment(establishment_id: int, db: Session = Depends(get_db)):
+    db_item = db.query(Establishment).filter(Establishment.id == establishment_id).first()
+    
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Заклад не знайдено")
+    
+    db.delete(db_item)
+    db.commit()
+    
+    return {"message": f"Establishment {establishment_id} deleted successfully"} 
