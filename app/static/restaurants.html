@@ -3,30 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartel Network — Преміум відпочинок у Буковелі</title>
+    <title>CARTEL — Мережа готелів та ресторанів у Буковелі</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body class="restaurants-page">
 
     <!-- 🏛️ Оновлена преміум-шапка CARTEL -->
-    <header class="restaurants-header">
-        <a href="/" class="logo">CARTEL</a>
-        <nav>
-            <a href="/" data-i18n="nav_about">Про нас</a>
-            <a href="/restaurants.html" class="active-link" data-i18n="nav_restaurants">Ресторани</a>
-            <a href="#" data-i18n="nav_hotels">Готелі</a>
-            <a href="#" data-i18n="nav_spa">SPA</a>
-            <a href="#" data-i18n="nav_team">Команда</a>
-            <a href="#" data-i18n="nav_jobs">Вакансії</a>
-            <a href="#" data-i18n="nav_blog">Блог</a>
-            <a href="#" data-i18n="nav_contact">Контакти</a>
-        </nav>
-        <div class="lang-switch">
-            <span id="lang-uk" class="active-lang" onclick="setLanguage('uk')">UA</span>
-            <span id="lang-en" onclick="setLanguage('en')">EN</span>
-        </div>
-    </header>
+    <div id="header-placeholder"></div>
 
     <section class="hero">
         <h1 data-i18n="hero_title">Мережа готелів та ресторанів <span>CARTEL</span></h1>
@@ -115,8 +99,27 @@
             }
         }
 
+        // 3. Функція завантаження шапки з окремого файлу
+        async function loadHeader() {
+            try {
+                const response = await fetch('header.html');
+                if (response.ok) {
+                    const html = await response.text();
+                    const placeholder = document.getElementById('header-placeholder');
+                    if (placeholder) {
+                        placeholder.outerHTML = html;
+                    }
+                } else {
+                    console.error("Не вдалося завантажити header.html: статус", response.status);
+                }
+            } catch (error) {
+                console.error("Помилка завантаження шапки:", error);
+            }
+        }
+
         let currentEstablishment = "";
 
+        // 4. Завантаження закладів
         async function loadEstablishments() {
             try {
                 const response = await fetch('/api/establishments/');
@@ -161,11 +164,31 @@
             }
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            loadEstablishments();
+        // 5. Модальне вікно (закриття)
+        function closeModal() {
+            const overlay = document.getElementById('booking-modal-overlay');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        // 6. Головна ініціалізація
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadHeader();          // Спочатку підтягуємо шапку в DOM
+            loadEstablishments();        // Завантажуємо картки
             const savedLang = localStorage.getItem('cartel_lang') || 'uk';
-            setLanguage(savedLang);
+            setLanguage(savedLang);      // Застосовуємо мову
         });
+
+        function toggleMenu() {
+            const links = document.getElementById('navbar-links');
+            const hamburger = document.getElementById('hamburger-btn');
+            
+            if (links) {
+                links.classList.toggle('mobile-active');
+            }
+            if (hamburger) {
+                hamburger.classList.toggle('open');
+            }
+        }
     </script>
 </body>
 </html>
