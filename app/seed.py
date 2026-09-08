@@ -9,7 +9,7 @@ def seed_data(db: Session):
 
     print("🚀 Починаємо автоматичне наповнення бази даних Cartel...")
 
-    # Створюємо преміум-заклади
+    # Створюємо преміум-заклади (ресторани та готелі)
     rebra_bbq = Establishment(
         name="REBRA BBQ",
         type="Restaurant",
@@ -55,8 +55,11 @@ def seed_data(db: Session):
         image_url="/images/mountain_residence.jpg"
     )
 
-    db.add_all([rebra_bbq, osteria_italiana, filvarok])
+    # Додаємо ВСІ заклади (включно з готелями) до сесії та комітимо
+    db.add_all([rebra_bbq, osteria_italiana, filvarok, buka_hotel, mountain_residence])
     db.commit()
+    
+    # Оновлюємо об'єкти, щоб отримати їх ID для зв'язку з меню
     db.refresh(rebra_bbq)
     db.refresh(osteria_italiana)
 
@@ -94,8 +97,7 @@ def seed_data(db: Session):
         image_url="/images/carbonara.jpg"
     )
 
-    # 🔥 ТУТ МИ ТЕПЕР ЯВНО ЗБЕРІГАЄМО АБСОЛЮТНО ВСІ СТРАВИ, ВКЛЮЧАЮЧИ ДИШ3 (СТЕЙК)!
-    db.add_all([dish1, db.refresh(rebra_bbq) or dish1, dish2, dish3, dish4])
+    # Зберігаємо всі страви коректно без дублікатів
+    db.add_all([dish1, dish2, dish3, dish4])
     db.commit()
-    print("✨ Автонаповнення бази успішно завершено! Всі три страви збережено.")
-
+    print("✨ Автонаповнення бази успішно завершено! Всі заклади та страви збережено.")
