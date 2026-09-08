@@ -28,8 +28,9 @@ header, #main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #161616;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: transparent !important;
+    backdrop-filter: blur(5px); /* За бажанням можна додати легке розмиття фону для кращої читабельності тексту */
+    transition: background-color 0.3s ease;
     z-index: 1000; /* <--- Поставте велике значення (наприклад, 1000) */
 }
 
@@ -405,19 +406,23 @@ nav a.active-link, #navbar-links a.active-link {
 .interactive-map-section {
     position: relative;
     background-color: rgba(11, 11, 11, 0.3);
-    padding: 60px 20px;
+    padding: 40px 10px; /* Зменшили бокові відступи для мобільних */
     width: 100%;
+    box-sizing: border-box; /* Запобігає виходу за рамки через padding */
+    overflow: hidden; /* Блокує будь-яке випирання за межі */
 }
 
 /* Преміальна віньєтка: центр повністю видимий і чіткий, а краї плавно темніють і зливаються з фоном */
 
 .map-wrapper {
     position: relative;
-    max-width: 1300px;
+    width: 100%;
+    max-width: 100%;
     height: 550px;
     margin: 0 auto;
     border-radius: 12px;
     overflow: hidden;
+    box-sizing: border-box;
     
     /* Робимо фон контейнера напівпрозорим (ефект матового скла) */
     background: rgba(11, 11, 11, 0.55); 
@@ -427,8 +432,7 @@ nav a.active-link, #navbar-links a.active-link {
     border: 1px solid rgba(212, 175, 55, 0.25);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 
-    /* Плавне розмиття країв у прозорість: зліва глибоке затухання (42%), зверху/знизу/справа по 10% */
-    /* Однаковий короткий відступ затухання (від 3% до 12%) для всіх чотирьох сторін */
+    /* Маски для розмиття країв */
     -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%),
                         linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%);
     -webkit-mask-composite: intersect; 
@@ -502,7 +506,7 @@ nav a.active-link, #navbar-links a.active-link {
 
 /* Стилі для маркерів (пінів) на карті */
 .custom-map-pin {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
     background: rgba(11, 11, 11, 0.85);
@@ -510,21 +514,25 @@ nav a.active-link, #navbar-links a.active-link {
     border-radius: 20px;
     border: 1px solid #D4AF37;
     color: white;
-    white-space: nowrap;
     text-decoration: none;
     transition: transform 0.3s ease;
     backdrop-filter: blur(4px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    
+    /* Вирішуємо проблему виходу за рамки */
+    max-width: 220px; /* Обмежуємо максимальну ширину пін-коду */
+    box-sizing: border-box;
 }
 
 .custom-map-pin:hover {
-    transform: scale(1.1);
+    transform: scale(1.05); /* Зменшили масштаб при ховері, щоб піни не зникали за краями */
     background: #D4AF37;
     color: #0b0b0b;
 }
 
 .custom-map-pin .pin-icon {
     font-size: 12px;
+    flex-shrink: 0; /* Щоб іконка не стискалась */
 }
 
 .custom-map-pin .pin-text {
@@ -532,6 +540,11 @@ nav a.active-link, #navbar-links a.active-link {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1px;
+    
+    /* Запобігаємо вилазанню довгих назв на кшталт "Mountain Residence" */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @media (max-width: 768px) {
@@ -543,10 +556,26 @@ nav a.active-link, #navbar-links a.active-link {
         height: 350px;
         margin: 10px auto !important;
         max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
         border-radius: 10px;
-        /* Повністю вимикаємо маску на мобільних, щоб карта була прямою і чіткою без зайвих обрізань */
-        -webkit-mask-image: none !important;
-        mask-image: none !important;
+        overflow: hidden;
+
+        /* Фонове оформлення */
+        background: rgba(11, 11, 11, 0.55); 
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+
+        /* Активні маски розмиття для всіх екранів (включно з мобільними) */
+        -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%),
+                            linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+        -webkit-mask-composite: intersect; 
+        
+        mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%),
+                    linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+        mask-composite: intersect;
     }
 
     /* Якщо текстовий блок абсолютний, повертаємо його у звичайний потік зверху чи знизу карти */

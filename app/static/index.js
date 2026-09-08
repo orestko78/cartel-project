@@ -110,7 +110,10 @@ function showUI() {
     clearTimeout(inactivityTimeout);
     inactivityTimeout = setTimeout(() => {
         const links = document.getElementById('navbar-links');
-        if (!(links && links.classList.contains('mobile-active'))) { if (header) header.classList.add('hidden-ui'); if (hero) hero.classList.add('hidden-ui'); }
+        if (!(links && links.classList.contains('mobile-active'))) { 
+            // Видаляємо додання hidden-ui для header, залишаємо тільки для hero
+            if (hero) hero.classList.add('hidden-ui'); 
+        }
     }, 3500);
 }
 document.addEventListener("DOMContentLoaded", function() {
