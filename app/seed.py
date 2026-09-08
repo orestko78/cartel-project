@@ -37,6 +37,24 @@ def seed_data(db: Session):
         image_url="/images/filvarok.jpg"
     )
 
+    buka_hotel = Establishment(
+        name="BUKA Apart-Hotel",
+        type="Hotel",
+        cuisine="Апартготель у центральній локації",
+        location="Bukovel",
+        rating=5.0,
+        image_url="/images/buka.jpg"
+    )
+
+    mountain_residence = Establishment(
+        name="Mountain Residence Apartments",
+        type="Hotel",
+        cuisine="Готель на трасі 2C",
+        location="Bukovel",
+        rating=5.0,
+        image_url="/images/mountain_residence.jpg"
+    )
+
     db.add_all([rebra_bbq, osteria_italiana, filvarok])
     db.commit()
     db.refresh(rebra_bbq)
