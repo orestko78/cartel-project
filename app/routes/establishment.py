@@ -15,9 +15,16 @@ class EstablishmentCreate(BaseModel):
     cuisine: str | None = None
     location: str = "Bukovel"
     rating: float = 5.0
-    image_url: str | None = None  # <-- Додаємо в схему валідації
+    image_url: str | None = None
 
-@router.post("/", response_model=EstablishmentCreate)
+# Схема для відповіді клієнту, яка включає ID з бази даних
+class EstablishmentResponse(EstablishmentCreate):
+    id: int
+
+    class Config:
+        from_attributes = True # Для сумісності зі SQLAlchemy (в Pydantic v2)
+
+@router.post("/", response_model=EstablishmentResponse)
 def create_establishment(item: EstablishmentCreate, db: Session = Depends(get_db)):
     db_item = db.query(Establishment).filter(Establishment.name == item.name).first()
     if db_item:
@@ -29,14 +36,14 @@ def create_establishment(item: EstablishmentCreate, db: Session = Depends(get_db
         cuisine=item.cuisine,
         location=item.location,
         rating=item.rating,
-        image_url=item.image_url  # <-- Зберігаємо фото в базу
+        image_url=item.image_url
     )
     db.add(new_establishment)
     db.commit()
     db.refresh(new_establishment)
     return new_establishment
 
-@router.get("/")
+@router.get("/", response_model=list[EstablishmentResponse])
 def get_establishments(db: Session = Depends(get_db)):
     return db.query(Establishment).all()
 
@@ -50,4 +57,4 @@ def delete_establishment(establishment_id: int, db: Session = Depends(get_db)):
     db.delete(db_item)
     db.commit()
     
-    return {"message": f"Establishment {establishment_id} deleted successfully"} 
+    return {"message": f"Establishment {establishment_id} deleted successfully"}

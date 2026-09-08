@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CARTEL — Мережа готелів та ресторанів у Буковелі</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="restaurants-page">
 
@@ -17,7 +17,7 @@
     <section class="hero">
         <h1 data-i18n="hero_title">Мережа ресторанів <span>CARTEL</span></h1>
         <p data-i18n="hero_desc">Вишукана гастрономія, авторські концепції від шеф-кухарів та незабутні смакові поєднання в самому серці Карпат.</p>
-        <a href="/restaurants.html" class="btn-discover">Відкрити заклади</a>
+        <a href="/static/restaurants.html" class="btn-discover">Відкрити заклади</a>
     </section>  
 
     <div class="container">
@@ -52,150 +52,6 @@
         </div>
     </div>
 
-    <script>
-        // 1. Словник перекладів для сторінки
-        const translations = {
-            uk: {
-                nav_about: "Про нас",
-                nav_restaurants: "Ресторани",
-                nav_hotels: "Готелі",
-                nav_spa: "SPA",
-                nav_team: "Команда",
-                nav_jobs: "Вакансії",
-                nav_blog: "Блог",
-                nav_contact: "Контакти",
-                hero_title: 'Мережа ресторанів CARTEL',
-                hero_desc: "Вишукана гастрономія, авторські концепції від шеф-кухарів та незабутні смакові поєднання в самому серці Карпат."
-            },
-            en: {
-                nav_about: "About Us",
-                nav_restaurants: "Restaurants",
-                nav_hotels: "Hotels",
-                nav_spa: "SPA",
-                nav_team: "Team",
-                nav_jobs: "Careers",
-                nav_blog: "Blog",
-                nav_contact: "Contacts",
-                hero_title: "Hotels & Restaurants Network",
-                hero_desc: "Premium leisure concepts, exquisite gastronomy, and a legendary atmosphere in the heart of the Carpathians."
-            }
-        };
-
-        // 2. Функція зміни мови
-        function setLanguage(lang) {
-            localStorage.setItem('cartel_lang', lang);
-
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-
-            const langUk = document.getElementById('lang-uk');
-            const langEn = document.getElementById('lang-en');
-            if (langUk && langEn) {
-                langUk.classList.remove('active-lang');
-                langEn.classList.remove('active-lang');
-                document.getElementById('lang-' + lang).classList.add('active-lang');
-            }
-        }
-
-        // 3. Функція завантаження шапки з окремого файлу
-        async function loadHeader() {
-            try {
-                const response = await fetch('header.html');
-                if (response.ok) {
-                    const html = await response.text();
-                    const placeholder = document.getElementById('header-placeholder');
-                    if (placeholder) {
-                        placeholder.outerHTML = html;
-                    }
-                } else {
-                    console.error("Не вдалося завантажити header.html: статус", response.status);
-                }
-            } catch (error) {
-                console.error("Помилка завантаження шапки:", error);
-            }
-        }
-
-        let currentEstablishment = "";
-
-        // 4. Завантаження закладів (тільки ресторани)
-        async function loadEstablishments() {
-            try {
-                const response = await fetch('/api/establishments/');
-                const data = await response.json();
-                
-                const grid = document.getElementById('establishments-grid');
-                if (!grid) return;
-                
-                grid.innerHTML = '';
-
-                // Фільтруємо заклади, залишаючи тільки ресторани
-                const restaurants = data.filter(item => 
-                    item.type && item.type.toLowerCase() === 'restaurant'
-                );
-
-                if (restaurants.length === 0) {
-                    grid.innerHTML = '<p class="empty-state">Наразі немає доданих ресторанів. Додайте їх через /docs</p>';
-                    return;
-                }
-
-                restaurants.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.onclick = () => {
-                        window.location.href = `/menu.html?id=${item.id}`;
-                    };
-                    
-                    const imageUrl = item.image_url ? item.image_url : 'https://unsplash.com';
-
-                    card.innerHTML = `
-                        <div class="card-image"></div>
-                        <div class="card-content">
-                            <div class="card-type">🥩 Ресторан</div>
-                            <div class="card-title">${item.name}</div>
-                            <div class="card-cuisine">${item.cuisine ? item.cuisine : 'Преміум сервіс'}</div>
-                            <div class="card-footer">
-                                <span>📍 ${item.location}</span>
-                                <span class="rating">★ ${item.rating.toFixed(1)}</span>
-                            </div>
-                        </div>
-                    `;
-                    card.querySelector('.card-image').style.backgroundImage = `url('${imageUrl}')`;
-                    grid.appendChild(card);
-                });
-            } catch (error) {
-                console.error("Помилка завантаження даних:", error);
-            }
-        }
-
-        // 5. Модальне вікно (закриття)
-        function closeModal() {
-            const overlay = document.getElementById('booking-modal-overlay');
-            if (overlay) overlay.classList.remove('active');
-        }
-
-        // 6. Головна ініціалізація
-        window.addEventListener('DOMContentLoaded', async () => {
-            await loadHeader();          // Спочатку підтягуємо шапку в DOM
-            loadEstablishments();        // Завантажуємо картки
-            const savedLang = localStorage.getItem('cartel_lang') || 'uk';
-            setLanguage(savedLang);      // Застосовуємо мову
-        });
-
-        function toggleMenu() {
-            const links = document.getElementById('navbar-links');
-            const hamburger = document.getElementById('hamburger-btn');
-            
-            if (links) {
-                links.classList.toggle('mobile-active');
-            }
-            if (hamburger) {
-                hamburger.classList.toggle('open');
-            }
-        }
-    </script>
+    <script src="/static/restaurants.js"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@ from .models.establishment import Establishment
 from .routes.establishment import router as establishment_router
 from .seed import seed_data
 from .database import SessionLocal
+from fastapi.responses import FileResponse
 
 Base.metadata.create_all(bind=engine)
 
@@ -42,4 +43,18 @@ app.include_router(menu_router)
 
 # Монтуємо папку static, щоб відображати наш шикарний дизайн на головній сторінці
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-app.mount("/", StaticFiles(directory=os.path.join(BASE_DIR, "static"), html=True), name="static")
+app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
+
+# 3. Додаємо прямі маршрути для всіх HTML-сторінок
+@app.get("/")
+@app.get("/index.html")
+def read_index():
+    return FileResponse(os.path.join(BASE_DIR, "static", "index.html"))
+
+@app.get("/hotels.html")
+def read_hotels():
+    return FileResponse(os.path.join(BASE_DIR, "static", "hotels.html"))
+
+@app.get("/restaurants.html")
+def read_restaurants():
+    return FileResponse(os.path.join(BASE_DIR, "static", "restaurants.html"))
