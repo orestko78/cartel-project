@@ -1,3 +1,5 @@
+let lastScrollTop = 0;
+
 document.addEventListener("DOMContentLoaded", function() {
     const mapCenter = [48.3538, 24.4120];
     const map = L.map('real-map', { center: mapCenter, zoom: 16, scrollWheelZoom: false });
@@ -15,20 +17,38 @@ document.addEventListener("DOMContentLoaded", function() {
         { coords: [48.3525, 24.4135], name: "TEPPAN", link: "/restaurants/teppan" },
         { coords: [48.3530, 24.4160], name: "ASIA GARDEN", link: "/restaurants/asia-garden" }
     ];
+
     locations.forEach(loc => {
         const customIcon = L.divIcon({
             className: 'custom-div-icon',
-            html: `<a href="${loc.link}" class="custom-map-pin"><span class="pin-icon">📍</span><span class="pin-text">${loc.name}</span></a>`,
-            iconSize: [120, 35], iconAnchor: [60, 17]
+            html: `<a href="${loc.link}" class="custom-map-pin"><span class="pin-icon">📍</span><span class="pin-text">${loc.name}</span></a>`
         });
         L.marker(loc.coords, { icon: customIcon }).addTo(map);
     });
 });
 
+/* Скрол-функція: розумне приховування та поява хедера */
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('main-header');
+    if (!header) return; // Захист від помилок, якщо хедер ще не підвантажився з сервера
+
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Якщо скролимо вниз і прокрутили більше ніж на 50px
+    if (scrollTop > lastScrollTop && scrollTop > 50) {
+        header.classList.add('header-hidden');
+    } else {
+        // Якщо скролимо вгору
+        header.classList.remove('header-hidden');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
 const translations = {
     uk: {
         nav_about: "Про нас", nav_restaurants: "Ресторани", nav_hotels: "Готелі", nav_spa: "SPA", nav_team: "Команда", nav_jobs: "Вакансії", nav_blog: "Блог", nav_contact: "Контакти",
-        hero_title: "Мережа готелів та ресторанів <span>CARTEL</span>", hero_desc: "Преміальні концепції відпочинку, вишукана гастрономія та легендарна атмосфера в самому серці Карпат.", formats_main_title: "ОБЕРІТЬ СВІЙ ФОРМАТ", format_stay: "ЗУПИНИТИСЯ", format_stay_desc: "Готелі та апартаменти", format_taste: "СКУШТУВАТИ", format_taste_desc: "Ресторани та гастрономія", format_recover: "ВІДНОВИТИСЯ", format_recover_desc: "SPA, VODA, баня", format_relax: "ВІДПОЧИТИ", format_relax_desc: "Розваги та активності"
+        hero_title: "Мережа готелів та ресторанів <span>CARTEL</span>", hero_desc: "Преміальні концепції відпочинку, вишукана гастрономія та legendaрна атмосфера в самому серці Карпат.", formats_main_title: "ОБЕРІТЬ СВІЙ ФОРМАТ", format_stay: "ЗУПИНИТИСЯ", format_stay_desc: "Готелі та апартаменти", format_taste: "СКУШТУВАТИ", format_taste_desc: "Ресторани та гастрономія", format_recover: "ВІДНОВИТИСЯ", format_recover_desc: "SPA, VODA, баня", format_relax: "ВІДПОЧИТИ", format_relax_desc: "Розваги та активності"
     },
     en: {
         nav_about: "About Us", nav_restaurants: "Restaurants", nav_hotels: "Hotels", nav_spa: "SPA", nav_team: "Team", nav_jobs: "Careers", nav_blog: "Blog", nav_contact: "Contacts",
@@ -101,27 +121,27 @@ async function submitBooking(event) {
 }
 function toggleMenu() { document.getElementById('navbar-links')?.classList.toggle('mobile-active'); document.getElementById('hamburger-btn')?.classList.toggle('open'); }
 
-window.addEventListener('DOMContentLoaded', async () => { await loadHeader(); loadEstablishments(); setLanguage(localStorage.getItem('cartel_lang') || 'uk'); });
+window.addEventListener('DOMContentLoaded', async () => { 
+    await loadHeader(); 
+    loadEstablishments(); 
+    setLanguage(localStorage.getItem('cartel_lang') || 'uk'); 
+});
 
 let inactivityTimeout;
 function showUI() {
-    const header = document.getElementById('main-header'); const hero = document.getElementById('hero-content');
-    if (header) header.classList.remove('hidden-ui'); if (hero) hero.classList.remove('hidden-ui');
+    const hero = document.getElementById('hero-content');
+    if (hero) hero.classList.remove('hidden-ui'); // Вертаємо видимість тексту
+    
     clearTimeout(inactivityTimeout);
     inactivityTimeout = setTimeout(() => {
         const links = document.getElementById('navbar-links');
+        // Якщо мобільне меню не відкрите — ховаємо ТІЛЬКИ текст hero
         if (!(links && links.classList.contains('mobile-active'))) { 
-            // Видаляємо додання hidden-ui для header, залишаємо тільки для hero
             if (hero) hero.classList.add('hidden-ui'); 
         }
     }, 3500);
 }
-document.addEventListener("DOMContentLoaded", function() {
-    const video = document.querySelector("video");
-    if (!video) return;
-    video.muted = true; video.defaultMuted = true;
-    video.addEventListener('canplay', () => document.querySelector('.video-background').classList.add('video-ready'), { once: true });
-    video.addEventListener('error', () => document.querySelector('.video-background').classList.add('video-fallback'), { once: true });
-    video.play().catch(error => { document.querySelector('.video-background').classList.add('video-fallback'); console.log("Автозапуск відео заблоковано браузером:", error); });
-});
-window.addEventListener('mousemove', showUI); window.addEventListener('click', showUI); showUI();
+
+// Пов'язуємо таймер з рухами користувача
+window.addEventListener('scroll', showUI);
+document.addEventListener('mousemove', showUI);

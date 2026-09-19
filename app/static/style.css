@@ -29,20 +29,19 @@ header, #main-header {
     justify-content: space-between;
     align-items: center;
     background-color: transparent !important;
-    backdrop-filter: blur(5px); /* За бажанням можна додати легке розмиття фону для кращої читабельності тексту */
-    transition: background-color 0.3s ease;
-    z-index: 1000; /* <--- Поставте велике значення (наприклад, 1000) */
+    backdrop-filter: blur(5px); 
+    z-index: 1000; 
+    transition: all 0.3s ease-in-out; 
 }
 
-.logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 700;
-    color: #D4AF37;
-    text-decoration: none;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    z-index: 102;
+/* Клас для плавного виїзду вгору при скролі вниз */
+header.header-hidden, #main-header.header-hidden {
+    transform: translateY(-100%) !important;
+}
+
+/* Розумне приховування при скролі вниз (виштовхування вгору) */
+header.header-hidden, #main-header.header-hidden {
+    transform: translateY(-100%) !important;
 }
 
 nav, #navbar-links {
@@ -277,14 +276,14 @@ nav a.active-link, #navbar-links a.active-link {
     z-index: 1;
 }
 
-/* Блок ОБЕРІТЬ СВІЙ ФОРМАТ */
+/* Блок ОБЕРІТЬ СВІЙ ФОРМАТ (Змініть background-color) */
 .formats-section {
     position: relative;
     z-index: 3;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    background-color: rgba(11, 11, 11, 0.3);
+    background-color: rgba(11, 11, 11, 0.45) !important;
     padding: 80px 20px;
     color: #fff;
 }
@@ -402,14 +401,14 @@ nav a.active-link, #navbar-links a.active-link {
     transform: translateX(8px);
 }
 
-/* Стилі для реальної інтерактивної карти Leaflet */
+/* Стилі для реальної інтерактивної карти Leaflet (Змініть background-color і додайте z-index) */
 .interactive-map-section {
     position: relative;
-    background-color: rgba(11, 11, 11, 0.3);
-    padding: 40px 10px; /* Зменшили бокові відступи для мобільних */
+    z-index: 3;
+    background-color: #0b0b0b; /* Змінено з rgba на чистий непрозорий фон */
+    padding: 40px 10px; 
     width: 100%;
-    box-sizing: border-box; /* Запобігає виходу за рамки через padding */
-    overflow: hidden; /* Блокує будь-яке випирання за межі */
+    box-sizing: border-box; 
 }
 
 /* Преміальна віньєтка: центр повністю видимий і чіткий, а краї плавно темніють і зливаються з фоном */
@@ -548,6 +547,19 @@ nav a.active-link, #navbar-links a.active-link {
 }
 
 @media (max-width: 768px) {
+    /* Зменшуємо відступи у всій шапці, щоб звільнити простір */
+    .header, .main-header {
+        padding: 10px 15px !important;
+    }
+
+    /* Зменшуємо висоту самої картинки-логотипа всередині посилання */
+    .main-header .logo img, 
+    .header img {
+        height: 30px !important;    /* Ідеальна висота для екрана смартфона */
+        width: auto !important;     /* Пропорції збережуться автоматично */
+        display: block !important;
+    }
+
     .interactive-map-section {
         padding: 20px 10px;
     }
@@ -828,7 +840,7 @@ nav a.active-link, #navbar-links a.active-link {
 
 /* Медіа-запити для мобільних пристроїв */
 @media (max-width: 992px) {
-    /* Забороняємо будь-який горизонтальний вихід за межі екрана */
+    /* Забороняємо будь-який horizontalьний вихід за межі екрана */
     body, html {
         max-width: 100%;
         overflow-x: hidden;
@@ -860,15 +872,34 @@ nav a.active-link, #navbar-links a.active-link {
         box-sizing: border-box;
     }
     
+    /* ВИПРАВЛЕНО: Забороняємо переносы, фіксуємо елементи строго в один рядок */
     #main-header, header {
-        flex-wrap: wrap;
-        padding: 12px 15px;
+        flex-wrap: nowrap !important; /* Елементи ніколи не злетять вниз */
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 15px !important; /* Робимо шапку вужчою на мобілці */
     }
 
-    #main-header > div:last-child {
-        display: flex;
-        align-items: center;
-        gap: 15px;
+    /* ДОПИСАНО: Смещаем саму ссылку-обертку логотипа максимально влево */
+    #main-header > a, header > a, #main-header a.logo, header a.logo {
+        margin-left: -80px !important; /* Сдвигает логотип влево, игнорируя отступы шапки */
+        padding-left: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* ВИПРАВЛЕНО: Жорстко обмежуємо висоту картинки-логотипа на смартфонах */
+    .logo-img {
+        height: 28px !important; /* Точний розмір, щоб напис був акуратним */
+        width: auto !important;  /* Зберігає правильні пропорції */
+        display: block !important;
+    }
+
+    #main-header > div:last-child, .header-right {
+        display: flex !important;
+        align-items: center !important;
+        gap: 15px !important;
     }
 
     .lang-switch {
@@ -877,6 +908,7 @@ nav a.active-link, #navbar-links a.active-link {
         z-index: 1002;
     }
 
+    /* Мобільне меню (виїжджає справа) */
     #navbar-links {
         position: fixed;
         top: 0;
@@ -918,3 +950,13 @@ nav a.active-link, #navbar-links a.active-link {
         transform: translateY(-9px) rotate(-45deg);
     }
 }
+
+/* Базовий розмір логотипа для комп'ютерів (моніторів) */
+@media (min-width: 993px) {
+    .logo-img {
+        height: 45px;
+        width: auto;
+        display: block;
+    }
+}
+
