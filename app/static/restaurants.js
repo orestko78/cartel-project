@@ -3,7 +3,7 @@ const translations = {
         nav_about: "Про нас", nav_restaurants: "Ресторани", nav_hotels: "Готелі", nav_spa: "SPA",
         nav_team: "Команда", nav_jobs: "Вакансії", nav_blog: "Блог", nav_contact: "Контакти",
         hero_title: 'Мережа ресторанів CARTEL',
-        hero_desc: "Вишукана гастрономія, авторські концепції від шеф-кухарів та незабутні смакові поєднання в самому серці Карпат."
+        hero_desc: "Вишукана гастрономія, authorські концепції від шеф-кухарів та незабутні смакові поєднання в самому серці Карпат."
     },
     en: {
         nav_about: "About Us", nav_restaurants: "Restaurants", nav_hotels: "Hotels", nav_spa: "SPA",
@@ -58,17 +58,36 @@ async function loadEstablishments() {
         restaurants.forEach(item => {
             const card = document.createElement('div');
             card.className = 'card';
-            card.onclick = () => { window.location.href = `/menu.html?id=${item.id}`; };
-            const imageUrl = item.image_url ? item.image_url : 'https://unsplash.com';
+            
+            // Клік по картці веде на сторінку меню страв
+            card.onclick = () => { window.location.href = `/static/menu.html?id=${item.id}`; };
+            
+            // Підстраховка для шляху до картинок статики
+            const imageUrl = item.image_url ? item.image_url : '/static/images/rebra.jpg';
+            
             card.innerHTML = `
-                <div class="card-image"></div>
+                <div class="card-image" style="background-image: url('${imageUrl}');"></div>
                 <div class="card-content">
                     <div class="card-type">🥩 Ресторан</div>
                     <div class="card-title">${item.name}</div>
                     <div class="card-cuisine">${item.cuisine ? item.cuisine : 'Преміум сервіс'}</div>
-                    <div class="card-footer"><span>📍 ${item.location}</span><span class="rating">★ ${item.rating.toFixed(1)}</span></div>
+                    
+                    <!-- Додана кнопка швидкого бронювання -->
+                    <button class="btn-book-now">Забронювати столик</button>
+                    
+                    <div class="card-footer">
+                        <span>📍 ${item.location}</span>
+                        <span class="rating">★ ${item.rating.toFixed(1)}</span>
+                    </div>
                 </div>`;
-            card.querySelector('.card-image').style.backgroundImage = `url('${imageUrl}')`;
+            
+            // Ізолюємо клік по кнопці "Забронювати", щоб він не переходив на menu.html
+            const bookBtn = card.querySelector('.btn-book-now');
+            bookBtn.onclick = (event) => {
+                event.stopPropagation(); 
+                openModal(item.name, 'Restaurant');
+            };
+
             grid.appendChild(card);
         });
     } catch (error) {
@@ -76,9 +95,53 @@ async function loadEstablishments() {
     }
 }
 
+/* Логіка відкриття модального вікна */
+function openModal(name, type) {
+    const overlay = document.getElementById('booking-modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const modalEstName = document.getElementById('modal-establishment-name');
+    const formEstInput = document.getElementById('form-establishment-name');
+
+    if (modalTitle) modalTitle.innerText = 'Бронювання столика';
+    if (modalEstName) modalEstName.innerText = name;
+    if (formEstInput) formEstInput.value = name;
+    
+    if (overlay) overlay.classList.add('active');
+}
+
+/* Логіка закриття модального вікна */
 function closeModal() {
     const overlay = document.getElementById('booking-modal-overlay');
     if (overlay) overlay.classList.remove('active');
+    document.getElementById('booking-form')?.reset();
+}
+
+/* Відправка форми бронювання на FastAPI сервер */
+async function submitBooking(event) {
+    event.preventDefault();
+    const bookingData = {
+        establishment_name: document.getElementById('form-establishment-name').value,
+        guest_name: document.getElementById('guest-name').value,
+        guest_phone: document.getElementById('guest-phone').value,
+        booking_date: document.getElementById('booking-date').value
+    };
+    try {
+        const response = await fetch('/api/bookings/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+        });
+        if (response.ok) {
+            alert('Бронювання успішно створено!');
+            closeModal();
+        } else {
+            const errorData = await response.json();
+            alert('Помилка при створенні бронювання: ' + (errorData.detail || 'Невідома помилка'));
+        }
+    } catch (error) {
+        console.error("Помилка при відправці даних:", error);
+        alert('Помилка при з’єднанні з сервером. Спробуйте ще раз.');
+    }
 }
 
 function toggleMenu() {
