@@ -47,26 +47,91 @@ window.addEventListener('scroll', function() {
 
 const translations = {
     uk: {
-        nav_about: "Про нас", nav_restaurants: "Ресторани", nav_hotels: "Готелі", nav_spa: "SPA", nav_team: "Команда", nav_jobs: "Вакансії", nav_blog: "Блог", nav_contact: "Контакти",
-        hero_title: "Мережа готелів та ресторанів <span>CARTEL</span>", hero_desc: "Преміальні концепції відпочинку, вишукана гастрономія та legendaрна атмосфера в самому серці Карпат.", formats_main_title: "ОБЕРІТЬ СВІЙ ФОРМАТ", format_stay: "ЗУПИНИТИСЯ", format_stay_desc: "Готелі та апартаменти", format_taste: "СКУШТУВАТИ", format_taste_desc: "Ресторани та гастрономія", format_recover: "ВІДНОВИТИСЯ", format_recover_desc: "SPA, VODA, баня", format_relax: "ВІДПОЧИТИ", format_relax_desc: "Розваги та активності"
+        nav_about: "Про нас", 
+        nav_restaurants: "Ресторани", 
+        nav_hotels: "Готелі", 
+        nav_spa: "SPA", 
+        nav_team: "Команда", 
+        nav_jobs: "Вакансії", 
+        nav_blog: "Блог", 
+        nav_contact: "Контакти",
+        
+        hero_title: "Мережа готелів та ресторанів <span>CARTEL</span>", 
+        hero_desc: "Преміальні концепції відпочинку, вишукана гастрономія та легендарна атмосфера в самому серці Карпат.", 
+        
+        formats_main_title: "ОБЕРІТЬ СВІЙ ФОРМАТ", 
+        formats_main_desc: "Ваша персональна історія відпочинку: від затишних апартаментів до гастрономічних відкриттів.",
+        
+        format_stay_title: "ЗУПИНИТИСЯ", 
+        format_stay_desc: "Готелі та апартаменти", 
+        
+        format_taste_title: "СКУШТУВАТИ", 
+        format_taste_desc: "Ресторани та гастрономія", 
+        
+        format_recover_title: "ВІДНОВИТИСЯ", 
+        format_recover_desc: "SPA, VODA, баня", 
+        
+        format_relax_title: "ВІДПОЧИТИ", 
+        format_relax_desc: "Розваги та активності",
+        
+        map_title: "CARTEL У КАРПАТАХ",
+        map_desc: "Ми створюємо унікальні місця для вашого відпочинку в серці Українських Карпат."
     },
     en: {
-        nav_about: "About Us", nav_restaurants: "Restaurants", nav_hotels: "Hotels", nav_spa: "SPA", nav_team: "Team", nav_jobs: "Careers", nav_blog: "Blog", nav_contact: "Contacts",
-        hero_title: "Hotels & Restaurants Network <span>CARTEL</span>", hero_desc: "Premium leisure concepts, exquisite gastronomy, and a legendary atmosphere in the heart of the Carpathians.", formats_main_title: "CHOOSE YOUR FORMAT", format_stay: "STAY", format_stay_desc: "Hotels & Apartments", format_taste: "TASTE", format_taste_desc: "Restaurants & Gastronomy", format_recover: "RECOVER", format_recover_desc: "SPA, VODA, sauna", format_relax: "RELAX", format_relax_desc: "Entertainment & Activities"
+        nav_about: "About Us", 
+        nav_restaurants: "Restaurants", 
+        nav_hotels: "Hotels", 
+        nav_spa: "SPA", 
+        nav_team: "Team", 
+        nav_jobs: "Careers", 
+        nav_blog: "Blog", 
+        nav_contact: "Contacts",
+        
+        hero_title: "Hotels & Restaurants Network <span>CARTEL</span>", 
+        hero_desc: "Premium leisure concepts, exquisite gastronomy, and a legendary atmosphere in the heart of the Carpathians.", 
+        
+        formats_main_title: "CHOOSE YOUR FORMAT", 
+        formats_main_desc: "Your personal holiday story: from cozy apartments to gastronomic discoveries.",
+        
+        format_stay_title: "STAY", 
+        format_stay_desc: "Hotels & Apartments", 
+        
+        format_taste_title: "TASTE", 
+        format_taste_desc: "Restaurants & Gastronomy", 
+        
+        format_recover_title: "RECOVER", 
+        format_recover_desc: "SPA, VODA, sauna", 
+        
+        format_relax_title: "RELAX", 
+        format_relax_desc: "Entertainment & Activities",
+        
+        map_title: "CARTEL IN THE CARPATHIANS",
+        map_desc: "We create unique places for your holiday in the heart of the Ukrainian Carpathians."
     }
 };
 
 function setLanguage(lang) {
     localStorage.setItem('cartel_lang', lang);
-    document.querySelectorAll('[data-i18n]').forEach(element => {
+    
+    // Перевіримо, які елементи знайшов скрипт на сторінці
+    const elements = document.querySelectorAll('[data-i18n]');
+    console.log("Знайдено елементів для перекладу:", elements.length);
+    elements.forEach(el => console.log(el.getAttribute('data-i18n'), el));
+
+    elements.forEach(element => {
         const key = element.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) element.innerHTML = translations[lang][key];
+        if (translations[lang] && translations[lang][key]) {
+            element.innerHTML = translations[lang][key];
+        }
     });
+
     const langUk = document.getElementById('lang-uk');
     const langEn = document.getElementById('lang-en');
     if (langUk && langEn) {
-        langUk.classList.remove('active-lang'); langEn.classList.remove('active-lang');
-        document.getElementById('lang-' + lang).classList.add('active-lang');
+        langUk.classList.remove('active-lang'); 
+        langEn.classList.remove('active-lang');
+        const activeLangBtn = document.getElementById('lang-' + lang);
+        if (activeLangBtn) activeLangBtn.classList.add('active-lang');
     }
 }
 
@@ -76,10 +141,24 @@ async function loadHeader() {
         if (response.ok) {
             const html = await response.text();
             const placeholder = document.getElementById('header-placeholder');
-            if (placeholder) placeholder.outerHTML = html;
+            if (placeholder) {
+                // Використовуємо innerHTML замість outerHTML, щоб сам блок-контейнер залишався на місці
+                placeholder.innerHTML = html;
+            }
         }
-    } catch (error) { console.error("Помилка завантаження шапки:", error); }
+    } catch (error) { 
+        console.error("Помилка завантаження шапки:", error); 
+    }
 }
+
+window.addEventListener('DOMContentLoaded', async () => { 
+    await loadHeader(); // Чекаємо, поки завантажиться шапка
+    loadEstablishments(); 
+    
+    // Встановлюємо мову після того, як шапка успішно вставилась у DOM
+    const currentLang = localStorage.getItem('cartel_lang') || 'uk';
+    setLanguage(currentLang); 
+});
 
 async function loadEstablishments() {
     try {
@@ -122,9 +201,12 @@ async function submitBooking(event) {
 function toggleMenu() { document.getElementById('navbar-links')?.classList.toggle('mobile-active'); document.getElementById('hamburger-btn')?.classList.toggle('open'); }
 
 window.addEventListener('DOMContentLoaded', async () => { 
-    await loadHeader(); 
+    await loadHeader(); // Чекаємо, поки завантажиться шапка
     loadEstablishments(); 
-    setLanguage(localStorage.getItem('cartel_lang') || 'uk'); 
+    
+    // Встановлюємо мову ТІЛЬКИ після того, як шапка вже з'явилася на сторінці
+    const currentLang = localStorage.getItem('cartel_lang') || 'uk';
+    setLanguage(currentLang); 
 });
 
 let inactivityTimeout;
