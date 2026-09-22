@@ -1,43 +1,46 @@
+// Обов'язково оголошуємо змінну на самому початку файлу, щоб вона не губилася
+let lastScrollTop = 0;
+
+/* Скрол-функція: розумне приховування та поява хедера */
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('main-header');
+    if (!header) return; // Захист від помилок, якщо хедер ще не підвантажився з сервера
+
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Якщо скролимо вниз і прокрутили більше ніж на 50px
+    if (scrollTop > lastScrollTop && scrollTop > 50) {
+        header.classList.add('header-hidden');
+    } else {
+        // Якщо скролимо вгору
+        header.classList.remove('header-hidden');
+    }
+
+    // Запобігаємо від'ємним значенням при скролі на Mac (Bounce-ефект)
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
 // 1. Словник перекладів
 const translations = {
     uk: {
-        nav_about: "Про нас",
-        nav_restaurants: "Ресторани",
-        nav_hotels: "Готелі",
-        nav_spa: "SPA",
-        nav_team: "Команда",
-        nav_jobs: "Вакансії",
-        nav_blog: "Блог",
-        nav_contact: "Контакти",
-        
+        nav_about: "Про нас", nav_restaurants: "Ресторани", nav_hotels: "Готелі", nav_spa: "SPA",
+        nav_team: "Команда", nav_jobs: "Вакансії", nav_blog: "Блог", nav_contact: "Контакти",
         hotels_hero_title: "Наші готелі у <span>Буковелі</span>",
         hotels_hero_desc: "Затишні номери, високий рівень сервісу та неймовірні пейзажі Карпат для вашого ідеального відпочинку.",
-        
-        card_hotel: "🏨 Готель",
-        btn_reserve: "Резерв номера"
+        card_hotel: "🏨 Готель", btn_reserve: "Резерв номера"
     },
     en: {
-        nav_about: "About Us",
-        nav_restaurants: "Restaurants",
-        nav_hotels: "Hotels",
-        nav_spa: "SPA",
-        nav_team: "Team",
-        nav_jobs: "Careers",
-        nav_blog: "Blog",
-        nav_contact: "Contacts",
-        
+        nav_about: "About Us", nav_restaurants: "Restaurants", nav_hotels: "Hotels", nav_spa: "SPA",
+        nav_team: "Team", nav_jobs: "Careers", nav_blog: "Blog", nav_contact: "Contacts",
         hotels_hero_title: "Our Hotels in <span>Bukovel</span>",
         hotels_hero_desc: "Cozy rooms, high-level service, and incredible Carpathian landscapes for your ideal getaway.",
-        
-        card_hotel: "🏨 Hotel",
-        btn_reserve: "Room Reservation"
+        card_hotel: "🏨 Hotel", btn_reserve: "Room Reservation"
     }
 };
 
 function setLanguage(lang) {
     localStorage.setItem('cartel_lang', lang);
     
-    // Оновлюємо всі елементи на сторінці з атрибутом data-i18n
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
@@ -45,7 +48,6 @@ function setLanguage(lang) {
         }
     });
 
-    // Підсвічування активної кнопки мови в шапці
     const langUk = document.getElementById('lang-uk');
     const langEn = document.getElementById('lang-en');
     if (langUk && langEn) {
@@ -65,7 +67,6 @@ async function loadHeader() {
             if (placeholder) {
                 placeholder.innerHTML = html;
                 
-                // Прив'язуємо кліки до кнопок перемикання мов у шапці
                 const btnUk = document.getElementById('lang-uk');
                 const btnEn = document.getElementById('lang-en');
                 
@@ -78,6 +79,21 @@ async function loadHeader() {
         }
     } catch (error) {
         console.error("Помилка завантаження шапки:", error);
+    }
+}
+
+async function loadFooter() {
+    try {
+        const response = await fetch('/static/footer.html');
+        if (response.ok) {
+            const html = await response.text();
+            const placeholder = document.getElementById('footer-placeholder');
+            if (placeholder) placeholder.outerHTML = html;
+        } else {
+            console.error("Не вдалося завантажити footer.html: статус", response.status);
+        }
+    } catch (error) {
+        console.error("Помилка завантаження підвалу:", error);
     }
 }
 
@@ -113,9 +129,9 @@ async function loadHotels() {
                 }
             };
 
-            const imageUrl = item.image_url ? item.image_url : 'https://unsplash.com';
+            const imageUrl = item.image_url ? item.image_url : '/static/images/rebra.jpg';
             card.innerHTML = `
-                <div class="card-image"></div>
+                <div class="card-image" style="background-image: url('${imageUrl}');"></div>
                 <div class="card-content">
                     <div class="card-type" data-i18n="card_hotel">${t.card_hotel}</div>
                     <div class="card-title">${item.name}</div>
@@ -127,15 +143,14 @@ async function loadHotels() {
                     </div>
                 </div>
             `;
-            card.querySelector('.card-image').style.backgroundImage = `url('${imageUrl}')`;
             
-            // Запобігаємо переході на посилання при кліку на кнопку резерву, якщо потрібно викликати модалку
             const bookBtn = card.querySelector('.btn-book-now');
             bookBtn.onclick = (event) => {
                 event.stopPropagation();
-                // Тут можна відкривати модальне вікно резерву, якщо воно використовується
                 const modalOverlay = document.getElementById('booking-modal-overlay');
                 if (modalOverlay) {
+                    const modalTitle = document.getElementById('modal-title');
+                    if (modalTitle) modalTitle.innerText = 'Резерв номера';
                     document.getElementById('modal-establishment-name').innerText = item.name;
                     document.getElementById('form-establishment-name').value = item.name;
                     modalOverlay.classList.add('active');
@@ -152,6 +167,34 @@ async function loadHotels() {
     }
 }
 
+/* Відправка форми резерву готелю на FastAPI сервер */
+async function submitBooking(event) {
+    event.preventDefault();
+    const bookingData = {
+        establishment_name: document.getElementById('form-establishment-name').value,
+        guest_name: document.getElementById('guest-name').value,
+        guest_phone: document.getElementById('guest-phone').value,
+        booking_date: document.getElementById('booking-date').value
+    };
+    try {
+        const response = await fetch('/api/bookings/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+        });
+        if (response.ok) {
+            alert('Резервацію успішно створено!');
+            closeModal();
+        } else {
+            const errorData = await response.json();
+            alert('Помилка при створенні резерву: ' + (errorData.detail || 'Невідома помилка'));
+        }
+    } catch (error) {
+        console.error("Помилка при відправці даних:", error);
+        alert('Помилка при з’єднанні з сервером. Спробуйте ще раз.');
+    }
+}
+
 function toggleMenu() {
     document.getElementById('navbar-links')?.classList.toggle('mobile-active');
     document.getElementById('hamburger-btn')?.classList.toggle('open');
@@ -163,7 +206,11 @@ function closeModal() {
 
 window.addEventListener('DOMContentLoaded', async () => {
     await loadHeader();
+    await loadFooter(); 
     loadHotels();
     const savedLang = localStorage.getItem('cartel_lang') || 'uk';
     setLanguage(savedLang);
+    
+    // Прив'язуємо обробник форми бронювання, якщо вона є на сторінці
+    document.getElementById('booking-form')?.addEventListener('submit', submitBooking);
 });

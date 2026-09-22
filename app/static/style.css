@@ -1032,6 +1032,121 @@ nav a.active-link, #navbar-links a.active-link {
     color: #666;
 }
 
+/* --- СТИЛІ ПІДВАЛУ САЙТУ (FOOTER) --- */
+.main-footer {
+    position: relative;
+    z-index: 4;
+    background-color: #080808; 
+    border-top: 1px solid rgba(212, 175, 55, 0.15); 
+    color: #A0A0A0;
+    padding: 60px 0 20px 0;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.footer-container {
+    max-width: 1500px; /* <--- Збільшено з 1200px до 1500px, щоб блоки розійшлися до країв */
+    margin: 0 auto;
+    padding: 0 40px;   /* Трохи збільшили бічні відступи, щоб текст не лип до скла монітора */
+    display: grid;
+    
+    /* Збільшуємо пропорцію першої колонки (2fr), щоб опис бренду CARTEL мав більше місця */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; 
+    gap: 40px;         /* Збільшено відстань між колонками для більшої читабельності */
+}
+
+.footer-brand .footer-logo img {
+    height: 35px;
+    width: auto;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.footer-brand-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #888;
+}
+
+.main-footer h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #D4AF37; 
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 12px;
+}
+
+.footer-links ul li a, 
+.footer-contacts a {
+    color: #A0A0A0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover, 
+.footer-contacts a:hover {
+    color: #FFF;
+}
+
+.footer-contacts p, 
+.footer-hours p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Квадратні кнопки соцмереж для п'ятого блоку */
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-btn {
+    width: 36px;
+    height: 36px;
+    background-color: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #A0A0A0;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: #D4AF37;
+    color: #000;
+    border-color: #D4AF37;
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    padding: 20px 20px 0 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    font-family: sans-serif;
+}
+
 /* Медіа-запити для мобільних пристроїв */
 @media (max-width: 992px) {
     /* Забороняємо будь-який horizontalьний вихід за межі екрана */
@@ -1142,6 +1257,25 @@ nav a.active-link, #navbar-links a.active-link {
     }
     #hamburger-btn.open span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
+    }
+
+    .footer-container {
+        /* Перелаштовуємо всі 5 блоків в один стовпчик на телефонах */
+        grid-template-columns: 1fr !important;
+        gap: 35px !important;
+        text-align: center !important; /* Центрує весь текст та заголовки */
+    }
+
+    .footer-brand .footer-logo img {
+        margin: 0 auto 20px auto !important; /* Центрує логотип CARTEL */
+    }
+
+    /* ВИПРАВЛЕНО: Центруємо квадратні кнопки соцмереж на екрані телефона */
+    .social-icons {
+        display: flex !important;
+        justify-content: center !important; /* Вирівнює плашки строго по центру */
+        gap: 10px !important;
+        margin-top: 5px !important;
     }
 }
 

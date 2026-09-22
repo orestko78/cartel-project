@@ -151,8 +151,24 @@ async function loadHeader() {
     }
 }
 
+async function loadFooter() {
+    try {
+        const response = await fetch('/static/footer.html');
+        if (response.ok) {
+            const html = await response.text();
+            const placeholder = document.getElementById('footer-placeholder');
+            if (placeholder) placeholder.outerHTML = html;
+        } else {
+            console.error("Не вдалося завантажити footer.html: статус", response.status);
+        }
+    } catch (error) {
+        console.error("Помилка завантаження підвалу:", error);
+    }
+}
+
 window.addEventListener('DOMContentLoaded', async () => { 
     await loadHeader(); // Чекаємо, поки завантажиться шапка
+    await loadFooter(); // <--- Тепер автоматично підвантажується і підвал!
     loadEstablishments(); 
     
     // Встановлюємо мову після того, як шапка успішно вставилась у DOM

@@ -97,6 +97,21 @@ async function loadHeader() {
     }
 }
 
+async function loadFooter() {
+    try {
+        const response = await fetch('/static/footer.html');
+        if (response.ok) {
+            const html = await response.text();
+            const placeholder = document.getElementById('footer-placeholder');
+            if (placeholder) placeholder.outerHTML = html;
+        } else {
+            console.error("Не вдалося завантажити footer.html: статус", response.status);
+        }
+    } catch (error) {
+        console.error("Помилка завантаження підвалу:", error);
+    }
+}
+
 async function loadEstablishments() {
     try {
         const response = await fetch('/api/establishments/');
@@ -200,7 +215,8 @@ async function submitBooking(event) {
 }
 
 window.addEventListener('DOMContentLoaded', async () => { 
-    await loadHeader(); 
+    await loadHeader();
+     await loadFooter(); // <--- Тепер автоматично підвантажується і підвал!
     loadEstablishments(); 
     
     const currentLang = localStorage.getItem('cartel_lang') || 'uk';
