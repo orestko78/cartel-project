@@ -1,12 +1,14 @@
 let lastScrollTop = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
+    // 1. Ініціалізація карти Leaflet
     const mapCenter = [48.3538, 24.4120];
     const map = L.map('real-map', { center: mapCenter, zoom: 16, scrollWheelZoom: false });
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
         maxZoom: 19
     }).addTo(map);
+    
     const locations = [
         { coords: [48.3555, 24.4130], name: "LE GRAND", link: "/restaurants/le-grand" },
         { coords: [48.3542, 24.4145], name: "VODA", link: "/clubs/voda" },
@@ -24,6 +26,25 @@ document.addEventListener("DOMContentLoaded", function() {
             html: `<a href="${loc.link}" class="custom-map-pin"><span class="pin-icon">📍</span><span class="pin-text">${loc.name}</span></a>`
         });
         L.marker(loc.coords, { icon: customIcon }).addTo(map);
+    });
+
+    // 2. Плавна анімація появи елементів під час скролу
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
+        observer.observe(element);
     });
 });
 
@@ -44,6 +65,38 @@ window.addEventListener('scroll', function() {
 
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
+
+function scrollToFormats() {
+    const targetSection = document.querySelector('.formats-section');
+    if (!targetSection) return;
+
+    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 1500; // Час прокрутки в мілісекундах (1000мс = 1 секунда, робить скрол плавнішим)
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    // Пом'якшення на початку і в кінці руху (ease-in-out)
+    function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        -c / 2 * (t * (t - 2) - 1) + b;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
 
 const translations = {
     uk: {

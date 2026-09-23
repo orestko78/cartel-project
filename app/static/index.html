@@ -28,13 +28,20 @@
         <h1 data-i18n="hero_title">Мережа готелів та ресторанів <span>CARTEL</span></h1>
         <p data-i18n="hero_desc">Преміальні концепції відпочинку, вишукана гастрономія та легендарна атмосфера в самому серці Карпат.</p>
     </section>
+
+    <!-- Стрілка вниз для прокрутки -->
+    <div class="scroll-down-arrow" onclick="scrollToFormats()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 10l5 5 5-5"/>
+        </svg>
+    </div>
     
     <section class="formats-section">
-        <div class="formats-line">
+        <div class="formats-line animate-on-scroll">
             <h2 class="formats-title" data-i18n="formats_main_title">ОБЕРІТЬ СВІЙ ФОРМАТ</h2>
             <p data-i18n="formats_main_desc">Ваша персональна історія відпочинку: від затишних апартаментів до гастрономічних відкриттів.</p>
         </div>
-        <div class="formats-container">    
+        <div class="formats-container animate-on-scroll">    
             <div class="formats-grid">
                 <!-- Картка 1 -->
                 <a href="/hotels.html" class="format-card">
@@ -88,7 +95,7 @@
     </section>
 
     <!-- Інтерактивна карта (Реальна карта з пінами) -->
-    <section class="interactive-map-section">
+    <section class="interactive-map-section animate-on-scroll">
         <div class="map-info-box">
             <h2 data-i18n="map_title">CARTEL У КАРПАТАХ</h2>
             <p data-i18n="map_desc">Ми створюємо унікальні місця для вашого відпочинку в серці Українських Карпат.</p>
