@@ -363,101 +363,53 @@ nav a.active-link, #navbar-links a.active-link {
     font-size: 11px;
 
     text-transform: uppercase;
-
     letter-spacing: 2px;
-
     color: #D4AF37;
-
     margin-bottom: 15px;
-
 }
-
-
 
 .restaurants-page .card-footer,
-
 .hotels-page .card-footer {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-
     padding-top: 15px;
-
     font-size: 13px;
-
     color: #A0A0A0;
-
 }
-
-
 
 .restaurants-page .btn-discover {
-
     display: inline-block;
-
     padding: 15px 40px;
-
     border: 1px solid #D4AF37;
-
     color: #D4AF37;
-
     text-decoration: none;
-
     text-transform: uppercase;
-
     font-size: 13px;
-
     font-weight: 600;
-
     letter-spacing: 2px;
-
     transition: all 0.4s ease;
-
     background: transparent;
-
     border-radius: 4px;
-
 }
-
-
 
 .restaurants-page .btn-discover:hover {
-
     background: #D4AF37;
-
     color: #000;
-
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
-
 }
 
-
-
 .hero-section {
-
     position: relative;
-
     z-index: 2;
-
     min-height: 100vh;
-
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
-
     align-items: center;
-
     text-align: center;
-
     color: #fff;
-
 }
 
 
@@ -947,6 +899,173 @@ nav a.active-link, #navbar-links a.active-link {
     transform: translateX(8px);
 
 }
+
+/* ==========================================================================
+   🏛️ ПРЕМІУМ ЛОФТ-СТИЛІ ДЛЯ СТОРІНКИ МЕНЮ (MENU.HTML)
+   ========================================================================== */
+
+/* --- НОВИЙ ЛОФТ-ДИЗАЙН З ВИСУВНИМ ОПИСОМ СТРАВ --- */
+
+#menu-items-list {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)) !important;
+    gap: 50px 35px !important; /* Збільшили вертикальний відступ між картками через плашки */
+    margin-top: 40px !important;
+    width: 100% !important;
+}
+
+/* Контейнер картки */
+.menu-card-premium {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: transparent !important;
+    border-radius: 24px !important;
+    cursor: pointer;
+    transition: transform 0.3s ease !important;
+}
+
+.menu-card-premium:hover {
+    transform: translateY(-5px) !important;
+}
+
+/* 1. Фотографія страви (верхня частина) */
+.menu-card-bg {
+    width: 100% !important;
+    height: 260px !important; /* Чітко фіксована висота фото */
+    border-radius: 24px !important; /* Округлення кутів самого фото */
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+    z-index: 1;
+}
+
+/* 2. Плашка з текстом (виходить за межі фото і наповзає знизу) */
+.menu-card-info-plate {
+    background: #1e2026 !important; /* Графітовий колір як на референсі */
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 18px !important;
+    padding: 20px !important;
+    width: 90% !important; /* Робимо вужчою, щоб вона візуально виходила за межі фото */
+    margin: -35px auto 0 auto !important; /* Магнітний зсув вгору, плашка наповзає на фотографію */
+    box-sizing: border-box !important;
+    z-index: 2; /* Стає поверх фото */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Рядок заголовка: Назва + Ціна */
+.menu-card-header-line {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 15px !important;
+}
+
+/* Теплий золотий колір назви */
+.menu-card-title-premium {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 21px !important;
+    font-weight: 600 !important;
+    color: #e5b869 !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+    text-align: left !important;
+}
+
+/* Ціна страви */
+.menu-card-price-premium {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #a5a7ab !important; /* Сірий спокійний колір як на макеті */
+    white-space: nowrap !important;
+}
+
+/* Робимо правильні відступи для плашки, щоб усередині знизу було місце під стрілочку */
+.menu-card-info-plate {
+    position: relative !important;
+    background: #1e2026 !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 18px !important;
+    padding: 20px 20px 25px 20px !important; /* Внутрішній відступ знизу */
+    width: 90% !important;
+    margin: -35px auto 0 auto !important;
+    box-sizing: border-box !important;
+    z-index: 2;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Контейнер стрілочки: зафіксований строго всередині плашки по центру */
+.menu-card-arrow-wrapper {
+    position: absolute !important;
+    bottom: 8px !important; /* Знаходиться всередині плашки, за 8px від її нижнього краю */
+    left: 50% !important;
+    transform: translateX(-50%) !important; /* Центрування строго по середині */
+    width: 40px !important;
+    height: 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important; /* Жодних кругів та фонів */
+    border: none !important;
+    box-shadow: none !important;
+    z-index: 5;
+}
+
+/* Сама тонка стрілочка-галочка */
+.menu-card-arrow {
+    display: block !important;
+    width: 9px !important;
+    height: 9px !important;
+    border-right: 2px solid #a5a7ab !important; 
+    border-bottom: 2px solid #a5a7ab !important; 
+    transform: rotate(45deg) !important; /* Початковий нахил галочки вниз (v) */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease !important;
+}
+
+/* Золотий колір стрілочки при наведенні на картку */
+.menu-card-premium:hover .menu-card-arrow {
+    border-color: #e5b869 !important;
+}
+
+/* --- АНІМАЦІЯ: Розворот стрілочки вгору, коли опис відкритий --- */
+.menu-card-premium.active .menu-card-arrow {
+    transform: rotate(-135deg) !important; /* Повертається гострим кінцем вгору всередині контейнера */
+    border-color: #e5b869 !important;
+}
+
+/* 3. Контейнер висувного тексту (за замовчуванням схований) */
+.menu-card-dropdown {
+    max-height: 0; /* Висота нуль */
+    overflow: hidden; /* Ховаємо текст, що виходить за межі */
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease !important;
+}
+
+/* Текст самого опису страви всередині висувного блоку */
+.menu-card-desc-premium {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    color: #a5a7ab !important;
+    padding-top: 15px !important; /* Відступ від назви при розгортанні */
+    text-align: left !important;
+}
+
+/* --- АКТИВНИЙ СТАН: Коли клікнули на картку --- */
+.menu-card-premium.active .menu-card-info-plate {
+    background: #16171c !important; /* Трохи темнішає при розгортанні */
+    border-color: rgba(229, 184, 105, 0.2) !important; /* З'являється золота мікро-рамка */
+}
+
+.menu-card-premium.active .menu-card-dropdown {
+    max-height: 200px; /* При кліку відкриваємо блок вниз (анімація висування) */
+    opacity: 1;
+}
+
 
 
 
@@ -2696,6 +2815,17 @@ nav a.active-link, #navbar-links a.active-link {
 
         display: block;
 
+    }
+
+    .menu-container-premium {
+        margin-top: 90px !important;
+    }
+    #menu-items-list {
+        grid-template-columns: 1fr !important; /* Одна картка в ряд на телефоні */
+        gap: 25px !important;
+    }
+    .restaurant-title-main {
+        font-size: 34px !important;
     }
 
 } 

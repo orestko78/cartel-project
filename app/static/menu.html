@@ -5,272 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Меню закладу — Cartel Network</title>
     <!-- Підключаємо фірмові преміум-шрифти -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #121212; /* Глибокий антрацитовий колір */
-            color: #E0E0E0;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Навігаційна панель */
-        header {
-            padding: 30px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .btn-back {
-            color: #A0A0A0;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .btn-back:hover {
-            color: #D4AF37;
-        }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            color: #D4AF37; /* Шляхетне золото */
-            text-decoration: none;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Контейнер ресторанного меню */
-        .menu-container {
-            max-width: 900px;
-            margin: 60px auto 100px auto;
-            padding: 0 20px;
-        }
-
-        .restaurant-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 48px;
-            text-align: center;
-            color: #FFF;
-            margin-bottom: 10px;
-        }
-
-        .menu-subtitle {
-            font-size: 13px;
-            color: #D4AF37;
-            text-align: center;
-            margin-bottom: 50px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Список страв у стилі глянцевого меню */
-        .menu-list {
-            display: flex;
-            flex-direction: column;
-            gap: 35px;
-        }
-
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            position: relative;
-        }
-
-        .item-info {
-            max-width: 75%;
-        }
-
-        .item-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
-            color: #FFF;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .item-description {
-            font-size: 13px;
-            color: #888;
-            line-height: 1.5;
-        }
-
-        /* Тонка пунктирна лінія-роздільник */
-        .item-dots {
-            flex-grow: 1;
-            border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
-            margin: 0 15px 7px 15px;
-            align-self: flex-end;
-        }
-
-        .item-price {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
-            color: #D4AF37;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        /* Головна кнопка виклику форми */
-        .btn-order-table {
-            display: block;
-            width: 250px;
-            background: #D4AF37;
-            color: #121212;
-            border: none;
-            padding: 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            text-align: center;
-            margin: 60px auto 0 auto;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .btn-order-table:hover {
-            background: #FFF;
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-        }
-
-        /* 🏛️ Модальне вікно преміум-класу */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-            z-index: 1000;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal {
-            background: #181818;
-            border: 1px solid #D4AF37;
-            padding: 40px;
-            width: 100%;
-            max-width: 450px;
-            border-radius: 4px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 24px;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .modal-close:hover {
-            color: #FFF;
-        }
-
-        .modal h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            color: #FFF;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        /* Поля введення форми */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .form-group input {
-            width: 100%;
-            background: #222;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 12px;
-            color: #FFF;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            border-radius: 4px;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #D4AF37;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: #D4AF37;
-            color: #121212;
-            border: none;
-            padding: 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-
-        .btn-submit:hover {
-            background: #FFF;
-        }
-    </style>
+    <!-- Головний файл стилів усього проєкту -->
+    <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="menu-page-body">
 
-    <header>
-        <a href="/" class="btn-back">← На головну</a>
-        <a href="/" class="logo">Cartel</a>
-        <div style="width: 80px;"></div> <!-- Для центрування флексу -->
-    </header>
+    <!-- Динамічна шапка сайту CARTEL -->
+    <div id="header-placeholder"></div>
 
-    <div class="menu-container">
-        <h1 class="restaurant-title" id="rest-name">Завантаження...</h1>
-        <div class="menu-subtitle">Фірмові страви та шедеври кухні</div>
+    <div class="menu-container-premium">
+        <h1 class="restaurant-title-main" id="rest-name">Завантаження...</h1>
+        <div class="menu-subtitle-main">Фірмові страви та шедеври кухні</div>
 
-        <div class="menu-list" id="menu-items-list">
-            <!-- Сюди за допомогою JavaScript завантажуються страви з Python -->
-        </div>
+        <!-- Контейнер сітки, куди JavaScript вставляє лофт-картки -->
+        <div id="menu-items-list"></div>
 
         <button class="btn-order-table" onclick="openModal()">Забронювати стіл</button>
     </div>
@@ -280,7 +32,7 @@
         <div class="modal">
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <h2>Бронювання</h2>
-            <div class="menu-subtitle" style="margin-bottom: 20px;" id="modal-establishment-name">Назва закладу</div>
+            <div class="menu-subtitle-main" style="margin-bottom: 20px;" id="modal-establishment-name">Назва закладу</div>
             
             <form id="booking-form" onsubmit="submitBooking(event)">
                 <div class="form-group">
@@ -300,4 +52,9 @@
         </div>
     </div>
 
+    <!-- Динамічний підвал сайту CARTEL -->
+    <div id="footer-placeholder"></div>
+
     <script src="/static/menu.js"></script>
+</body>
+</html>
