@@ -5,23 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Меню закладу — Cartel Network</title>
     <!-- Підключаємо фірмові преміум-шрифти -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Головний файл стилів усього проєкту -->
-    <link rel="stylesheet" href="/static/style.css">
+    <!-- Підключаємо фірмові преміум-стилі -->
+    <link rel="stylesheet" href="/static/style.css?v=1">
 </head>
 <body class="menu-page-body">
 
-    <!-- Динамічна шапка сайту CARTEL -->
+    <!-- 🏛️ Динамічна шапка сайту CARTEL -->
     <div id="header-placeholder"></div>
 
-    <div class="menu-container-premium">
-        <h1 class="restaurant-title-main" id="rest-name">Завантаження...</h1>
-        <div class="menu-subtitle-main">Фірмові страви та шедеври кухні</div>
+    <!-- 🌌 Преміальний головний екран Hero-вікна -->
+    <section class="menu-hero">
+        <div class="menu-hero-overlay"></div>
+        <div class="menu-hero-content">
+            <h1 class="restaurant-title-main" id="rest-name">Завантаження...</h1>
+            <div class="menu-subtitle-main">Фірмові страви та шедеври кухні</div>
+        </div>
+    </section>
 
-        <!-- Контейнер сітки, куди JavaScript вставляє лофт-картки -->
+    <div class="menu-container-premium">
+        <!-- Контейнер сітки, куди JavaScript вставляє лофт-картки по 4 в рядок -->
         <div id="menu-items-list"></div>
 
         <button class="btn-order-table" onclick="openModal()">Забронювати стіл</button>
@@ -52,9 +58,10 @@
         </div>
     </div>
 
-    <!-- Динамічний підвал сайту CARTEL -->
+    <!-- 🏛️ Динамічний підвал сайту CARTEL -->
     <div id="footer-placeholder"></div>
 
+    <!-- Окремий файл логіки меню, який керує сторінкою -->
     <script src="/static/menu.js"></script>
 </body>
 </html>
