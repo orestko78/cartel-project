@@ -1,5 +1,4 @@
-
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, JSON
 from sqlalchemy.orm import relationship
 from app.database import Base
 
@@ -12,7 +11,8 @@ class Establishment(Base):
     cuisine = Column(String, nullable=True)
     location = Column(String, default="Bukovel")
     rating = Column(Float, default=5.0)
-    image_url = Column(String, nullable=True)  # <-- НОВЕ ПОЛЕ ДЛЯ ПОСИЛАННЯ НА ФОТО
+    image_url = Column(String, nullable=True)  # Залишаємо для сумісності з однім фото
+    images = Column(JSON, nullable=True)       # <-- НОВЕ ПОЛЕ ДЛЯ МАСИВУ ФОТОГРАФІЙ (СЛАЙДЕРА)
 
     # Зворотний зв'язок: кожен ресторан знає свої страви
-    menu_items = relationship("MenuItem", back_populates="establishment", cascade="all, delete-orphan")  # <-- Додано cascade для видалення страв при видаленні ресторану
+    menu_items = relationship("MenuItem", back_populates="establishment", cascade="all, delete-orphan")

@@ -227,8 +227,8 @@ nav a.active-link, #navbar-links a.active-link {
 }
 
 .scroll-down-arrow:hover {
-    background: #9a8231;
-    color: #000000;
+    background: rgba(34, 34, 34, 0.05);
+    color: #ffffff;
     border-color: #d4af37;
     transform: translateX(-50%) scale(1.05);
 }
@@ -1294,6 +1294,219 @@ nav a.active-link, #navbar-links a.active-link {
     font-size: 12px;
     color: #555;
     font-family: sans-serif;
+}
+
+/* Контейнер слайдера в картці */
+.card-image, .image-slider {
+    width: 100%;
+    height: 220px; /* однакової висоти для обох типів карток */
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.card-image {
+    background-size: cover;
+    background-position: center;
+}
+
+/* Рядок з типом закладу та стрілками */
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+/* Стиль для слова РЕСТОРАН / типу закладу */
+.card-type {
+    margin: 0; 
+}
+
+/* Доріжка, яка тримає всі слайди в рядок */
+.slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Окремий слайд */
+.slide {
+    min-width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Контейнер для кнопок */
+.slider-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Збільшена зона натискання навколо стрілки */
+.slider-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Сама горизонтальна лінія */
+.slider-btn span {
+    display: block;
+    width: 22px;
+    height: 1px; /* Дуже тонка лінія */
+    background: rgba(255, 255, 255, 0.4);
+    position: relative;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Тонка стрілка вліво на кінці лівої лінії */
+.prev-btn span::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-left: 1.5px solid rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+/* Тонка стрілка вправо на кінці правої лінії */
+.next-btn span::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-right: 1.5px solid rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) rotate(45deg);
+}
+
+/* Ефекти при наведенні */
+.slider-btn:hover span {
+    background: rgba(255, 255, 255, 1);
+}
+
+.slider-btn:hover span::before,
+.slider-btn:hover span::after {
+    border-color: rgba(255, 255, 255, 1);
+}
+
+.btn-visit {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.5); /* Золотистий тонкий контур */
+    color: #d4af37;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    margin: 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-visit:hover {
+    background: #d4af37;
+    color: #000;
+    border-color: #d4af37;
+}
+
+
+/* Сторінка готелі - Карусель */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 740px; /* Ширина рівно на 2 картки + відступи */
+    margin: 0 auto;
+    padding: 0 50px; /* Місце під стрілочки з боків */
+}
+
+/* Горизонтальна сітка каруселі */
+.establishments-carousel-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 25px;
+    overflow-x: auto !important;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.establishments-carousel-grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* Фіксована ширина карток, щоб вони не змінювали розмір */
+.carousel-card {
+    min-width: 340px !important;
+    max-width: 340px !important;
+    width: 340px !important;
+    flex: 0 0 auto !important;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Кнопки стрілочок керування */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(212, 175, 55, 0.9);
+    color: #000;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: #d4af37;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: -10px; /* Фіксовано зліва від контейнера */
+}
+
+.next-btn {
+    right: -10px; /* Фіксовано справа від контейнера */
 }
 
 /* =================================================================

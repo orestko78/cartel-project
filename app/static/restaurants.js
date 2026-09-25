@@ -31,7 +31,7 @@ const translations = {
         hero_desc: "Вишукана гастрономія, авторські концепції від шеф-кухарів та незабутні смакові поєднання в самому серці Карпат.",
         
         card_restaurant: "🥩 Ресторан",
-        btn_book: "Забронювати столик"
+        btn_visit: "Зайти до закладу"
     },
     en: {
         nav_about: "About Us", 
@@ -47,7 +47,7 @@ const translations = {
         hero_desc: "Exquisite gastronomy, author concepts from chefs, and unforgettable flavor combinations in the heart of the Carpathians.",
         
         card_restaurant: "🥩 Restaurant",
-        btn_book: "Book a table"
+        btn_visit: "Visit establishment"
     }
 };
 
@@ -112,6 +112,37 @@ async function loadFooter() {
     }
 }
 
+// Зберігаємо поточний індекс слайда для кожного слайдера окремо
+const sliderIndexes = {};
+
+function moveSlide(sliderId, direction, event) {
+    if (event) event.stopPropagation(); // Зупиняємо клік, щоб не відкривати сторінку закладу
+    
+    const slider = document.getElementById(sliderId);
+    if (!slider) return;
+    
+    const track = slider.querySelector('.slider-track');
+    if (!track) return;
+    
+    const slides = track.querySelectorAll('.slide');
+    
+    if (!sliderIndexes[sliderId]) {
+        sliderIndexes[sliderId] = 0;
+    }
+    
+    sliderIndexes[sliderId] += direction;
+    
+    // Зациклювання слайдера
+    if (sliderIndexes[sliderId] >= slides.length) {
+        sliderIndexes[sliderId] = 0;
+    } else if (sliderIndexes[sliderId] < 0) {
+        sliderIndexes[sliderId] = slides.length - 1;
+    }
+    
+    const offset = -sliderIndexes[sliderId] * 100;
+    track.style.transform = `translateX(${offset}%)`;
+}
+
 async function loadEstablishments() {
     try {
         const response = await fetch('/api/establishments/');
@@ -139,30 +170,73 @@ async function loadEstablishments() {
         const currentLang = localStorage.getItem('cartel_lang') || 'uk';
         const t = translations[currentLang] || translations['uk'];
 
-        restaurants.forEach(item => {
+        restaurants.forEach((item, index) => {
             const card = document.createElement('div'); 
             card.className = 'card';
-            card.onclick = () => { window.location.href = `/static/menu.html?id=${item.id}`; };
+            card.onclick = () => { window.location.href = `/static/establishment_detail.html?id=${item.id}`; };
             
-            const imageUrl = item.image_url ? item.image_url : '/static/images/rebra.jpg';
+            // Перевіряємо, чи є масив зображень (item.images), інакше використовуємо одиночне фото або дефолтне
+            let images = [];
+            if (item.images && Array.isArray(item.images) && item.images.length > 0) {
+                images = item.images;
+            } else if (item.image_url) {
+                images = [item.image_url];
+            } else {
+                images = ['/static/images/rebra.jpg'];
+            }
+
+            let imageSectionHtml = '';
+            let sliderControlsHtml = '';
+            const sliderId = `slider-${index}`;
+
+            // Якщо фотографій більше ніж одна — створюємо слайдер та лінії-перемикачі праворуч
+            if (images.length > 1) {
+                let slidesHtml = images.map(imgUrl => `
+                    <div class="slide"><img src="${imgUrl}" alt="${item.name}"></div>
+                `).join('');
+
+                imageSectionHtml = `
+                    <div class="image-slider" id="${sliderId}">
+                        <div class="slider-track">
+                            ${slidesHtml}
+                        </div>
+                    </div>
+                `;
+
+                sliderControlsHtml = `
+                    <div class="slider-controls">
+                        <button class="slider-btn prev-btn" onclick="moveSlide('${sliderId}', -1, event)" title="Попереднє фото"><span></span></button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('${sliderId}', 1, event)" title="Наступне фото"><span></span></button>
+                    </div>
+                `;
+            } else {
+                // Якщо фото одне — виводимо звичайний блок без стрілок
+                imageSectionHtml = `<div class="card-image" style="background-image: url('${images[0]}');"></div>`;
+                sliderControlsHtml = '';
+            }
             
+            // Перехід на детальну сторінку
             card.innerHTML = `
-                <div class="card-image" style="background-image: url('${imageUrl}');"></div>
+                ${imageSectionHtml}
                 <div class="card-content">
-                    <div class="card-type" data-i18n="card_restaurant">${t.card_restaurant}</div>
+                    <div class="card-header-row">
+                        <div class="card-type" data-i18n="card_restaurant">${t.card_restaurant}</div>
+                        ${sliderControlsHtml}
+                    </div>
                     <div class="card-title">${item.name}</div>
                     <div class="card-cuisine">${item.cuisine ? item.cuisine : 'Преміум сервіс'}</div>
-                    <button class="btn-book-now" data-i18n="btn_book">${t.btn_book}</button>
+                    <button class="btn-visit" data-i18n="btn_visit">${t.btn_visit}</button>
                     <div class="card-footer">
                         <span>📍 ${item.location}</span>
                         <span class="rating">★ ${item.rating.toFixed(1)}</span>
                     </div>
                 </div>`;
-            
-            const bookBtn = card.querySelector('.btn-book-now');
-            bookBtn.onclick = (event) => {
+
+            // Обробник кліку на кнопку "Зайти до закладу"
+            const visitBtn = card.querySelector('.btn-visit');
+            visitBtn.onclick = (event) => {
                 event.stopPropagation(); 
-                openModal(item.name, 'Restaurant');
+                window.location.href = `/static/establishment_detail.html?id=${item.id}`;
             };
 
             grid.appendChild(card);
@@ -216,7 +290,7 @@ async function submitBooking(event) {
 
 window.addEventListener('DOMContentLoaded', async () => { 
     await loadHeader();
-     await loadFooter(); // <--- Тепер автоматично підвантажується і підвал!
+    await loadFooter(); 
     loadEstablishments(); 
     
     const currentLang = localStorage.getItem('cartel_lang') || 'uk';

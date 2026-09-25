@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заклад — Cartel</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <!-- Шапка сайту (завантажується автоматично через script.js) -->
+    <div id="header-placeholder"></div>
+
+    <main class="establishment-detail-container" style="padding-top: 120px; max-width: 1200px; margin: 0 auto; padding-left: 20px; padding-right: 20px; padding-bottom: 60px;">
+        <div id="establishment-content">
+            <p style="color: #fff; text-align: center;">Завантаження інформації про заклад...</p>
+        </div>
+    </main>
+
+    <!-- Модальне вікно бронювання (дублюється для коректної роботи з script.js) -->
+    <div id="booking-modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 id="modal-title">Бронювання столика</h2>
+            <p id="modal-establishment-name" class="modal-subtitle"></p>
+            
+            <form id="booking-form" onsubmit="submitBooking(event)">
+                <input type="hidden" id="form-establishment-name">
+                <div class="form-group">
+                    <label for="guest-name">Ваше ім'я</label>
+                    <input type="text" id="guest-name" required placeholder="Введіть ваше ім'я">
+                </div>
+                <div class="form-group">
+                    <label for="guest-phone">Номер телефону</label>
+                    <input type="tel" id="guest-phone" required placeholder="+38 (050) 000-00-00">
+                </div>
+                <div class="form-group">
+                    <label for="booking-date">Дата та час</label>
+                    <input type="datetime-local" id="booking-date" required>
+                </div>
+                <button type="submit" class="btn-submit-booking">Підтвердити бронювання</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Підвал сайту (завантажується автоматично через script.js) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Підключаємо загальні скрипти (модалки, перемикачі мов тощо) та новий файл детальної сторінки -->
+    <script src="/static/script.js"></script>
+    <script src="/static/establishment_detail.js"></script>
+</body>
+</html>

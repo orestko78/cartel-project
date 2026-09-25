@@ -16,6 +16,7 @@ class EstablishmentCreate(BaseModel):
     location: str = "Bukovel"
     rating: float = 5.0
     image_url: str | None = None
+    images: list[str] | None = None  # <--- Додано поле для масиву фотографій
 
 # Схема для відповіді клієнту, яка включає ID з бази даних
 class EstablishmentResponse(EstablishmentCreate):
@@ -36,7 +37,8 @@ def create_establishment(item: EstablishmentCreate, db: Session = Depends(get_db
         cuisine=item.cuisine,
         location=item.location,
         rating=item.rating,
-        image_url=item.image_url
+        image_url=item.image_url,
+        images=item.images  # <--- Зберігаємо масив фотографій у базу
     )
     db.add(new_establishment)
     db.commit()
