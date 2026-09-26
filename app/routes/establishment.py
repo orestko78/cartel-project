@@ -16,7 +16,11 @@ class EstablishmentCreate(BaseModel):
     location: str = "Bukovel"
     rating: float = 5.0
     image_url: str | None = None
-    images: list[str] | None = None  # <--- Додано поле для масиву фотографій
+    images: list[str] | None = None  # Поле для масиву фотографій
+    description: str | None = None  # Поле для довгого техаського та інших текстів
+    
+    # 🌟 1. ДОБАВЛЕНО СЮДА: Поле для хранения HTML-кода карты Google
+    map_iframe: str | None = None
 
 # Схема для відповіді клієнту, яка включає ID з бази даних
 class EstablishmentResponse(EstablishmentCreate):
@@ -38,7 +42,11 @@ def create_establishment(item: EstablishmentCreate, db: Session = Depends(get_db
         location=item.location,
         rating=item.rating,
         image_url=item.image_url,
-        images=item.images  # <--- Зберігаємо масив фотографій у базу
+        images=item.images,
+        description=item.description,
+        
+        # 🌟 2. ДОБАВЛЕНО СЮДА: Передаем код карты в модель SQLAlchemy для записи в базу
+        map_iframe=item.map_iframe
     )
     db.add(new_establishment)
     db.commit()
