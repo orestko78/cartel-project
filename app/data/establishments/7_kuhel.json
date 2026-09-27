@@ -1,0 +1,10 @@
+{
+    "name": "Кухель Cafe",
+    "type": "Restaurant",
+    "cuisine": "Craft Beer & Pub Food",
+    "location": "Буковель, житловий масив, біля витягу №2",
+    "rating": 4.6,
+    "image_url": "/static/images/kuhel.jpg",
+    "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "description": "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Концептуальний крафтовий паб для великих і веселих компаній.</p><p style=\"margin-bottom: 20px; line-height: 1.7;\">Кухель Cafe пропонує гостям Буковелю затишну атмосферу класичного європейського пабу з карпатським характером. Величезний вибір живого локального та імпортного пива, ситні м'ясні дошки, соковиті бургери та традиційні пивні закуски. Ідеальне місце, щоб зібратися з друзями та обговорити гірськолижні траси під гарну музику.</p><p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 +38 (067) 999 1122</p><p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Живе пиво на кранах</p>"
+}

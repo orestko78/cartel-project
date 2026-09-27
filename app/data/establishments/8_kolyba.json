@@ -1,0 +1,10 @@
+{
+    "name": "Гуцульська Колиба",
+    "type": "Restaurant",
+    "cuisine": "Carpathian & Ukrainian",
+    "location": "Буковель, етно-зона біля озера",
+    "rating": 4.8,
+    "image_url": "/static/images/kolyba.jpg",
+    "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "description": "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Справжня дерев'яна колиба з традиційним карпатським вогнищем.</p><p style=\"margin-bottom: 20px; line-height: 1.7;\">Гуцульська Колиба — це занурення в колорит стародавніх Карпат. Будівля зведена без жодного цвяха за старовинними технологіями. У центрі залу горить відкритий вогонь, де на ваших очах смажиться соковите м'ясо диких кабанів, козуль та свіжа гірська форель. Автентична музика, гуцульська гостинність та ситні домашні страви.</p><p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 +38 (067) 333 4455</p><p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Смажимо дичину на вогні</p>"
+}

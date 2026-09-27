@@ -42,12 +42,12 @@ async def add_security_headers(request: Request, call_next):
     # Вирівняно відступи для конфігурації Esri ArcGIS та OpenStreetMap
     csp_policy = (
         "default-src 'self'; "
-        "style-src 'self' 'unsafe-inline' https://*.googleapis.com https://unpkg.com; "
-        "style-src-elem 'self' 'unsafe-inline' https://*.googleapis.com https://unpkg.com; "
-        "font-src 'self' data: https://*.gstatic.com; "
+        "style-src 'self' 'unsafe-inline' https://*.googleapis.com https://googleapis.com https://unpkg.com; "
+        "style-src-elem 'self' 'unsafe-inline' https://*.googleapis.com https://googleapis.com https://unpkg.com; "  # 🌟 ДОДАНО СЮДИ https://googleapis.com
+        "font-src 'self' data: https://*.gstatic.com https://gstatic.com; "  # 🌟 ДОДАНО СЮДИ https://gstatic.com
         "img-src 'self' data: blob: https://*.tile.openstreetmap.org https://unpkg.com https://*.tile.thunderforest.com https://*.basemaps.cartocdn.com https://*.cartocdn.com https://*.arcgisonline.com https://arcgisonline.com https://*.google.com https://*.gstatic.com; "
         "script-src 'self' 'unsafe-inline' https://unpkg.com https://*.google.com; "
-        "frame-src 'self' https://*.google.com https://google.com; "  # 🌟 ОБОВ'ЯЗКОВО ДЛЯ GOOGLE КАРТ
+        "frame-src 'self' https://*.google.com https://google.com; "
         "connect-src 'self' https://unpkg.com https://*.tile.openstreetmap.org https://*.tile.thunderforest.com https://*.basemaps.cartocdn.com https://*.cartocdn.com https://*.arcgisonline.com https://*.google.com;"
     )
     
@@ -114,6 +114,11 @@ def read_restaurants():
 @app.get("/menu.html")
 def read_menu_page():
     return FileResponse(os.path.join(STATIC_DIR, "menu.html"))
+
+@app.get("/spa.html")
+def read_spa_page():
+    return FileResponse(os.path.join(STATIC_DIR, "spa.html"))
+
 
 # Підстраховка: якщо фронтенд просить картинку без /static, віддаємо її з правильної папки
 @app.get("/images/{image_name}")

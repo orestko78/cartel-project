@@ -68,3 +68,26 @@ def delete_establishment(establishment_id: int, db: Session = Depends(get_db)):
     db.commit()
     
     return {"message": f"Establishment {establishment_id} deleted successfully"}
+
+# 🌟 НОВИЙ ЕНДПОЇНТ ДЛЯ РЕДАГУВАННЯ ЗАКЛАДУ ЗА ЙОГО ID
+@router.put("/{establishment_id}", response_model=EstablishmentResponse)
+def update_establishment(establishment_id: int, item: EstablishmentCreate, db: Session = Depends(get_db)):
+    db_item = db.query(Establishment).filter(Establishment.id == establishment_id).first()
+    
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Заклад не знайдено")
+    
+    # Оновлюємо кожне поле новими даними, які ви введете в Swagger
+    db_item.name = item.name
+    db_item.type = item.type
+    db_item.cuisine = item.cuisine
+    db_item.location = item.location
+    db_item.rating = item.rating
+    db_item.image_url = item.image_url
+    db_item.images = item.images
+    db_item.description = item.description
+    db_item.map_iframe = item.map_iframe
+    
+    db.commit()
+    db.refresh(db_item)
+    return db_item

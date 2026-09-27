@@ -36,19 +36,61 @@ body.hotels-page {
    2. ШАПКА САЙТУ ТА НАВІГАЦІЯ (HEADER, NAV, LANG, HAMBURGER)
    ================================================================= */
 
+/* =================================================================
+   ЧИСТИЙ ТЕКСТОВИЙ ЛОГОТИП ДЛЯ CARTEL (ВИНЯТКОВО ОДНЕ СЛОВО)
+   ================================================================= */
+
+/* Підключаємо величний шрифт Cinzel з Google Fonts */
+@import url('https://googleapis.com');
+
+.logo-text-main {
+    font-family: 'Cinzel', serif !important;
+    font-size: 32px !important; /* Трохи збільшили розмір, оскільки слово тепер одне */
+    font-weight: 700 !important;
+    color: #D4AF37 !important; /* Фірмове глибоке золото */
+    text-transform: uppercase !important;
+    letter-spacing: 6px !important; /* Витончений лофт-відступ між літерами */
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: inline-block !important;
+}
+
+/* Ефект дорогого плавного спалаху при наведенні курсору */
+a:hover .logo-text-main {
+    color: #ffffff !important;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.6) !important; /* Шляхетне золоте сяяння */
+    transform: scale(1.02) !important; /* Легке плавне збільшення */
+}
+  
+
 header, #main-header {
     position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 25px 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: transparent !important;
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    /* Безпечні внутрішні рамки: по 24px з лівого та правого країв */
+    padding: 20px 24px !important; 
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background-color: rgba(18, 18, 18, 0.85) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    z-index: 1000 !important;
+    box-sizing: border-box !important;
+}
+
+/* 🌟 Посилання-обгортка: скидаємо всі можливі старі зсуви та рамки від картинки */
+header a[href="/"], #main-header a[href="/"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    text-decoration: none !important;
+    position: relative !important;
+    left: 0 !important; /* Жорстко прив'язуємо до стартової точки відступу шапки */
 }
 
 /* Клас для плавного виїзду вгору при скролі вниз */
@@ -516,12 +558,13 @@ nav a.active-link, #navbar-links a.active-link {
     padding: 0 30px 80px 30px !important;
     box-sizing: border-box !important;
     width: 100% !important;
+    perspective: 1200px !important; /* Трохи поглибили 3D-простір */
 }
 
 #menu-items-list {
     display: grid !important;
-    grid-template-columns: 1fr 1fr 1fr !important; /* Жорстко 4 рівні колонки */
-    gap: 40px 20px !important;
+    grid-template-columns: 1fr 1fr 1fr !important; /* Жорстко 3 рівні колонки */
+    gap: 60px 30px !important; /* Збільшили відступи, щоб світло від сусідніх карток не перекривалося */
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
@@ -532,41 +575,75 @@ nav a.active-link, #navbar-links a.active-link {
     position: relative !important;
     display: flex !important;
     flex-direction: column !important;
+    align-items: center !important; 
+    justify-content: center !important; 
     background: transparent !important;
     border-radius: 24px !important;
     cursor: pointer;
     width: 100% !important;
     height: auto !important;
-    transition: transform 0.4s ease;
+    margin: 0 auto !important; 
+    transform-style: preserve-3d !important;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
 .menu-card-premium:hover {
-    transform: translateY(-5px) !important;
+    /* Легкий нахил вперед і підйом */
+    transform: translateY(-10px) rotateX(6px) scale(1.02) !important;
 }
 
 .menu-card-bg {
-    width: 100% !important;
+    width: 90% !important;
     height: 280px !important;
-    border-radius: 24px !important;
+    border-radius: 20px !important; /* Зробили кути трохи м'якшими */
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
     z-index: 1;
+    transform: translateZ(10px) !important;
+    
+    /* 🌟 ЗОВНІШНЄ М'ЯКЕ ПІДСВІЧУВАННЯ ФОНУ (Тінь + Золотий аура-ефект) */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 
+                0 0 0px rgba(212, 175, 55, 0) !important;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease !important;
+}
+
+.menu-card-premium:hover .menu-card-bg {
+    /* 🌟 ПРИ НАВЕДЕННІ: Задня картинка спалахує глибоким золотим німбом */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 
+                0 0 35px rgba(212, 175, 55, 0.25) !important;
 }
 
 .menu-card-info-plate {
     position: relative !important;
-    background: #1e2026 !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 18px !important;
-    padding: 20px 20px 25px 20px !important;
-    width: 92% !important;
-    margin: -35px auto 0 auto !important;
+    background: #191b20 !important; /* Зробили основу плашки трохи темнішою для контрасту зі світлом */
+    border: 1px solid rgba(212, 175, 55, 0.15) !important; /* Тонка золота рамка за замовчуванням */
+    border-radius: 22px !important;
+    padding: 22px 22px 28px 22px !important;
+    width: 84% !important;
+    margin: -40px auto 0 auto !important;
     box-sizing: border-box !important;
     z-index: 2;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5) !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: translateZ(40px) !important;
+    
+    /* 🌟 ВНУТРІШНЄ ТА ЗОВНІШНЄ СЯЯННЯ ПЛАШКИ (За замовчуванням спокійне) */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6),
+                inset 0 0 10px rgba(212, 175, 55, 0.05) !important; /* Легке внутрішнє світло */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.5s ease, 
+                border-color 0.4s ease,
+                background-color 0.4s ease !important;
+}
+
+.menu-card-premium:hover .menu-card-info-plate {
+    transform: translateZ(70px) translateY(2px) !important; /* Плашка вилітає ще ближче */
+    background: #1f2229 !important;
+    
+    /* 🌟 ПРИ НАВЕДЕННІ: Яскрава неонова лінія контуру + потужний спалах зсередини та ззовні */
+    border-color: rgba(229, 184, 105, 0.8) !important; /* Рамка стає насичено-золотою */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 
+                0 0 25px rgba(229, 184, 105, 0.35), /* Зовнішній неоновий контур */
+                inset 0 0 20px rgba(229, 184, 105, 0.2) !important; /* Внутрішнє заповнення світлом */
 }
 
 .menu-card-header-line {
@@ -584,14 +661,24 @@ nav a.active-link, #navbar-links a.active-link {
     margin: 0 !important;
     line-height: 1.2 !important;
     text-align: left !important;
+    transition: color 0.3s ease !important;
+}
+
+.menu-card-premium:hover .menu-card-title-premium {
+    color: #ffffff !important; /* Назва страви стає білою під світлом */
 }
 
 .menu-card-price-premium {
     font-family: 'Montserrat', sans-serif !important;
     font-size: 14px !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     color: #a5a7ab !important;
     white-space: nowrap !important;
+    transition: color 0.3s ease !important;
+}
+
+.menu-card-premium:hover .menu-card-price-premium {
+    color: #e5b869 !important; /* Ціна яскраво загоряється золотом */
 }
 
 .menu-card-dropdown {
@@ -638,6 +725,14 @@ nav a.active-link, #navbar-links a.active-link {
     opacity: 1;
 }
 
+/* Фіксація в просторі для відкритого дропдауну */
+.menu-card-premium.active .menu-card-info-plate {
+    transform: translateZ(55px) !important;
+    border-color: rgba(229, 184, 105, 0.5) !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 
+                inset 0 0 15px rgba(229, 184, 105, 0.1) !important;
+}
+
 .menu-card-premium.active .menu-card-arrow {
     transform: rotate(-135deg) !important;
     border-color: #e5b869 !important;
@@ -646,6 +741,8 @@ nav a.active-link, #navbar-links a.active-link {
 .menu-card-premium:hover .menu-card-arrow {
     border-color: #e5b869 !important;
 }
+
+
 
 /* =================================================================
    7. ІНТЕРАКТИВНА КАРТА LEAFLET ТА ПІНИ

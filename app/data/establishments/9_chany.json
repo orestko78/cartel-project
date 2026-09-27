@@ -1,0 +1,10 @@
+{
+    "name": "Буковельські Чани SPA",
+    "type": "SPA",
+    "cuisine": "Автентичний карпатський гідро-масаж",
+    "location": "Буковель, лісова VIP-зона біля річки",
+    "rating": 4.9,
+    "image_url": "/static/images/chany.jpg",
+    "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "description": "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Традиційне карпатське паріння у чавунних чанах на дровах.</p><p style=\"margin-bottom: 20px; line-height: 1.7;\">Буковельські Чани пропонують унікальний лікувальний ритуал паріння під відкритим небом. Чавунні казани наповнюються чистою джерельною водою з додаванням цілющих карпатських трав, дикого меду та хвої, після чого вода розігрівається живим вогнем на дровах до +40°C. Контрастне занурення у крижану гірську річку після чану дарує винятковий заряд бадьорості, покращує сон та очищає шкіру.</p><p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 +38 (067) 555 8800</p><p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Доступно для резерву приватних куренів з чанами</p>"
+}

@@ -40,7 +40,17 @@ function openModal(establishmentName, type) {
     const hiddenInput = document.getElementById('form-establishment-name');
 
     if (overlay) {
-        if (modalTitle) modalTitle.innerText = type === 'Hotel' ? 'Бронювання номера' : 'Бронювання столика';
+        // 🌟 Чистий розподіл заголовків у модальному вікні за типами з бази даних
+        if (modalTitle) {
+            if (type === 'Hotel') {
+                modalTitle.innerText = 'Бронювання номера';
+            } else if (type === 'SPA') {
+                modalTitle.innerText = 'Бронювання СПА сеансу';
+            } else {
+                modalTitle.innerText = 'Бронювання столика';
+            }
+        }
+        
         if (modalSub) modalSub.innerText = establishmentName;
         if (hiddenInput) hiddenInput.value = establishmentName;
         
@@ -164,8 +174,15 @@ async function loadEstablishmentDetail() {
             finalDescription = finalDescription.replace('href="#menu"', `href="/menu.html?id=${id}"`);
         }
 
-        // 🌟 SIRREEFFAMA: Koodiin kun amma map_iframe kallattiin kuusaa irraa fudhata
-        let mapCode = item.map_iframe || '<p style="color: #aaa; text-align: center;">Карта тимчасово недоступна</p>';
+        // 🌟 Автоматичне визначення тексту головної преміум-кнопки за типом з бази
+        let buttonText = "Замовити столик";
+        if (item.type === 'Hotel') {
+            buttonText = "Забронювати номер";
+        } else if (item.type === 'SPA') {
+            buttonText = "Забронювати сеанс";
+        }
+
+        let mapCode = item.map_iframe || '<p style="color: #aaa; text-align: center; padding: 20px;">Карта тимчасово недоступна</p>';
 
         container.innerHTML = `
             <div style="background: rgba(26, 26, 26, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 12px; color: #fff; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.6);">
@@ -188,12 +205,12 @@ async function loadEstablishmentDetail() {
                     
                     <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 15px;">
                         <button onclick="openModal('${item.name}', '${item.type}')" style="background: #d4af37; color: #000; border: none; padding: 14px 32px; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 16px; transition: background 0.3s; text-transform: uppercase; letter-spacing: 0.5px;">
-                            ${item.type === 'Hotel' ? 'Забронювати номер' : 'Замовити столик'}
+                            ${buttonText}
                         </button>
                     </div>
                 </div>
 
-                <!-- 3. Buloora Kaardii Google -->
+                <!-- 3. Блок інтерактивної карти Google -->
                 <div id="map" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 30px;">
                     <h2 style="font-size: 26px; color: #d4af37; font-family: 'Cormorant Garamond', serif; margin-bottom: 20px; text-align: left; font-weight: 600;">
                         РОЗТАШУВАННЯ НА МАПІ

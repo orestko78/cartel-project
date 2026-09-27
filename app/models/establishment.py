@@ -7,18 +7,21 @@ class Establishment(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
-    type = Column(String)  # Restaurant або Hotel
+    
+    # 🌟 ТЕПЕР ОФІЦІЙНО ПІДТРИМУЄ: Restaurant, Hotel або SPA
+    type = Column(String)  
+    
     cuisine = Column(String, nullable=True)
     location = Column(String, default="Bukovel")
     rating = Column(Float, default=5.0)
     image_url = Column(String, nullable=True)  # Залишаємо для сумісності з одним фото
-    images = Column(JSON, nullable=True)       # НОВЕ ПОЛЕ ДЛЯ МАСИВУ ФОТОГРАФІЙ (СЛАЙДЕРА)
+    images = Column(JSON, nullable=True)       # Поле для масиву фотографій (слайдера)
     
-    # Поле для довгого техаського та інших текстів
+    # Поле для довгого техаського та інших текстів закладу
     description = Column(String, nullable=True)
     
-    # 🌟 ОБОВ'ЯЗКОВО ДОДАЄМО СЮДИ: Поле для збереження HTML-коду вбудованої карти Google
+    # Поле для збереження HTML-коду вбудованої карти Google
     map_iframe = Column(String, nullable=True)
 
-    # Зворотний зв'язок: кожен ресторан знає свої страви
+    # Зворотний зв'язок: кожен заклад знає свої страви чи послуги
     menu_items = relationship("MenuItem", back_populates="establishment", cascade="all, delete-orphan")
