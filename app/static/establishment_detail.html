@@ -11,7 +11,25 @@
     <!-- Шапка сайту (завантажується автоматично через script.js) -->
     <div id="header-placeholder"></div>
 
-    <main class="establishment-detail-container" style="padding-top: 120px; max-width: 1200px; margin: 0 auto; padding-left: 20px; padding-right: 20px; padding-bottom: 60px;">
+    <!-- Повноноекранний блок фонового зображення інтер'єру -->
+    <div class="establishment-hero-bg" id="establishment-hero-bg">
+        <div class="video-overlay"></div>
+    </div>
+
+    <section class="hero-section" id="establishment-hero-content">
+        <h1 id="detail-title">Завантаження...</h1>
+        <p id="detail-cuisine">Мережа готелів та ресторанів CARTEL</p>
+        
+        <!-- 🌟 СТРІЛКА ОРІЄНТОВАНА НА КІНЕМАТОГРАФІЧНУ АНІМАЦІЮ: -->
+        <div class="scroll-down-arrow" onclick="scrollToFormats()">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 10l5 5 5-5"/>
+            </svg>
+        </div>
+    </section>
+
+
+    <main class="establishment-detail-container" style="max-width: 1200px; margin: -100px auto 0 auto; position: relative; z-index: 10; padding-left: 20px; padding-right: 20px; padding-bottom: 60px;">
         <div id="establishment-content">
             <p style="color: #fff; text-align: center;">Завантаження інформації про заклад...</p>
         </div>
@@ -49,6 +67,5 @@
     <!-- Підвал сайту (завантажується автоматично через script.js) -->
     <div id="footer-placeholder"></div>
 
-    
 </body>
 </html>

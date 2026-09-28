@@ -1,4 +1,3 @@
-
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from app.database import Base
@@ -12,6 +11,9 @@ class MenuItem(Base):
     description = Column(String, nullable=True) # Опис (інгредієнти)
     price = Column(Float)                      # Ціна в грн
     image_url = Column(String, nullable=True)  # Фото страви
+
+    # 🌟 ОБОВ'ЯЗКОВО ДОДАЄМО СЮДИ: Нова колонка для групування страв за категоріями у меню
+    category = Column(String, default="Основні страви", nullable=True)
 
     # Зворотний зв'язок: кожна страва знає свій ресторан
     establishment = relationship("Establishment", back_populates="menu_items")

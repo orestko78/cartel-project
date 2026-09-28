@@ -400,6 +400,80 @@ nav a.active-link, #navbar-links a.active-link {
 }
 
 /* =================================================================
+   🌟 ПОВНОЕКРАННИЙ 3D-ФОН ДЛЯ ДЕТАЛЬНОЇ СТОРІНКИ (ФІКС ОБРІЗАННЯ)
+   ================================================================= */
+
+/* 1. Блок самого фото — розгортаємо суворо на все вікно */
+.establishment-hero-bg {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important; /* vh — це 100% висоти видимого екрана */
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    z-index: -2 !important; /* Ховаємо глибоко на задній план */
+}
+
+/* 2. Темна преміум-затемнювальна маска поверх фото */
+.video-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(to bottom, rgba(18,18,18,0.7) 0%, rgba(18,18,18,0.3) 50%, rgba(12,12,13,0.95) 100%) !important;
+    z-index: -1 !important;
+}
+
+/* 3. Блок із великим заголовком по центру екрана */
+.hero-section, #establishment-hero-content {
+    position: relative !important;
+    width: 100% !important;
+    height: 100vh !important; /* Робимо сам перший екран теж на всю висоту монітора */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* Ідеально центрує заголовок по вертикалі */
+    align-items: center !important;    /* Ідеально центрує заголовок по горизонталі */
+    text-align: center !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    z-index: 5 !important;
+}
+
+/* Налаштування самого білого тексту */
+#detail-title {
+    font-family: 'Cinzel', serif !important;
+    font-size: 54px !important; /* Великий дорогий розмір */
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.6) !important;
+    letter-spacing: 4px !important;
+    margin-bottom: 15px !important;
+    line-height: 1.2 !important;
+}
+
+#detail-cuisine {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: #d4af37 !important; /* Золотий підзаголовок */
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+}
+
+/* Штовхаємо нижню інформаційну скляну плашку з описом під перший екран */
+.establishment-detail-container {
+    margin-top: 0px !important; /* Прибираємо від'ємний маргін, щоб плашка починалася рівно під першим екраном */
+    position: relative !important;
+    z-index: 10 !important;
+    background: transparent !important;
+}
+
+
+/* =================================================================
    5. БЛОК "ОБЕРІТЬ СВІЙ ФОРМАТ" (FORMATS SECTION)
    ================================================================= */
 
@@ -512,6 +586,52 @@ nav a.active-link, #navbar-links a.active-link {
 .format-card:hover .format-arrow {
     transform: translateX(8px);
 }
+
+/* =================================================================
+   ФІНАЛЬНИЙ ЖОРСТКИЙ ТРАНСПОРТЕР КАТЕГОРІЙ В ОДИН РЯД
+   ================================================================= */
+
+/* Блокуємо будь-яке перенесення кнопок на новий рядок для будь-яких контейнерів вкладок */
+#menu-categories-tabs, 
+.menu-categories-tabs,
+[id*="categories-tabs"] {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    
+    /* 🌟 ОЦІ ДВА РЯДКИ ЗМУСЯТЬ КНОПКИ СТАТИ В РЯД І ЗАПУСТЯТЬ СКРОЛ */
+    flex-wrap: nowrap !important; /* КАТЕГОРИЧНО ЗАБОРОНИТИ ПЕРЕНЕСЕННЯ НА НОВИЙ РЯДОК */
+    overflow-x: auto !important;  /* УВІМКНУТИ ГОРИЗОНТАЛЬНИЙ СКРОЛ ПАЛЬЦЕМ */
+    overflow-y: hidden !important;
+    
+    padding: 15px 5px !important;
+    box-sizing: border-box !important;
+    -webkit-overflow-scrolling: touch !important; /* Плавний інерційний скрол на телефонах */
+    
+    /* Приховуємо повзунок прокрутки */
+    scrollbar-width: none !important;
+}
+
+/* Приховуємо повзунок у Chrome, Safari та Opera */
+#menu-categories-tabs::-webkit-scrollbar,
+[id*="categories-tabs"]::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Захищаємо кожну круглу кнопку від стискання тексту */
+.category-tab-btn, 
+#menu-categories-tabs button,
+.menu-categories-tabs button {
+    flex-shrink: 0 !important; /* НІКОЛИ НЕ СТИСКАТИ КНОПКУ */
+    display: inline-block !important;
+    white-space: nowrap !important; /* ТЕКСТ ТІЛЬКИ В ОДИН РЯДОК */
+}
+
 
 /* =================================================================
    6. СТОРІНКА МЕНЮ ТА ПРЕМІУМ-КАРТКИ (MENU.HTML & HERO)

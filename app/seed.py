@@ -45,7 +45,6 @@ def seed_data(db: Session):
                     print(f"   ➕ Заклад успішно імпортовано з файлу: {filename}")
 
                     # 2. ОДРАЗУ ОНОВЛЮЄМО МЕНЮ ДЛЯ ЦЬОГО ЗАКЛАДУ (якщо є файл меню)
-                    # Шукаємо файл меню, наприклад "1_rebra_menu.json" або "2_osteria_menu.json"
                     menu_filename = filename.replace(".json", "_menu.json")
                     menu_file_path = os.path.join(MENU_DIR, menu_filename)
                     
@@ -59,7 +58,9 @@ def seed_data(db: Session):
                                     name=dish["name"],
                                     description=dish.get("description"),
                                     price=dish["price"],
-                                    image_url=dish.get("image_url")
+                                    image_url=dish.get("image_url"),
+                                    # 🌟 ДОДАНО СЮДИ: Автоматично зчитуємо категорію страви з JSON файлу
+                                    category=dish.get("category", "Основні страви")
                                 )
                                 db.add(new_dish)
                             db.commit()

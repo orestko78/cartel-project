@@ -21,16 +21,8 @@ function setLanguage(lang) {
 function toggleMenu() {
     const navLinks = document.getElementById('navbar-links');
     const hamburgerBtn = document.getElementById('hamburger-btn');
-    
-    if (navLinks) {
-        navLinks.classList.toggle('mobile-active');
-    } else {
-        console.error("Помилка: Елемент з id='navbar-links' не знайдено.");
-    }
-    
-    if (hamburgerBtn) {
-        hamburgerBtn.classList.toggle('open');
-    }
+    if (navLinks) navLinks.classList.toggle('mobile-active');
+    if (hamburgerBtn) hamburgerBtn.classList.toggle('open');
 }
 
 function openModal(establishmentName, type) {
@@ -40,7 +32,6 @@ function openModal(establishmentName, type) {
     const hiddenInput = document.getElementById('form-establishment-name');
 
     if (overlay) {
-        // 🌟 Чистий розподіл заголовків у модальному вікні за типами з бази даних
         if (modalTitle) {
             if (type === 'Hotel') {
                 modalTitle.innerText = 'Бронювання номера';
@@ -66,6 +57,40 @@ function closeModal() {
         overlay.style.display = 'none';
     }
 }
+
+// 🌟 ФІРМОВИЙ КІНЕМАТОГРАФІЧНИЙ СКРОЛ З ЕФЕКТОМ EASE-IN-OUT ДЛЯ СТОРІНКИ ДЕТАЛЕЙ
+function scrollToFormats() {
+    // Шукаємо головний контейнер з контентом ресторану
+    const targetSection = document.querySelector('.establishment-detail-container') || document.getElementById('establishment-content');
+    if (!targetSection) return;
+
+    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 1500; // 1.5 секунди для виняткової плавності
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    // Пом'якшення на початку і в кінці руху (Math ease-in-out)
+    function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
 
 async function submitBooking(event) {
     event.preventDefault();
@@ -146,10 +171,14 @@ async function loadFooter() {
 async function loadEstablishmentDetail() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
+    
+    const bgBlock = document.getElementById('establishment-hero-bg');
+    const titleBlock = document.getElementById('detail-title');
+    const cuisineBlock = document.getElementById('detail-cuisine');
     const container = document.getElementById('establishment-content');
     
     if (!id) {
-        container.innerHTML = '<p style="color:red; text-align: center;">Заклад не знайдено.</p>';
+        if (container) container.innerHTML = '<p style="color:red; text-align: center;">Заклад не знайдено.</p>';
         return;
     }
 
@@ -159,12 +188,18 @@ async function loadEstablishmentDetail() {
         const item = data.find(est => est.id == id);
 
         if (!item) {
-            container.innerHTML = '<p style="color:red; text-align: center;">Заклад не знайдено.</p>';
+            if (container) container.innerHTML = '<p style="color:red; text-align: center;">Заклад не знайдено.</p>';
             return;
         }
 
         const currentLang = localStorage.getItem('cartel_lang') || 'uk';
         
+        if (bgBlock && item.image_url) {
+            bgBlock.style.backgroundImage = `url('${item.image_url}')`;
+        }
+        if (titleBlock) titleBlock.innerText = item.name.toUpperCase();
+        if (cuisineBlock) cuisineBlock.innerText = item.cuisine || (item.type === 'SPA' ? 'SPA & Wellness' : 'Premium Service');
+
         let finalDescription = item.description;
         if (!finalDescription || finalDescription === "null" || finalDescription.trim() === "") {
             finalDescription = `<p style="font-size: 16px; line-height: 1.6; color: #ddd; text-align: left;">Опис закладу наразі оновлюється. Скоро тут з'явиться детальна інформація.</p>`;
@@ -174,7 +209,6 @@ async function loadEstablishmentDetail() {
             finalDescription = finalDescription.replace('href="#menu"', `href="/menu.html?id=${id}"`);
         }
 
-        // 🌟 Автоматичне визначення тексту головної преміум-кнопки за типом з бази
         let buttonText = "Замовити столик";
         if (item.type === 'Hotel') {
             buttonText = "Забронювати номер";
@@ -185,34 +219,27 @@ async function loadEstablishmentDetail() {
         let mapCode = item.map_iframe || '<p style="color: #aaa; text-align: center; padding: 20px;">Карта тимчасово недоступна</p>';
 
         container.innerHTML = `
-            <div style="background: rgba(26, 26, 26, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px; border-radius: 12px; color: #fff; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.6);">
-                <h1 style="font-size: 40px; margin-bottom: 5px; color: #d4af37; font-family: 'Cormorant Garamond', serif; font-weight: 600; text-align: left;">${item.name}</h1>
-                <p style="font-size: 16px; color: #aaa; margin-bottom: 25px; text-align: left; padding: 0;">${item.cuisine || (currentLang === 'en' ? 'Network Establishment' : 'Заклад мережі')}</p>
+            <div style="background: rgba(24, 26, 32, 0.55); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 50px; border-radius: 24px; color: #fff; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 30px 60px rgba(0,0,0,0.7); text-align: left;">
                 
-                <div style="margin-bottom: 35px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(212,175,55,0.15);">
-                    <img src="${item.image_url || '/static/images/rebra.jpg'}" alt="${item.name}" style="width: 100%; max-height: 520px; object-fit: cover; display: block;">
-                </div>
-
-                <div class="establishment-description-content">
+                <div class="establishment-description-content" style="font-size: 16px; line-height: 1.8; color: #e0e0e0; margin-bottom: 35px;">
                     ${finalDescription}
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 25px; margin-top: 40px; flex-wrap: wrap; gap: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 30px; flex-wrap: wrap; gap: 20px;">
                     <div style="text-align: left;">
-                        <p style="margin: 0; color: #aaa; padding: 0; text-align: left;">📍 Локація: <span style="color: #fff;">${item.location}</span></p>
-                        <p style="margin: 5px 0 0 0; color: #aaa; padding: 0; text-align: left;">★ Рейтинг: <span style="color: #d4af37;">${item.rating.toFixed(1)}</span></p>
+                        <p style="margin: 0; color: #aaa; font-size: 14px; text-align: left;">📍 Локація: <span style="color: #fff; font-weight: 500;">${item.location}</span></p>
+                        <p style="margin: 6px 0 0 0; color: #aaa; font-size: 14px; text-align: left;">★ Рейтинг: <span style="color: #d4af37; font-weight: bold;">${item.rating.toFixed(1)}</span></p>
                     </div>
                     
-                    <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 15px;">
-                        <button onclick="openModal('${item.name}', '${item.type}')" style="background: #d4af37; color: #000; border: none; padding: 14px 32px; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 16px; transition: background 0.3s; text-transform: uppercase; letter-spacing: 0.5px;">
+                    <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                        <button onclick="openModal('${item.name}', '${item.type}')" style="background: #d4af37; color: #000; border: none; padding: 16px 36px; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 16px; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 0 20px rgba(212,175,55,0.2);" onmouseover="this.style.background='#fff'; this.style.boxShadow='0 0 30px rgba(255,255,255,0.4)';" onmouseout="this.style.background='#d4af37'; this.style.boxShadow='0 0 20px rgba(212,175,55,0.2)';">
                             ${buttonText}
                         </button>
                     </div>
                 </div>
 
-                <!-- 3. Блок інтерактивної карти Google -->
-                <div id="map" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 30px;">
-                    <h2 style="font-size: 26px; color: #d4af37; font-family: 'Cormorant Garamond', serif; margin-bottom: 20px; text-align: left; font-weight: 600;">
+                <div id="map" style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 30px;">
+                    <h2 style="font-size: 24px; color: #d4af37; font-family: 'Cormorant Garamond', serif; margin-bottom: 20px; text-align: left; font-weight: 600; letter-spacing: 1px;">
                         РОЗТАШУВАННЯ НА МАПІ
                     </h2>
                     <div class="google-map-wrapper" style="width: 100%; overflow: hidden; border-radius: 12px; line-height: 0;">
@@ -224,7 +251,7 @@ async function loadEstablishmentDetail() {
         `;
     } catch (err) {
         console.error("Помилка завантаження деталей закладу:", err);
-        container.innerHTML = '<p style="color:red; text-align: center;">Помилка завантаження даних.</p>';
+        if (container) container.innerHTML = '<p style="color:red; text-align: center;">Помилка завантаження даних.</p>';
     }
 }
 

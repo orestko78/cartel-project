@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Адмін-панель — Cartel Network Management</title>
+    <!-- 🌟 ОНОВЛЕНО: Правильне підключення преміум-шрифтів з Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #121212; color: #E0E0E0; font-family: 'Montserrat', sans-serif; padding-bottom: 60px; }
-        header { padding: 30px 10%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(212, 175, 55, 0.1); background-color: #181818; }
-        .logo-admin { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #D4AF37; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; }
-        .logo-admin span { font-family: 'Montserrat', sans-serif; font-size: 12px; color: #888; letter-spacing: 1px; margin-left: 10px; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 10px; }
-        .btn-site { color: #A0A0A0; text-decoration: none; font-size: 14px; transition: color 0.3s; }
+        header { padding: 25px 10%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(212, 175, 55, 0.1); background-color: #181818; }
+        
+        /* 🌟 ОНОВЛЕНО: Фірмовий текстовий стиль логотипа CARTEL */
+        .logo-admin { font-family: 'Cinzel', serif; font-size: 24px; color: #D4AF37; text-decoration: none; letter-spacing: 4px; text-transform: uppercase; }
+        .logo-admin span { font-family: 'Montserrat', sans-serif; font-size: 11px; color: #888; letter-spacing: 1px; margin-left: 10px; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 10px; font-weight: 500; }
+        
+        .btn-site { color: #A0A0A0; text-decoration: none; font-size: 14px; transition: color 0.3s; font-weight: 500; }
         .btn-site:hover { color: #D4AF37; }
         .admin-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
         h1 { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: #FFF; margin-bottom: 10px; }
@@ -22,21 +28,23 @@
         th { background-color: #1F1F1F; color: #D4AF37; font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; padding: 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
         td { padding: 20px; font-size: 14px; color: #CCC; border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
         tr:hover td { background-color: #1F1F1F; color: #FFF; }
-        .badge { background: rgba(212, 175, 55, 0.1); color: #D4AF37; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; border: 1px solid rgba(212, 175, 55, 0.2); }
-        .time-badge { color: #FFF; font-weight: 600; }
+        .badge { background: rgba(212, 175, 55, 0.08); color: #D4AF37; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; border: 1px solid rgba(212, 175, 55, 0.2); letter-spacing: 0.5px; }
+        .time-badge { color: #FFF; font-weight: 600; font-family: monospace; font-size: 14px; }
         .no-data { text-align: center; padding: 40px; color: #666; font-style: italic; }
 
-        /* 🔥 СТИЛЬ ДЛЯ ПРЕМІУМ-КНОПКИ ВИДАЛЕННЯ */
         .btn-delete {
             background: none;
-            border: 1px solid rgba(255, 0, 0, 0.3);
+            border: 1px solid rgba(255, 85, 85, 0.3);
             color: #FF5555;
-            padding: 6px 12px;
+            padding: 6px 14px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
+            font-size: 11px;
+            font-weight: 600;
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .btn-delete:hover {
             background: #FF5555;
@@ -49,7 +57,7 @@
 <body>
 
     <header>
-        <a href="#" class="logo-admin">Cartel <span>Панель Менеджера</span></a>
+        <a href="#" class="logo-admin">CARTEL <span>Панель Менеджера</span></a>
         <a href="/" class="btn-site">Перейти на сайт →</a>
     </header>
 
@@ -66,7 +74,7 @@
                         <th>Ім'я гостя</th>
                         <th>Телефон</th>
                         <th>Дата та час візиту</th>
-                        <th>Дія</th> <!-- Нова колонка -->
+                        <th style="text-align: center;">Дія</th>
                     </tr>
                 </thead>
                 <tbody id="bookings-table-body">
@@ -78,6 +86,7 @@
         </div>
     </div>
 
-    <script src="/static/admin.js"></script>
+    <!-- 🌟 ОНОВЛЕНО: Підключення скрипту з версією проти кешування -->
+    <script src="/static/admin.js?v=3"></script>
 </body>
 </html>
