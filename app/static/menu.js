@@ -1,5 +1,25 @@
 let currentEstablishmentName = "Забронювати стіл";
 
+let lastScrollTop = 0;
+
+/* Скрол-функція: розумне приховування та поява хедера */
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('main-header');
+    if (!header) return; // Захист від помилок, якщо хедер ще не підвантажився з сервера
+
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Якщо скролимо вниз і прокрутили більше ніж на 50px — ховаємо хедер
+    if (scrollTop > lastScrollTop && scrollTop > 50) {
+        header.classList.add('header-hidden');
+    } else {
+        // Якщо скролимо вгору — показуємо назад
+        header.classList.remove('header-hidden');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
 function setLanguage(lang) {
     localStorage.setItem('cartel_lang', lang);
     const elements = document.querySelectorAll('[data-i18n]');

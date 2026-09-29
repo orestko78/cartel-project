@@ -1,3 +1,23 @@
+let lastScrollTop = 0;
+
+/* Скрол-функція: розумне приховування та поява хедера */
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('main-header');
+    if (!header) return; // Захист від помилок, якщо хедер ще не підвантажився з сервера
+
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Якщо скролимо вниз і прокрутили більше ніж на 50px — ховаємо хедер
+    if (scrollTop > lastScrollTop && scrollTop > 50) {
+        header.classList.add('header-hidden');
+    } else {
+        // Якщо скролимо вгору — показуємо назад
+        header.classList.remove('header-hidden');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
 function setLanguage(lang) {
     localStorage.setItem('cartel_lang', lang);
     const elements = document.querySelectorAll('[data-i18n]');
@@ -219,30 +239,29 @@ async function loadEstablishmentDetail() {
         let mapCode = item.map_iframe || '<p style="color: #aaa; text-align: center; padding: 20px;">Карта тимчасово недоступна</p>';
 
         container.innerHTML = `
-            <div style="background: rgba(24, 26, 32, 0.55); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 50px; border-radius: 24px; color: #fff; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 30px 60px rgba(0,0,0,0.7); text-align: left;">
-                
-                <div class="establishment-description-content" style="font-size: 16px; line-height: 1.8; color: #e0e0e0; margin-bottom: 35px;">
+            <div style="background: rgba(24, 26, 32, 0.65); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 40px; border-radius: 10px; color: #fff; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 20px 50px rgba(0,0,0,0.6); text-align: left; width: 100%; max-width: 100%; box-sizing: border-box;">
                     ${finalDescription}
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 30px; flex-wrap: wrap; gap: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; flex-wrap: wrap; gap: 20px;">
                     <div style="text-align: left;">
                         <p style="margin: 0; color: #aaa; font-size: 14px; text-align: left;">📍 Локація: <span style="color: #fff; font-weight: 500;">${item.location}</span></p>
                         <p style="margin: 6px 0 0 0; color: #aaa; font-size: 14px; text-align: left;">★ Рейтинг: <span style="color: #d4af37; font-weight: bold;">${item.rating.toFixed(1)}</span></p>
                     </div>
                     
-                    <div style="display: flex; flex-direction: column; align-items: flex-end;">
-                        <button onclick="openModal('${item.name}', '${item.type}')" style="background: #d4af37; color: #000; border: none; padding: 16px 36px; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 16px; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 0 20px rgba(212,175,55,0.2);" onmouseover="this.style.background='#fff'; this.style.boxShadow='0 0 30px rgba(255,255,255,0.4)';" onmouseout="this.style.background='#d4af37'; this.style.boxShadow='0 0 20px rgba(212,175,55,0.2)';">
+                    <div>
+                        <button onclick="openModal('${item.name}', '${item.type}')" style="background: #d4af37; color: #000; border: none; padding: 14px 32px; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 15px; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#d4af37'">
                             ${buttonText}
                         </button>
                     </div>
                 </div>
 
-                <div id="map" style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 30px;">
-                    <h2 style="font-size: 24px; color: #d4af37; font-family: 'Cormorant Garamond', serif; margin-bottom: 20px; text-align: left; font-weight: 600; letter-spacing: 1px;">
+                <!-- Блок карти -->
+                <div id="map" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px;">
+                    <h2 style="font-size: 22px; color: #d4af37; font-family: 'Cormorant Garamond', serif; margin-bottom: 20px; text-align: left; font-weight: 600; letter-spacing: 0.5px;">
                         РОЗТАШУВАННЯ НА МАПІ
                     </h2>
-                    <div class="google-map-wrapper" style="width: 100%; overflow: hidden; border-radius: 12px; line-height: 0;">
+                    <div class="google-map-wrapper" style="width: 100%; overflow: hidden; border-radius: 10px; line-height: 0;">
                         ${mapCode}
                     </div>
                 </div>

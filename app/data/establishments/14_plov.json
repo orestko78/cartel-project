@@ -1,0 +1,11 @@
+{
+  "id": 14,
+  "name": "Plov",
+  "type": "Restaurant",
+  "cuisine": "Схiдна кухня",
+  "location": "Буковель, Нижня станція витягу 13",
+  "rating": 4.7,
+  "image_url": "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9",
+  "description": "Справжній узбецький плов та східні страви біля підйомника.",
+  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>"
+}

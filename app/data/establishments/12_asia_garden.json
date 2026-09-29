@@ -1,0 +1,11 @@
+{
+  "id": 12,
+  "name": "Asia Garden",
+  "type": "Restaurant",
+  "cuisine": "Азійська кухня",
+  "location": "Буковель, ділянка Вишні",
+  "rating": 4.8,
+  "image_url": "https://images.unsplash.com/photo-1541696432-82c6da8ce7bf",
+  "description": "Ресторан азійської кухні з традиційними стравами та яскравою атмосферою.",
+  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>"
+}

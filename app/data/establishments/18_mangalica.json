@@ -1,0 +1,11 @@
+{
+  "id": 18,
+  "name": "Mangalica",
+  "type": "Restaurant",
+  "cuisine": "М'ясний ресторан",
+  "location": "Яремче, вул. І. Петраша, 62",
+  "rating": 4.8,
+  "image_url": "https://images.unsplash.com/photo-1544025162-d76694265947",
+  "description": "Фірмовий м'ясний ресторан мережі у місті Яремче.",
+  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>"
+}

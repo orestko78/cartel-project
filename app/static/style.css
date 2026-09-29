@@ -41,15 +41,15 @@ body.hotels-page {
    ================================================================= */
 
 /* Підключаємо величний шрифт Cinzel з Google Fonts */
-@import url('https://googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
 
 .logo-text-main {
     font-family: 'Cinzel', serif !important;
-    font-size: 32px !important; /* Трохи збільшили розмір, оскільки слово тепер одне */
+    font-size: clamp(20px, 4vw, 26px) !important; /* Робимо адаптивним: на мобільних менше (20px), на ПК до 26px */
     font-weight: 700 !important;
     color: #D4AF37 !important; /* Фірмове глибоке золото */
     text-transform: uppercase !important;
-    letter-spacing: 6px !important; /* Витончений лофт-відступ між літерами */
+    letter-spacing: clamp(-1px, 0vw, 0px) !important;
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
     display: inline-block !important;
 }
@@ -93,9 +93,17 @@ header a[href="/"], #main-header a[href="/"] {
     left: 0 !important; /* Жорстко прив'язуємо до стартової точки відступу шапки */
 }
 
-/* Клас для плавного виїзду вгору при скролі вниз */
-header.header-hidden, #main-header.header-hidden {
+#main-header {
+    transition: transform 0.75s ease, opacity 0.75s ease !important;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Клас, який ховає хедер (зсуває вгору і вимикає видимість) */
+#main-header.header-hidden {
     transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important; /* Щоб не можна було клікнути на невидимий хедер */
 }
 
 nav, #navbar-links {
@@ -409,11 +417,11 @@ nav a.active-link, #navbar-links a.active-link {
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100vh !important; /* vh — це 100% висоти видимого екрана */
+    height: 100vh !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
-    z-index: -2 !important; /* Ховаємо глибоко на задній план */
+    z-index: -2 !important;
 }
 
 /* 2. Темна преміум-затемнювальна маска поверх фото */
@@ -431,45 +439,56 @@ nav a.active-link, #navbar-links a.active-link {
 .hero-section, #establishment-hero-content {
     position: relative !important;
     width: 100% !important;
-    height: 100vh !important; /* Робимо сам перший екран теж на всю висоту монітора */
+    height: 100vh !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important; /* Ідеально центрує заголовок по вертикалі */
-    align-items: center !important;    /* Ідеально центрує заголовок по горизонталі */
+    justify-content: center !important;
+    align-items: center !important;
     text-align: center !important;
-    padding: 0 20px !important;
+    padding: 0 15px !important; /* Трохи збільшуємо безпечні поля з боків для мобільних */
     box-sizing: border-box !important;
     z-index: 5 !important;
 }
 
-/* Налаштування самого білого тексту */
+/* Адаптивне налаштування заголовка, щоб він ніколи не вилазив за краї */
 #detail-title {
     font-family: 'Cinzel', serif !important;
-    font-size: 54px !important; /* Великий дорогий розмір */
+    /* Ключова зміна: на ПК буде до 48-54px, а на телефонах плавно зменшуватиметься до 28-32px */
+    font-size: clamp(26px, 6vw, 54px) !important; 
     font-weight: 700 !important;
     color: #ffffff !important;
     text-shadow: 0 4px 15px rgba(0,0,0,0.6) !important;
-    letter-spacing: 4px !important;
+    letter-spacing: clamp(1px, 1vw, 4px) !important; /* Адаптивне розрідження літер */
     margin-bottom: 15px !important;
     line-height: 1.2 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    word-break: break-word !important;
 }
 
 #detail-cuisine {
     font-family: 'Montserrat', sans-serif !important;
-    font-size: 18px !important;
+    font-size: clamp(14px, 2vw, 18px) !important; /* Теж робимо адаптивним для мобільних */
     font-weight: 500 !important;
-    color: #d4af37 !important; /* Золотий підзаголовок */
-    letter-spacing: 3px !important;
+    color: #d4af37 !important;
+    letter-spacing: 2px !important;
     text-transform: uppercase !important;
     text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
 }
 
-/* Штовхаємо нижню інформаційну скляну плашку з описом під перший екран */
+/* Штовхаємо нижню інформаційну скляну плашку з описом під перший екран і розширюємо до країв */
 .establishment-detail-container {
-    margin-top: 0px !important; /* Прибираємо від'ємний маргін, щоб плашка починалася рівно під першим екраном */
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: -100px 0 0 0 !important;
     position: relative !important;
     z-index: 10 !important;
-    background: transparent !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-bottom: 60px !important;
+    box-sizing: border-box !important;
 }
 
 
@@ -1171,6 +1190,26 @@ nav a.active-link, #navbar-links a.active-link {
     padding: 0 40px 100px 40px;
 }
 
+/* Жорстке примусове розширення сторінки закладів на повну ширину */
+body > main.establishment-detail-container {
+    display: block !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    box-sizing: border-box !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+/* Те ж саме для внутрішнього контейнера картки */
+body > main.establishment-detail-container > div#establishment-content > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -1242,6 +1281,8 @@ nav a.active-link, #navbar-links a.active-link {
 .rating {
     color: #D4AF37;
 }
+
+
 
 /* =================================================================
    2. ЕЛЕМЕНТИ ІНТЕРФЕЙСУ ТА КНОПКИ (БРОНЮВАННЯ, ЛОГОТИПИ)
