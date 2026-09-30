@@ -1,4 +1,4 @@
-﻿/* =================================================================
+﻿﻿/* =================================================================
    1. БАЗОВІ НАЛАШТУВАННЯ ТА ЗМІННІ (ROOT, RESET, BODY)
    ================================================================= */
 
@@ -202,7 +202,7 @@ nav a.active-link, #navbar-links a.active-link {
 
 .hero-section h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 300;
     letter-spacing: 5px;
     margin-bottom: 20px;
@@ -249,6 +249,7 @@ nav a.active-link, #navbar-links a.active-link {
     height: 100%;
     background: rgba(0, 0, 0, 0.65);
     z-index: 1;
+    
 }
 
 .scroll-down-arrow {
@@ -318,12 +319,27 @@ nav a.active-link, #navbar-links a.active-link {
 
 .restaurants-page .container,
 .hotels-page .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px 100px 40px;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 10 !important;
+    
+    /* 🌟 ГОЛОВНИЙ ФІКС: Матове скло тепер огортає весь блок повністю, включаючи дірки gap */
+    background: rgba(18, 20, 24, 0.40) !important; /* Легке димчасте затемнення на 40% */
+    backdrop-filter: blur(25px) !important; /* М'яке та глибоке розмиття фото інтер'єру під сіткою */
+    -webkit-backdrop-filter: blur(25px) !important;
+    
+    /* Заокруглюємо тільки верхні кути всієї виїзної панелі каталогу */
+    border-radius: 24px 24px 0 0 !important;
+    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.8) !important;
 }
 
+
 .restaurants-page .grid,
+.restaurants-page #establishments-grid,
 .hotels-page .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -416,12 +432,9 @@ nav a.active-link, #navbar-links a.active-link {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    z-index: -2 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -1 !important;
 }
 
 /* 2. Темна преміум-затемнювальна маска поверх фото */
@@ -436,18 +449,16 @@ nav a.active-link, #navbar-links a.active-link {
 }
 
 /* 3. Блок із великим заголовком по центру екрана */
-.hero-section, #establishment-hero-content {
-    position: relative !important;
-    width: 100% !important;
-    height: 100vh !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-    padding: 0 15px !important; /* Трохи збільшуємо безпечні поля з боків для мобільних */
-    box-sizing: border-box !important;
-    z-index: 5 !important;
+.establishment-hero-bg {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important; /* ФОН розгортається на весь екран */
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    z-index: -2 !important; /* Залишається глибоко на задньому плані */
 }
 
 /* Адаптивне налаштування заголовка, щоб він ніколи не вилазив за краї */
@@ -478,17 +489,151 @@ nav a.active-link, #navbar-links a.active-link {
     box-sizing: border-box !important;
 }
 
-/* Штовхаємо нижню інформаційну скляну плашку з описом під перший екран і розширюємо до країв */
-.establishment-detail-container {
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: -100px 0 0 0 !important;
+/* Батьківський мобільний контейнер */
+.establishment-detail-container,
+main.establishment-detail-container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
     position: relative !important;
     z-index: 10 !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    padding-bottom: 60px !important;
+    background: transparent !important; /* Гарантує прозорість основи */
+}
+
+/* Сама плашка — вмикаємо ідеальний напівпрозорий димчастий ефект */
+.paris-style-intro {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    position: relative !important;
+    left: 0 !important;
+    border: none !important;
+    border-radius: 24px 24px 0 0 !important; 
+    
+    /* 🌟 ОНОВЛЕНО: Тла майже немає (всього 15% затемнення), плашка стала ультрапрозорою! */
+    background: rgba(11, 12, 15, 0.15) !important; 
+    
+    /* Глибоке матове розмиття залишаємо, щоб текст не зливався з деталями стіни */
+    backdrop-filter: blur(25px) !important; 
+    -webkit-backdrop-filter: blur(25px) !important;
+    
+    padding: 50px 24px !important; 
     box-sizing: border-box !important;
+    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Прибираємо можливі внутрішні чорні коробки від JS */
+.paris-style-intro div, 
+#establishment-content {
+    background: transparent !important;
+}
+
+/* Оформление заголовка внутри плашки */
+.paris-title {
+    font-family: 'Cinzel', serif !important;
+    font-size: 24px !important;
+    color: #D4AF37 !important; /* Шляхетное золото */
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 25px !important;
+    text-align: left !important;
+    font-weight: 700 !important;
+}
+
+/* Оформление лид-текста */
+.paris-lead-text {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    margin-bottom: 10px !important;
+    text-align: left !important;
+}
+
+.paris-desc-text {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 15px !important;
+    color: #a5a7ab !important;
+    margin-bottom: 30px !important;
+    text-align: left !important;
+}
+
+/* Сетка кнопок действий */
+.paris-actions {
+    display: flex !important;
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 35px !important;
+    width: 100% !important;
+}
+
+/* Премиальные контурные кнопки */
+.paris-link-btn {
+    border: 1px solid #d4af37 !important;
+    color: #d4af37 !important;
+    padding: 12px 24px !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    transition: all 0.3s ease !important;
+    background: transparent !important;
+}
+
+.paris-link-btn:hover {
+    background: #d4af37 !important;
+    color: #000000 !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4) !important;
+}
+
+/* Длинное текстовое описание */
+.paris-sub-desc {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+    color: #cccccc !important;
+    text-align: left !important;
+}
+
+/* =================================================================
+   🌟 ІДЕАЛЬНЕ ЦЕНТРУВАННЯ ВСЬОГО КОНТЕНТУ НА СТОРІНЦІ ДЕТАЛЕЙ
+   ================================================================= */
+
+/* 1. Відцентровуємо весь текст всередині матової плашки */
+.paris-style-intro,
+.paris-intro-inner,
+#establishment-content,
+.establishment-description-content {
+    text-align: center !important; /* Примусово центрує заголовки, списки та абзаци */
+}
+
+/* 2. Вирівнюємо заголовки та лозунги строго по центру */
+.paris-title {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* 3. Центруємо блок із кнопками швидкої навігації */
+.paris-actions {
+    display: flex !important;
+    justify-content: center !important; /* 🌟 ДОДАНО: Зсуває весь ряд кнопок до центру екрана */
+    align-items: center !important;
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+    margin: 25px auto 35px auto !important;
+    width: 100% !important;
+}
+
+/* 4. Забезпечуємо центрування внутрішніх текстових елементів опису */
+.establishment-description-content p,
+.establishment-description-content h3,
+.paris-sub-desc {
+    text-align: center !important;
 }
 
 
@@ -610,6 +755,15 @@ nav a.active-link, #navbar-links a.active-link {
    ФІНАЛЬНИЙ ЖОРСТКИЙ ТРАНСПОРТЕР КАТЕГОРІЙ В ОДИН РЯД
    ================================================================= */
 
+/* 3. Центрування сітки меню, щоб страви нижче не липли до самого скла телефона */
+#menu-section {
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 50px auto 0 auto !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+}
+
 /* Блокуємо будь-яке перенесення кнопок на новий рядок для будь-яких контейнерів вкладок */
 #menu-categories-tabs, 
 .menu-categories-tabs,
@@ -656,12 +810,13 @@ nav a.active-link, #navbar-links a.active-link {
    6. СТОРІНКА МЕНЮ ТА ПРЕМІУМ-КАРТКИ (MENU.HTML & HERO)
    ================================================================= */
 
+/* 🌟 ОНОВЛЕНИЙ БЛОК: ТЕПЕР HERO РОЗГОРНУТИЙ НА ВСЮ СТОРІНКУ (100vh) */
 .menu-hero {
     position: relative !important;
-    height: 45vh !important;
+    height: 100vh !important; /* 🔥 ЗМІНЕНО З 45vh НА 100vh — тепер блок на весь екран! */
     width: 100% !important;
     background-size: cover !important;
-    background-position: center 35% !important;
+    background-position: center center !important; /* 🌟 ОНОВЛЕНО для ідеального центрування фото */
     background-repeat: no-repeat !important;
     display: flex !important;
     align-items: center !important;
@@ -1881,6 +2036,16 @@ body > main.establishment-detail-container > div#establishment-content > div {
         padding-right: 10px !important;
         box-sizing: border-box;
     }
+
+    /* 1. Акуратний зменшений розмір для головного заголовка */
+    .hero-section h1,
+    #hero-content h1 {
+        font-size: 26px !important; /* 🔥 Зменшено суворо під екран мобілки (було занадто великим) */
+        line-height: 1.3 !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 12px !important;
+        padding: 0 10px !important;
+    }
     
     #main-header, header {
         flex-wrap: nowrap !important;
@@ -2083,4 +2248,3 @@ body > main.establishment-detail-container > div#establishment-content > div {
         font-size: 26px;
     }
 }
-

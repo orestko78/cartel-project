@@ -11,22 +11,28 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
 
     <div id="header-placeholder"></div>
 
-    <div class="video-background">
-        <div class="video-overlay"></div>
-        <video autoplay loop muted playsinline webkit-playsinline preload="auto" poster="/static/images/rebra.jpg" aria-hidden="true">
+        <!-- 🌟 ПОВНІСТЮ РОБОЧИЙ ВАРІАНТ З ВБУДОВАНИМ ПРЕМІУМ-ФІЛЬТРОМ -->
+    <div class="video-background" style="position: relative !important; width: 100% !important; height: 100vh !important; overflow: hidden !important; background-color: #0b0b0b !important;">
+        
+        <!-- 🌌 ТЕМНИЙ ФІЛЬТР-МАСКА: Ідеальне затемнення відео, крізь яке вільно проходять усі кліки (pointer-events: none) -->
+        <div class="video-overlay" style="position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: linear-gradient(to bottom, rgba(11,11,11,0.65) 0%, rgba(11,11,11,0.3) 50%, rgba(11,11,11,0.95) 100%) !important; z-index: 1 !important; pointer-events: none !important;"></div>
+        
+        <!-- Фіксоване повноформатне відео під маскою -->
+        <video autoplay loop muted playsinline webkit-playsinline preload="auto" poster="/static/images/rebra.jpg" aria-hidden="true" style="position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; min-width: 100% !important; min-height: 100% !important; object-fit: cover !important; z-index: 0 !important;">
             <source src="/static/images/bg_video.mp4" type="video/mp4">
         </video>
     </div>
 
-    <section class="hero-section" id="hero-content">
-        <h1 data-i18n="hero_title">Мережа готелів та ресторанів <span>CARTEL</span></h1>
-        <p data-i18n="hero_desc">Преміальні концепції відпочинку, вишукана гастрономія та легендарна атмосфера в самому серці Карпат.</p>
+    <!-- Текстовий блок поверх відео -->
+    <section class="hero-section" id="hero-content" style="position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; z-index: 5 !important; text-align: center !important; width: 100% !important; max-width: 800px !important; padding: 0 20px !important; box-sizing: border-box !important; pointer-events: none !important;">
+        <h1 data-i18n="hero_title" style="font-family: 'Cinzel', serif !important; font-weight: 700 !important; color: #ffffff !important; letter-spacing: 3px !important; text-transform: uppercase !important; text-shadow: 0 4px 15px rgba(0,0,0,0.8) !important; margin-bottom: 15px !important; line-height: 1.2 !important;">Мережа готелів та ресторанів <span style="color: #d4af37 !important;">CARTEL</span></h1>
+        <p data-i18n="hero_desc" style="font-family: 'Cormorant Garamond', serif !important; font-size: 18px !important; color: #e0e0e0 !important; max-width: 600px !important; margin: 0 auto !important; line-height: 1.6 !important; text-shadow: 0 2px 8px rgba(0,0,0,0.7) !important;">Преміальні концепції відпочинку, вишукана гастрономія та легендарна атмосфера в самому серці Карпат.</p>
     </section>
 
     <!-- Стрілка вниз для прокрутки -->
@@ -35,7 +41,8 @@
             <path d="M7 10l5 5 5-5"/>
         </svg>
     </div>
-    
+
+        
     <section class="formats-section">
         <div class="formats-line animate-on-scroll">
             <h2 class="formats-title" data-i18n="formats_main_title">ОБЕРІТЬ СВІЙ ФОРМАТ</h2>
@@ -69,14 +76,15 @@
 
                 <!-- Картка 3 -->
                 <a href="/spa.html" class="format-card" style="text-decoration: none; border: none; background: transparent; outline: none;">
-                <div class="format-img" style="background-image: url('/static/images/SPA/VODA.jpg');"></div>
-                <div class="format-overlay"></div>
-                <div class="format-content">
-                    <div class="format-icon">🌿</div>
-                    <h3 data-i18n="format_recover_title">ВІДНОВИТИСЯ</h3>
-                    <p data-i18n="format_recover_desc">SPA, VODA, баня</p>
-                    <span class="format-arrow">→</span>
-                </div>
+                    <div class="format-img" style="background-image: url('/static/images/SPA/VODA.jpg');"></div>
+                    <div class="format-overlay"></div>
+                    <div class="format-content">
+                        <div class="format-icon">🌿</div>
+                        <h3 data-i18n="format_recover_title">ВІДНОВИТИСЯ</h3>
+                        <p data-i18n="format_recover_desc">SPA, VODA, баня</p>
+                        <span class="format-arrow">→</span>
+                    </div>
+                </a> <!-- 🌟 ФІКС: Тепер тег закривається коректно! -->
 
                 <!-- Картка 4 -->
                 <a href="#" class="format-card">

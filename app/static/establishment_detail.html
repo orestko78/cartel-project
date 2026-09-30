@@ -8,19 +8,20 @@
 </head>
 <body>
 
-    <!-- Шапка сайту (завантажується автоматично через script.js) -->
+    <!-- Шапка сайту (завантажується автоматично) -->
     <div id="header-placeholder"></div>
 
     <!-- Повноноекранний блок фонового зображення інтер'єру -->
-    <div class="establishment-hero-bg" id="establishment-hero-bg">
-        <div class="video-overlay"></div>
+    <div class="establishment-hero-bg" id="establishment-hero-bg" style="position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; background-size: cover !important; background-position: center center !important; background-repeat: no-repeat !important; z-index: -2 !important; overflow: hidden !important;">
+        <div class="video-overlay" style="position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: linear-gradient(to bottom, rgba(18,18,18,0.7) 0%, rgba(18,18,18,0.4) 60%, rgba(12,12,13,0.95) 100%) !important; z-index: -1 !important;"></div>
     </div>
 
-    <section class="hero-section" id="establishment-hero-content">
-        <h1 id="detail-title">Завантаження...</h1>
+    <!-- HERO-КОНТЕНТ: Великий заголовок строго по центру вашого вікна -->
+    <section class="hero-section" id="establishment-hero-content" style="height: 100vh !important; min-height: 100vh !important; display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; position: relative !important; width: 100% !important; margin: 0 !important; padding: 0 20px !important; box-sizing: border-box !important; z-index: 5 !important;">
+        <h1 id="detail-title" style="margin-bottom: 10px;">Завантаження...</h1>
         <p id="detail-cuisine">Мережа готелів та ресторанів CARTEL</p>
         
-        <!-- 🌟 СТРІЛКА ОРІЄНТОВАНА НА КІНЕМАТОГРАФІЧНУ АНІМАЦІЮ: -->
+        <!-- Стрілка вниз для прокрутки -->
         <div class="scroll-down-arrow" onclick="scrollToFormats()">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M7 10l5 5 5-5"/>
@@ -28,15 +29,29 @@
         </div>
     </section>
 
+    <!-- Головний виїзний контейнер до країв екрана -->
+    <main class="establishment-detail-container" style="width: 100vw !important; max-width: 100vw !important; margin: 0 !important; padding: 0 !important; box-sizing: border-box !important; position: relative !important; z-index: 10 !important;">
+        
+        <!-- Преміальна матова плашка з розмиттям фону -->
+        <section class="paris-style-intro"
+            <div class="paris-intro-inner">
+                
+                <!-- 🌟 Постійний преміум заголовок-категорія -->
+                <h2 id="detail-subtitle" class="paris-title">ЗАКЛАД, ЩО ПОРУШУЄ СТАНДАРТИ</h2>
+                
+                <!-- 🌟 Контейнер, куди JavaScript вставить опис, кнопки швидких дій, бронь та карту в ідеальному порядку -->
+                <div id="establishment-content" style="background: transparent !important;">
+                    <p style="color: #aaa; text-align: left;">Завантаження інформації про закладення...</p>
+                </div>
+                
+            </div>
+        </section>
 
-    <main class="establishment-detail-container">
-        <div id="establishment-content">
-            <p style="color: #fff; text-align: center;">Завантаження інформації про заклад...</p>
-        </div>
-        <div id="menu-section" style="margin-top: 50px;"></div>
+        <!-- Блок меню -->
+        <div id="menu-section" style="width: 100% !important; max-width: 1200px !important; margin-left: auto !important; margin-right: auto !important; padding-left: 20px !important; padding-right: 20px !important; box-sizing: border-box !important;"></div>
     </main>
 
-    <!-- Модальне вікно бронювання (дублюється для коректної роботи з script.js) -->
+    <!-- Модальне вікно онлайн-бронювання -->
     <div id="booking-modal-overlay" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -62,9 +77,8 @@
         </div>
     </div>
     
-    <!-- Підключаємо загальні скрипти (модалки, перемикачі мов тощо) та новий файл детальної сторінки -->
-    <script src="/static/establishment_detail.js?v=1001"></script>
-    <!-- Підвал сайту (завантажується автоматично через script.js) -->
+    <!-- Підключення скрипту з унікальним номером версії від кешування -->
+    <script src="/static/establishment_detail.js?v=2001"></script>
     <div id="footer-placeholder"></div>
 
 </body>

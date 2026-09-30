@@ -288,6 +288,45 @@ async function submitBooking(event) {
     }
 }
 
+function toggleMenu() { 
+    const links = document.getElementById('navbar-links');
+    const hamburger = document.getElementById('hamburger-btn');
+    if (links) links.classList.toggle('mobile-active'); 
+    if (hamburger) hamburger.classList.toggle('open'); 
+}
+
+// 🌟 ФУНКЦІЯ КІНЕМАТОГРАФІЧНОГО СКРОЛУ З ЕФЕКТОМ EASE-IN-OUT ДЛЯ СТОРІНКИ РЕСТОРАНІВ
+function scrollToFormats() {
+    // Ціль руху — контейнер з категоріями та сіткою запусків
+    const targetSection = document.querySelector('.establishment-detail-container') || document.getElementById('establishments-grid');
+    if (!targetSection) return;
+
+    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 1500; // 1.5 секунди для ідеальної плавності
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
 window.addEventListener('DOMContentLoaded', async () => { 
     await loadHeader();
     await loadFooter(); 
@@ -297,9 +336,3 @@ window.addEventListener('DOMContentLoaded', async () => {
     setLanguage(currentLang); 
 });
 
-function toggleMenu() { 
-    const links = document.getElementById('navbar-links');
-    const hamburger = document.getElementById('hamburger-btn');
-    if (links) links.classList.toggle('mobile-active'); 
-    if (hamburger) hamburger.classList.toggle('open'); 
-}

@@ -3,15 +3,13 @@ let lastScrollTop = 0;
 /* Скрол-функція: розумне приховування та поява хедера */
 window.addEventListener('scroll', function() {
     const header = document.getElementById('main-header');
-    if (!header) return; // Захист від помилок, якщо хедер ще не підвантажився з сервера
+    if (!header) return; 
 
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Якщо скролимо вниз і прокрутили більше ніж на 50px — ховаємо хедер
     if (scrollTop > lastScrollTop && scrollTop > 50) {
         header.classList.add('header-hidden');
     } else {
-        // Якщо скролимо вгору — показуємо назад
         header.classList.remove('header-hidden');
     }
 
@@ -56,7 +54,7 @@ function openModal(establishmentName, type) {
             if (type === 'Hotel') {
                 modalTitle.innerText = 'Бронювання номера';
             } else if (type === 'SPA') {
-                modalTitle.innerText = 'Бронювання СПА сеансу';
+                modalTitle.innerText = 'Бронювання сеансу СПА';
             } else {
                 modalTitle.innerText = 'Бронювання столика';
             }
@@ -78,16 +76,14 @@ function closeModal() {
     }
 }
 
-// 🌟 ФІРМОВИЙ КІНЕМАТОГРАФІЧНИЙ СКРОЛ З ЕФЕКТОМ EASE-IN-OUT ДЛЯ СТОРІНКИ ДЕТАЛЕЙ
 function scrollToFormats() {
-    // Шукаємо головний контейнер з контентом ресторану
     const targetSection = document.querySelector('.establishment-detail-container') || document.getElementById('establishment-content');
     if (!targetSection) return;
 
     const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
-    const duration = 1500; // 1.5 секунди для виняткової плавності
+    const duration = 1500; 
     let startTime = null;
 
     function animation(currentTime) {
@@ -100,7 +96,6 @@ function scrollToFormats() {
         }
     }
 
-    // Пом'якшення на початку і в кінці руху (Math ease-in-out)
     function easeInOutQuad(t, b, c, d) {
         t /= d / 2;
         if (t < 1) return c / 2 * t * t + b;
@@ -110,7 +105,6 @@ function scrollToFormats() {
 
     requestAnimationFrame(animation);
 }
-
 
 async function submitBooking(event) {
     event.preventDefault();
@@ -130,9 +124,7 @@ async function submitBooking(event) {
     try {
         const response = await fetch('/api/bookings/', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(bookingData)
         });
 
@@ -159,13 +151,10 @@ async function loadHeader() {
             const placeholder = document.getElementById('header-placeholder');
             if (placeholder) {
                 placeholder.innerHTML = html;
-                
                 const btnUk = document.getElementById('lang-uk');
                 const btnEn = document.getElementById('lang-en');
-                
                 if (btnUk) btnUk.onclick = () => setLanguage('uk');
                 if (btnEn) btnEn.onclick = () => setLanguage('en');
-                
                 const currentLang = localStorage.getItem('cartel_lang') || 'uk';
                 setLanguage(currentLang);
             }
@@ -214,9 +203,8 @@ async function loadEstablishmentDetail() {
 
         const currentLang = localStorage.getItem('cartel_lang') || 'uk';
         
-        if (bgBlock && item.image_url) {
-            bgBlock.style.backgroundImage = `url('${item.image_url}')`;
-        }
+        // Налаштування повноформатного заднього фону
+        if (bgBlock && item.image_url) bgBlock.style.backgroundImage = `url('${item.image_url}')`;
         if (titleBlock) titleBlock.innerText = item.name.toUpperCase();
         if (cuisineBlock) cuisineBlock.innerText = item.cuisine || (item.type === 'SPA' ? 'SPA & Wellness' : 'Premium Service');
 
@@ -229,6 +217,7 @@ async function loadEstablishmentDetail() {
             finalDescription = finalDescription.replace('href="#menu"', `href="/menu.html?id=${id}"`);
         }
 
+        // Автоматичне визначення напису кнопки за типом
         let buttonText = "Замовити столик";
         if (item.type === 'Hotel') {
             buttonText = "Забронювати номер";
@@ -238,41 +227,90 @@ async function loadEstablishmentDetail() {
 
         let mapCode = item.map_iframe || '<p style="color: #aaa; text-align: center; padding: 20px;">Карта тимчасово недоступна</p>';
 
-        container.innerHTML = `
-            <div style="background: rgba(24, 26, 32, 0.65); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 40px; border-radius: 10px; color: #fff; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 20px 50px rgba(0,0,0,0.6); text-align: left; width: 100%; max-width: 100%; box-sizing: border-box;">
+        // 🌟 ГЕНЕРУЄМО ІДЕАЛЬНУ ПРЕМІУМ ПОСЛІДОВНІСТЬ ВМІСТУ ПЛАШКИ:
+        if (container) {
+            container.innerHTML = `
+                <!-- 1. Кнопки швидких дій (Paris Style) — розташовані СТРОГО НАД текстом опису -->
+                <div class="paris-actions" style="display: flex !important; gap: 15px !important; flex-wrap: wrap !important; margin: 10px 0 35px 0 !important; width: 100% !important; background: transparent !important;">
+                    <a href="/menu.html?id=${id}" class="paris-link-btn" style="border: 1px solid #d4af37 !important; color: #d4af37 !important; padding: 12px 24px !important; text-decoration: none !important; font-weight: bold !important; border-radius: 4px !important; font-size: 13px !important; text-transform: uppercase !important; letter-spacing: 1px; transition: all 0.3s ease; background: transparent !important;">ПЕРЕГЛЯНУТИ МЕНЮ</a>
+                    <a href="#" class="paris-link-btn" onclick="openModal('${item.name}', '${item.type}')" style="border: 1px solid #d4af37 !important; color: #d4af37 !important; padding: 12px 24px !important; text-decoration: none !important; font-weight: bold !important; border-radius: 4px !important; font-size: 13px !important; text-transform: uppercase !important; letter-spacing: 1px; transition: all 0.3s ease; background: transparent !important;">КОНТАКТИ ТА ГОДИНИ РОБОТИ</a>
+                </div>
+
+                <!-- 2. Головний довгий опис закладу з бази даних -->
+                <div class="establishment-description-content" style="font-size: 16px; line-height: 1.8; color: #e0e0e0; margin-bottom: 35px; text-align: left; background: transparent !important;">
                     ${finalDescription}
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; flex-wrap: wrap; gap: 20px;">
-                    <div style="text-align: left;">
-                        <p style="margin: 0; color: #aaa; font-size: 14px; text-align: left;">📍 Локація: <span style="color: #fff; font-weight: 500;">${item.location}</span></p>
+                <!-- 3. Панель локації, рейтингу та великої кнопки онлайн-резерву -->
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 25px; flex-wrap: wrap; gap: 20px; margin-bottom: 40px; background: transparent !important;">
+                    <div style="text-align: left; background: transparent !important;">
                         <p style="margin: 6px 0 0 0; color: #aaa; font-size: 14px; text-align: left;">★ Рейтинг: <span style="color: #d4af37; font-weight: bold;">${item.rating.toFixed(1)}</span></p>
                     </div>
-                    
-                    <div>
+                        
+                    <div style="background: transparent !important;">
                         <button onclick="openModal('${item.name}', '${item.type}')" style="background: #d4af37; color: #000; border: none; padding: 14px 32px; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 15px; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#d4af37'">
                             ${buttonText}
                         </button>
                     </div>
                 </div>
 
-                <!-- Блок карти -->
-                <div id="map" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px;">
-                    <h2 style="font-size: 22px; color: #d4af37; font-family: 'Cormorant Garamond', serif; margin-bottom: 20px; text-align: left; font-weight: 600; letter-spacing: 0.5px;">
-                        РОЗТАШУВАННЯ НА МАПІ
+                <!-- 🌟 ОНОВЛЕНО: Нова преміум-плашка Адреси з кнопкою та висувною картою -->
+                <div class="address-premium-block" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 30px; width: 100%; background: transparent !important;">
+                    
+                    <h2 style="font-size: 22px; color: #d4af37; font-family: 'Cormorant Garamond', serif; margin-bottom: 10px; font-weight: 600; letter-spacing: 0.5px;">
+                        📍 НАША АДРЕСА
                     </h2>
-                    <div class="google-map-wrapper" style="width: 100%; overflow: hidden; border-radius: 10px; line-height: 0;">
-                        ${mapCode}
-                    </div>
-                </div>
+                    
+                    <!-- Динамічний вивід адреси з бази даних -->
+                    <p style="font-size: 15px; color: #ffffff; font-family: 'Montserrat', sans-serif; margin-bottom: 20px;">
+                        ${item.location || 'Буковель, Івано-Франківська область'}
+                    </p>
+                    
+                    <!-- Золота кнопка-перемикач для карти -->
+                    <button onclick="toggleMapDropdown()" class="btn-toggle-map" style="background: transparent; border: 1px solid #d4af37; color: #d4af37; padding: 12px 28px; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 13px; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">
+                        Подивитись на карті ▼
+                    </button>
 
-            </div>
-        `;
+                    <!-- 🔮 Прихований контейнер карти з плавним розгортанням -->
+                    <div id="map-dropdown-container" style="max-height: 0px; overflow: hidden; opacity: 0; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease; margin-top: 0px;">
+                        <div class="google-map-wrapper" style="width: 100%; overflow: hidden; border-radius: 12px; line-height: 0; padding-top: 20px;">
+                            ${mapCode}
+                        </div>
+                    </div>
+
+                </div>
+            `;
+        }
+
     } catch (err) {
         console.error("Помилка завантаження деталей закладу:", err);
         if (container) container.innerHTML = '<p style="color:red; text-align: center;">Помилка завантаження даних.</p>';
     }
 }
+
+// 🌟 ФУНКЦІЯ ДЛЯ ПЛАВНОГО ВИЇЖДЖАННЯ КАРТИ ПРИ КЛІКУ
+function toggleMapDropdown() {
+    const mapContainer = document.getElementById('map-dropdown-container');
+    const toggleBtn = document.querySelector('.btn-toggle-map');
+    
+    if (!mapContainer || !toggleBtn) return;
+
+    if (mapContainer.style.maxHeight === "0px" || !mapContainer.style.maxHeight) {
+        // Розгортаємо карту (задаємо достатню висоту для iframe + відступи)
+        mapContainer.style.maxHeight = "500px";
+        mapContainer.style.opacity = "1";
+        toggleBtn.innerHTML = "Сховати карту ▲";
+        toggleBtn.style.background = "rgba(212, 175, 55, 0.1)";
+    } else {
+        // Плавно згортаємо назад
+        mapContainer.style.maxHeight = "0px";
+        mapContainer.style.opacity = "0";
+        toggleBtn.innerHTML = "Подивитись на карті ▼";
+        toggleBtn.style.background = "transparent";
+    }
+}
+
+
 
 window.addEventListener('DOMContentLoaded', async () => {
     await loadHeader();

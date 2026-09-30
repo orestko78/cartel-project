@@ -66,6 +66,7 @@ window.addEventListener('scroll', function() {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
+// 🌟 ФУНКЦІЯ КІНЕМАТОГРАФІЧНОГО СКРОЛУ З ЕФЕКТОМ EASE-IN-OUT ДЛЯ ГОЛОВНОЇ СТОРІНКИ
 function scrollToFormats() {
     const targetSection = document.querySelector('.formats-section');
     if (!targetSection) return;
@@ -73,7 +74,7 @@ function scrollToFormats() {
     const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
-    const duration = 1500; // Час прокрутки в мілісекундах (1000мс = 1 секунда, робить скрол плавнішим)
+    const duration = 1500; // Час прокрутки в мілісекундах (1.5 секунди для ідеальної плавності)
     let startTime = null;
 
     function animation(currentTime) {
@@ -91,12 +92,12 @@ function scrollToFormats() {
         t /= d / 2;
         if (t < 1) return c / 2 * t * t + b;
         t--;
-        -c / 2 * (t * (t - 2) - 1) + b;
         return -c / 2 * (t * (t - 2) - 1) + b;
     }
 
     requestAnimationFrame(animation);
 }
+
 
 const translations = {
     uk: {
