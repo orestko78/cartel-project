@@ -6,6 +6,27 @@
   "location": "Івано-Франківськ, пл. Міцкевича, 4",
   "rating": 4.9,
   "image_url": "https://images.unsplash.com/photo-1552566626-52f8b828add9",
-  "description": "Ресторан вишуканої кухні в центрі Івано-Франківська від мережі Cartel.",
-  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>"
+  
+  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
+  "description": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Вишуканий флагман високої гастрономії від мережі CARTEL у самому серці Івано-Франківська.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Авторська європейська класика, преміальні мармурові стейки, свіжі морепродукти та колекційна винна карта світового рівня.</p>",
+        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей концептуальний ресторан вишуканої кухні переносить легендарні преміум-стандарти гостинності мережі CARTEL із серця Карпат до центру Івано-Франківська. Інтер'єр закладу є справжнім витвором мистецтва у стилі величного міського лофту: високі стелі, оздоблення з рідкісних порід дерева та натурального каменю, м'яке камерне світло та витончені золоті акценти. Ідеальний простір для проведення важливих ділових переговорів, статусних бенкетів чи незабутніх романтичних вечорів.</p>",
+        
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Кулінарна естетика, локальні шедеври та шедеври міксології</h3>",
+        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Кожна страва у нашому меню — це гармонія бездоганного смаку та витонченої візуальної подачі від шеф-кухаря. Ми використовуємо виключно найкращі світові інгредієнти та екологічно чисті фермерські продукти Прикарпаття. Наша гордість — відкрита гриль-зона, де на розпеченому вугіллі готуються соковиті стейки сухого визрівання. Професійний сомельє допоможе підібрати ідеальну пару до вашої вечері з нашої унікальної винотеки, а барна мапа здивує вас авторськими коктейлями преміум-класу.</p>",
+        
+    "<p style=\"margin-top: 25px; color: #aaa;\">Забронювати VIP-кімнату, ознайомитися з бенкетним меню та дізнатися про гастровечори можна у нашому <strong>Instagram</strong></p>",
+        
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673400011\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 340 0011</a></p>",
+        
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вас у центрі міста</p>"
+  ],
+  "images": [
+    "/static/images/ambasada1.jpg",
+    "/static/images/ambasada2.jpg",
+    "/static/images/ambasada3.jpg"
+  ]
 }

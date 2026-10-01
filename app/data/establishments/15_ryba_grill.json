@@ -6,6 +6,29 @@
   "location": "Буковель, озеро Молодості",
   "rating": 4.8,
   "image_url": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb",
-  "description": "Страви з риби та морепродуктів на грилі поблизу мальовничого озера.",
-  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>"
+  
+  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
+  "description": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Гастрономічний оазис свіжої риби та морепродуктів на березі гірського озера.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Гірська форель на вугіллі, королівські креветки, ніжний стейк із лосося та автентична уха на дровах.</p>",
+        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей преміальний ресторан розташований у наймальовничішій зоні курорту — безпосередньо біля кристально чистого озера. Тут панує особлива атмосфера умиротворення: заворожливі водні краєвиди, свіже карпатське повітря та витончений інтер'єр у стилі сучасного озерного лофту. Ідеальне місце як для затишної сімейної вечері, так і для романтичного вечора під тихий шум прибою.</p>",
+        
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Свіжий вилов та майстерність відкритого вогню</h3>",
+        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Головний акцент нашого меню — це кришталева свіжість та бездоганна якість. Наша гірська форель потрапляє на кухню безпосередньо з чистих карпатських водойм, а вишукані морепродукти привозяться за спеціальним замовленням. Кухарі віртуозно обсмажують рибу на відкритому грилі, додаючи лише делікатні пряні трави, свіжий лимон та краплю оливкової олії, щоб максимально підкреслити її природний чистий смак. А фірмова рибна юшка, яка повільно мліє на справжніх дровах, уже стала легендою серед постійних гостей Буковелю.</p>",
+        
+    "<p style=\"margin-top: 25px; color: #aaa;\">Переглянути карту вин, забронювати столик біля панорамного вікна можна у нашому <strong>Instagram</strong></p>",
+        
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380675550066\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 555 0066</a></p>",
+        
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Риба на грилі, чекаємо на вас</p>"
+  ],
+  "images": [
+    "/static/images/ryba_grill1.jpg",
+    "/static/images/ryba_grill2.jpg",
+    "/static/images/ryba_grill3.jpg",
+    "/static/images/ryba_grill4.jpg",
+    "/static/images/ryba_grill5.jpg"
+  ]
 }

@@ -6,6 +6,29 @@
   "location": "Буковель, Нижня станція витягу 13",
   "rating": 4.7,
   "image_url": "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9",
-  "description": "Справжній узбецький плов та східні страви біля підйомника.",
-  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>"
+  
+  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
+  "description": [
+  "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Автентична магія східної гастрономії та гарячого плову біля підніжжя гір.</p>",
+  "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Традиційний ферганський плов на багатті, соковитий шашлик із тандира, ароматна шурпа та гарячі коржики.</p>",
+        
+  "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей концептуальний ресторан східної кухні розташований у найзручнішій точці курорту — прямо біля гірськолижного підйомника. Це ідеальне місце, щоб зробити колоритну гастрономічну паузу під час активного катання. Щойно ви переступаєте поріг, вас огортає затишна лофт-атмосфера Сходу: аромат натуральних дров, спецій куміну, коріандру та гарячого м'яса, що запікається на живому вогні.</p>",
+        
+  "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Ритуал приготування на багаті та таємниці тандиру</h3>",
+        
+  "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Головна гордість нашого ресторану — справжній узбецький плов, який наш шеф-кухар щоранку повільно готує у величезному чавунному казані на відкритому багатті за класичним ферганським рецептом. Ми використовуємо виключно преміальний рис девзіра, соковиту добірну баранину та автентичні східні спеції. Усі м'ясні хіти — від ніжних люля-кебабів до шашликів — готуються на розпеченому вугіллі, а традиційні східні коржики випікаються прямо перед вашою подачею у розігрітій глиняній печі-тандирі.</p>",
+        
+  "<p style=\"margin-top: 25px; color: #aaa;\">Переглянути повне гриль-меню, забронювати стіл та замовити доставку можна у нашому <strong>Instagram</strong></p>",
+        
+  "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673330044\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 333 0044</a></p>",
+        
+  "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Плов готовий, чекаємо на вас</p>"
+  ],
+  "images": [
+    "/static/images/plov1.jpg",
+    "/static/images/plov2.jpg",
+    "/static/images/plov3.jpg",
+    "/static/images/plov4.jpg",
+    "/static/images/plov5.jpg"
+  ]
 }

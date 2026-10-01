@@ -29,6 +29,8 @@ const translations = {
         
         hero_title: "Мережа ресторанів <span>CARTEL</span>", 
         hero_desc: "Вишукана гастрономія, авторські концепції від шеф-кухарів та незабутні смакові поєднання в самому серці Карпат.",
+        restaurants_section_title: "Наші ресторани у <span>Буковелі</span>",
+        restaurants_section_desc: "Авторська кухня, локальні смаки та особлива атмосфера для кожної нагоди.",
         
         card_restaurant: "🥩 Ресторан",
         btn_visit: "Зайти до закладу"
@@ -45,6 +47,8 @@ const translations = {
         
         hero_title: "Restaurants Network <span>CARTEL</span>", 
         hero_desc: "Exquisite gastronomy, author concepts from chefs, and unforgettable flavor combinations in the heart of the Carpathians.",
+        restaurants_section_title: "Our restaurants in <span>Bukovel</span>",
+        restaurants_section_desc: "Chef-led cuisine, local flavors, and distinctive settings for every occasion.",
         
         card_restaurant: "🥩 Restaurant",
         btn_visit: "Visit establishment"
@@ -249,13 +253,6 @@ async function loadEstablishments() {
     }
 }
 
-function openModal(name, type) {
-    document.getElementById('modal-title').innerText = 'Бронювання столика';
-    document.getElementById('modal-establishment-name').innerText = name;
-    document.getElementById('form-establishment-name').value = name;
-    document.getElementById('booking-modal-overlay').classList.add('active');
-}
-
 function closeModal() { 
     document.getElementById('booking-modal-overlay').classList.remove('active'); 
     document.getElementById('booking-form').reset(); 
@@ -296,43 +293,12 @@ function toggleMenu() {
 }
 
 // 🌟 ФУНКЦІЯ КІНЕМАТОГРАФІЧНОГО СКРОЛУ З ЕФЕКТОМ EASE-IN-OUT ДЛЯ СТОРІНКИ РЕСТОРАНІВ
-function scrollToFormats() {
-    // Ціль руху — контейнер з категоріями та сіткою запусків
-    const targetSection = document.querySelector('.establishment-detail-container') || document.getElementById('establishments-grid');
-    if (!targetSection) return;
-
-    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    const duration = 1500; // 1.5 секунди для ідеальної плавності
-    let startTime = null;
-
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) {
-            requestAnimationFrame(animation);
-        }
-    }
-
-    function easeInOutQuad(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(animation);
-}
-
 window.addEventListener('DOMContentLoaded', async () => { 
     await loadHeader();
+    await loadHero('/static/images/restaurants.jpg');
     await loadFooter(); 
     loadEstablishments(); 
     
     const currentLang = localStorage.getItem('cartel_lang') || 'uk';
     setLanguage(currentLang); 
 });
-

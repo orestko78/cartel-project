@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Підключаємо фірмові преміум-стилі -->
-    <link rel="stylesheet" href="/static/style.css?v=1">
+    <link rel="stylesheet" href="/static/style.css?v=4">
 </head>
 <body class="menu-page-body">
 
@@ -24,9 +24,14 @@
             <h1 class="restaurant-title-main" id="rest-name">Завантаження...</h1>
             <div class="menu-subtitle-main">Фірмові страви та шедеври кухні</div>
         </div>
+        <button class="scroll-down-arrow" type="button" onclick="scrollToMenuContent()" aria-label="Перейти до меню">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 10l5 5 5-5"/>
+            </svg>
+        </button>
     </section>
 
-    <div class="menu-container-premium">
+    <div class="menu-container-premium" id="menu-content">
         
         <!-- 🌟 НОВИЙ БЛОК: Преміальна горизонтальна стрічка категорій CARTEL -->
         <div id="menu-categories-tabs" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 30px 0 50px 0; width: 100%;">
@@ -69,6 +74,6 @@
     <div id="footer-placeholder"></div>
 
     <!-- Окремий файл логіки меню, який керує сторінкою -->
-    <script src="/static/menu.js?v=5"></script>
+    <script src="/static/menu.js?v=6"></script>
 </body>
 </html>

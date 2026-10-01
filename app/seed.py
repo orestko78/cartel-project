@@ -28,6 +28,15 @@ def seed_data(db: Session):
                 # Перевіряємо, чи немає вже такого закладу в базі
                 existing = db.query(Establishment).filter(Establishment.name == data["name"]).first()
                 if not existing:
+                    
+                    # 🌟 ГОЛОВНИЙ ІНЖЕНЕРНИЙ ФІКС: Обробка опису, розбитого на масив рядків у JSON
+                    raw_description = data.get("description")
+                    if isinstance(raw_description, list):
+                        # Склеюємо рядки через перенос, щоб зберегти красиву структуру в VS Code
+                        final_description = "\n".join(raw_description)
+                    else:
+                        final_description = raw_description
+
                     new_est = Establishment(
                         name=data["name"],
                         type=data["type"],
@@ -36,7 +45,7 @@ def seed_data(db: Session):
                         rating=data.get("rating", 5.0),
                         image_url=data.get("image_url"),
                         images=data.get("images"),
-                        description=data.get("description"),
+                        description=final_description, # 🌟 Тепер сюди записується чистий монолітний текст
                         map_iframe=data.get("map_iframe")
                     )
                     db.add(new_est)
@@ -59,7 +68,7 @@ def seed_data(db: Session):
                                     description=dish.get("description"),
                                     price=dish["price"],
                                     image_url=dish.get("image_url"),
-                                    # 🌟 ДОДАНО СЮДИ: Автоматично зчитуємо категорію страви з JSON файлу
+                                    # Автоматично зчитуємо категорію страви з JSON файлу
                                     category=dish.get("category", "Основні страви")
                                 )
                                 db.add(new_dish)

@@ -6,7 +6,22 @@
     "rating": 4.9,
     "image_url": "/static/images/rebra/rebra14.jpg",
     "map_iframe": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1811.2123686146876!2d24.403288511212853!3d48.35677467138025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4737186fd34d7e05%3A0xf74df878633987fc!2sRebra%20BBQ!5e1!3m2!1suk!2sua!4v1790443475450!5m2!1suk!2sua\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px处理;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe>",
-    "description": "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Демократичний м’ясний BBQ ресторан у форматі casual food.</p><p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Свинячі ребра бейбі бек рібс, філе індички, курячі крильця.</p><p style=\"margin-bottom: 20px; line-height: 1.7;\">Ресторан Rebra BBQ beer`n`grill розташований біля нижньої станції витягу №5. Наші кухарі навчилися коптити м'ясо на кухні ресторану Southside Market у столиці техаської барбекю-культури — місті Елджін Таун і презентують смачную новинку гостям Буковелю.</p><h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Легендарні хіти техаського барбекю</h3><p style=\"margin-bottom: 20px; line-height: 1.7;\">Завдяки технології приготування Low & Slow яловича грудинка набуває неймовірного смаку. Її повільно коптять протягом 18 годин при температурі 100 градусів у власній техаській коптильні. До м'яса додаємо лише 3 спеції — чорний перець, сіль та трохи кайєнського перцю. Хліб та булочки для бургерів випікаємо власноруч, за прикладом якості американської мережі ресторанів Shake & Shack. Ми були першими, хто привіз в Україну унікальну коптильню на дровах J&R. Завдяки передовим технологіям ми можемо щоранку отримувати свіже копчене м'ясо та підтримувати постійну температуру продукту.</p><p style=\"margin-top: 25px; color: #aaa;\">За всіма новинами слідкуйте на наших сторінках у <strong>Facebook</strong> та <strong>Instagram</strong></p><p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 +38 (067) 350 6611</p><p style=\"color: #ff4d4d; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🔴 тимчасово зачинено</p>",
+    "description": [
+        "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Демократичний м’ясний BBQ ресторан у форматі casual food.</p>",
+        "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Свинячі ребра бейбі бек рібс, філе індички, курячі крильця.</p>",
+        
+        "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Ресторан Rebra BBQ beer`n`grill розташований біля нижньої станції витягу №5. Наші кухарі навчилися коптити м'ясо на кухні ресторану Southside Market у столиці техаської барбекю-культури — місті Елджін Таун і презентують смачну новинку гостям Буковелю.</p>",
+        
+        "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Легендарні хіти техаського барбекю</h3>",
+        
+        "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Завдяки технології приготування Low & Slow яловича грудинка набуває неймовірного смаку. Її повільно коптять протягом 18 годин при температурі 100 градусів у власній техаській коптильні. До м'яса додаємо лише 3 спеції — чорний перець, сіль та трохи кайєнського перцю. Хліб та булочки для бургерів випікаємо власноруч, за прикладом якості американської мережі ресторанів Shake & Shack. Ми були першими, хто привіз в Україну унікальну коптильню на дровах J&R. Завдяки передовим технологіям мы можемо щоранку отримувати свіже копчене м'ясо та підтримувати постійну температуру продукту.</p>",
+        
+        "<p style=\"margin-top: 25px; color: #aaa;\">За всіма новинами слідкуйте на наших сторінках у <strong>Facebook</strong> та <strong>Instagram</strong></p>",
+        
+        "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673506611\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 350 6611</a></p>",
+        
+        "<p style=\"color: #ff4d4d; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🔴 тимчасово зачинено</p>"
+    ], 
     "images": [
         "/static/images/rebra/rebra1.jpg",
         "/static/images/rebra/rebra2.jpg",

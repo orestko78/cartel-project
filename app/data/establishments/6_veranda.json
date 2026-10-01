@@ -6,5 +6,20 @@
     "rating": 4.9,
     "image_url": "/static/images/veranda.jpg",
     "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
-    "description": "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Затишний ресторан-лаунж із панорамним видом на Карпати.</p><p style=\"margin-bottom: 20px; line-height: 1.7;\">Ресторан Veranda розташований у мальовничій зоні Буковелю. Це ідеальне місце для релаксу після активного дня в горах. Легка європейська кухня, великий вибір страв із морепродуктів, авторські коктейлі та ексклюзивна кальянна карта створюють атмосферу повної гармонії та відпочинку преміум-класу.</p><p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 +38 (067) 555 1122</p><p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Працює лаунж-зона</p>"
+    "description": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Затишний ресторан-лаунж із панорамним видом на Карпати.</p>",
+        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Ресторан Veranda розташований у мальовничій зоні Буковелю. Це ідеальне місце для релаксу після активного дня в горах. Легка європейська кухня, великий вибір страв із морепродуктів, авторські коктейлі та ексклюзивна кальянна карта створюють атмосферу повної гармонії та відпочинку преміум-класу.</p>",
+        
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380675551122\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 555 1122</a></p>",
+        
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Працює лаунж-зона</p>"
+    ],
+    "images": [
+        "/static/images/veranda1.jpg",
+        "/static/images/veranda2.jpg",
+        "/static/images/veranda3.jpg",
+        "/static/images/veranda4.jpg",
+        "/static/images/veranda5.jpg"
+    ]
 }

@@ -6,6 +6,27 @@
   "location": "Буковель",
   "rating": 4.6,
   "image_url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5",
-  "description": "Сучасний погляд на традиційні українські смаколики та національні закуски.",
-  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>"
+  
+  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
+  "description": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Гастрономічна революція: сучасний погляд на національні кулінарні шедеври.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Крафтові українські закуски, модернізований борщ із копченою грушею, авторські вареники та вишукані десерти.</p>",
+        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей концептуальний ресторан пропонує гостям Буковелю унікальний гастрономічний досвід — переосмислення багатих українських традицій через призму світових трендів високої кухні. Тут класичні національні смаколики трансформуються у витончені кулінарні арт-об'єкти. Атмосфера затишного сучасного етно-лофту з елементами з натурального дерева, льону та теплого вогню створює ідеальний простір для затишних вечорів.</p>",
+        
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Локальні фермерські продукти та сміливі гастрономічні експерименти</h3>",
+        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Ми пишаємося тим, що кожна страва базується на екологічно чистих продуктах від найкращих локальних фермерських господарств Карпат. Наші кухарі використовують сучасні техніки текстурування та подачі, щоб здивувати навіть найдосвідченіших гурманів: ніжне сало у вигляді мусу з травами, традиційні закуски з додаванням трюфельної олії та легкі повітряні десерти на основі карпатських лісових ягід. Це справжній маніфест нової української кухні, яка закохує в себе з першого шматочка.</p>",
+        
+    "<p style=\"margin-top: 25px; color: #aaa;\">Переглянути розклад гастровечорів та забронювати столик можна у нашому <strong>Instagram</strong></p>",
+        
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380674440055\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 444 0055</a></p>",
+        
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вас</p>"
+  ],
+  "images": [
+    "/static/images/salo1.jpg",
+    "/static/images/salo2.jpg",
+    "/static/images/salo3.jpg"
+  ]
 }

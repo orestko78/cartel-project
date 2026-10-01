@@ -26,6 +26,9 @@ const translations = {
         nav_jobs: "Вакансії", 
         nav_blog: "Блог", 
         nav_contact: "Контакти",
+
+        hero_title: "SPA та відпочинок <span>CARTEL</span>",
+        hero_desc: "Термальні басейни, карпатські чани та простір для повного відновлення.",
         
         card_spa: "🌿 SPA & Wellness",
         btn_visit_spa: "Резерв сеансу"
@@ -39,6 +42,9 @@ const translations = {
         nav_jobs: "Careers", 
         nav_blog: "Blog", 
         nav_contact: "Contacts",
+
+        hero_title: "SPA & Wellness <span>CARTEL</span>",
+        hero_desc: "Thermal pools, Carpathian hot tubs, and a space to fully recharge.",
         
         card_spa: "🌿 SPA & Wellness",
         btn_visit_spa: "Book a session"
@@ -227,8 +233,10 @@ async function loadSpaEstablishments() {
 
 window.addEventListener('DOMContentLoaded', async () => {
     await loadHeader();
+    await loadHero('/static/images/SPA/VODA.jpg');
     await loadFooter();
     await loadSpaEstablishments();
+    setLanguage(localStorage.getItem('cartel_lang') || 'uk');
 });
 
 function toggleMenu() { 

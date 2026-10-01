@@ -245,6 +245,7 @@ async function loadEstablishments() {
 
 window.addEventListener('DOMContentLoaded', async () => { 
     await loadHeader();
+    await loadHero('/static/images/Hotels.jpg');
     await loadFooter(); 
     loadEstablishments(); 
     
@@ -258,3 +259,4 @@ function toggleMenu() {
     if (links) links.classList.toggle('mobile-active'); 
     if (hamburger) hamburger.classList.toggle('open'); 
 }
+

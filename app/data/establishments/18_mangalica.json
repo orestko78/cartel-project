@@ -6,6 +6,27 @@
   "location": "Яремче, вул. І. Петраша, 62",
   "rating": 4.8,
   "image_url": "https://images.unsplash.com/photo-1544025162-d76694265947",
-  "description": "Фірмовий м'ясний ресторан мережі у місті Яремче.",
-  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>"
+  
+  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
+  "description": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Фірмовий м'ясний ресторан мережі CARTEL — гастрономічне серце та легендарні стейки в Яремче.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">М'ясо сухого визрівання, соковиті ребра BBQ, фірмові бургери на дровах та затишна атмосфера карпатського лофту.</p>",
+        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей концептуальний м'ясний ресторан розташований у самому мальовничому куточку Яремче, пропонуючи мешканцям та гостям міста фірмові преміум-стандарти якості мережі CARTEL. Дизайнерський інтер'єр закладу гармонійно поєднує монументальність гірського каменю, тепло натурального дуба та сучасний індустріальний лофт. Це ідеальне місце для того, щоб зупинитися на вишуканий обід під час подорожі Карпатами або провести смачний вечір у колі близьких людей.</p>",
+        
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Культ м'яса, власна камера визрівання та магія відкритого грилю</h3>",
+        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">У нашому ресторані панує справжній культ м'яса. Ми використовуємо добірну яловичину преміум-якості та витримуємо її у власній спеціальній камері сухого визрівання, завдяки чому стейки набувають неймовірної ніжності та глибокого насиченого смаку. Головне дійство відбувається на відкритому грилі, де на розпеченому карпатському вугіллі наші майстри доводять м'ясні шедеври до ідеального рівня прожарювання. До м'яса ми пропонуємо авторські соуси, фірмове крафтове пиво та вишукану колекцію міцних напоїв з усього світу.</p>",
+        
+    "<p style=\"margin-top: 25px; color: #aaa;\">Переглянути карту стейків, забронювати столик або замовити бенкет можна у нашому <strong>Instagram</strong></p>",
+        
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673430022\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 343 0022</a></p>",
+        
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Мангал розпалено, чекаємо на вас</p>"
+  ],
+  "images": [
+    "/static/images/mangalica1.jpg",
+    "/static/images/mangalica2.jpg",
+    "/static/images/mangalica3.jpg"
+  ]
 }

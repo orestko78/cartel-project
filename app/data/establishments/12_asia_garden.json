@@ -6,6 +6,29 @@
   "location": "Буковель, ділянка Вишні",
   "rating": 4.8,
   "image_url": "https://images.unsplash.com/photo-1541696432-82c6da8ce7bf",
-  "description": "Ресторан азійської кухні з традиційними стравами та яскравою атмосферою.",
-  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>"
+  
+  "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
+  "description": [
+  "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Екзотичний оазис паназійської гастрономії та яскравої атмосфери Сходу.</p>",
+  "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Автентичний вок, легендарна качка по-пекінськи, свіжі суші-преміум та авторська малайзійська локшина.</p>",
+        
+  "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Ресторан Asia Garden запрошує гостей Буковелю у захопливу кулінарну подорож країнами Азії. Наша концепція — це гармонійне поєднання п'яти основних смаків: гострого, солодкого, кислого, гіркого та солоного. Інтер'єр закладу виконаний у стилі сучасного східного мінімалізму з елементами живого тропічного саду, що створює неповторну атмосферу затишку та преміального комфорту посеред карпатських гір.</p>",
+        
+  "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Майстерність відкритого вогню та традиції Сходу</h3>",
+        
+  "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Серце нашої кухні — це відкрита зона WOK, де шеф-кухарі віртуозно обсмажують локшину та свіжі морепродукти на шаленому вогні за лічені секунди, зберігаючи всю соковитість та корисні властивості інгредієнтів. Ми привозимо автентичні соуси, прянощі та спеції безпосередньо з Таїланду, Японії та Китаю. Наші суші та роли готуються виключно з риби преміум-якості та спеціального рису правильної температури. А для поціновувачів класики ми випікаємо качку по-пекінськи за старовинним рецептом династії Мін.</p>",
+        
+  "<p style=\"margin-top: 25px; color: #aaa;\">Актуальне меню, резерв столів та гастрономічні анонси у нашому <strong>Instagram</strong></p>",
+        
+  "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380672220011\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 222 0011</a></p>",
+        
+  "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вас</p>"
+  ],
+  "images": [
+    "/static/images/asia_garden1.jpg",
+    "/static/images/asia_garden2.jpg",
+    "/static/images/asia_garden3.jpg",
+    "/static/images/asia_garden4.jpg",
+    "/static/images/asia_garden5.jpg"
+  ]
 }

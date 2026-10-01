@@ -167,10 +167,7 @@ const translations = {
 function setLanguage(lang) {
     localStorage.setItem('cartel_lang', lang);
     
-    // Перевіримо, які елементи знайшов скрипт на сторінці
     const elements = document.querySelectorAll('[data-i18n]');
-    console.log("Знайдено елементів для перекладу:", elements.length);
-    elements.forEach(el => console.log(el.getAttribute('data-i18n'), el));
 
     elements.forEach(element => {
         const key = element.getAttribute('data-i18n');
@@ -252,32 +249,7 @@ async function loadEstablishments() {
     } catch (error) { console.error("Помилка завантаження даних:", error); }
 }
 
-function openModal(name, type) {
-    document.getElementById('modal-title').innerText = type === 'Restaurant' ? 'Бронювання столика' : 'Резерв номера';
-    document.getElementById('modal-establishment-name').innerText = name;
-    document.getElementById('form-establishment-name').value = name;
-    document.getElementById('booking-modal-overlay').classList.add('active');
-}
-function closeModal() { document.getElementById('booking-modal-overlay').classList.remove('active'); document.getElementById('booking-form').reset(); }
-async function submitBooking(event) {
-    event.preventDefault();
-    const bookingData = { establishment_name: document.getElementById('form-establishment-name').value, guest_name: document.getElementById('guest-name').value, guest_phone: document.getElementById('guest-phone').value, booking_date: document.getElementById('booking-date').value };
-    try {
-        const response = await fetch('/api/bookings/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bookingData) });
-        if (response.ok) { alert('Бронювання успішно створено!'); closeModal(); }
-        else { const errorData = await response.json(); alert('Помилка при створенні бронювання: ' + (errorData.detail || 'Невідома помилка')); }
-    } catch (error) { console.error("Помилка при відправці даних:", error); alert('Помилка при створенні бронювання. Спробуйте ще раз.'); }
-}
 function toggleMenu() { document.getElementById('navbar-links')?.classList.toggle('mobile-active'); document.getElementById('hamburger-btn')?.classList.toggle('open'); }
-
-window.addEventListener('DOMContentLoaded', async () => { 
-    await loadHeader(); // Чекаємо, поки завантажиться шапка
-    loadEstablishments(); 
-    
-    // Встановлюємо мову ТІЛЬКИ після того, як шапка вже з'явилася на сторінці
-    const currentLang = localStorage.getItem('cartel_lang') || 'uk';
-    setLanguage(currentLang); 
-});
 
 let inactivityTimeout;
 function showUI() {

@@ -180,6 +180,32 @@ function switchCategory(targetCatId, clickedButton) {
     });
 }
 
+function scrollToMenuContent() {
+    const target = document.getElementById('menu-content');
+    if (!target) return;
+
+    const startPosition = window.pageYOffset;
+    const distance = target.getBoundingClientRect().top;
+    const duration = 1500;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        window.scrollTo(0, easeInOutQuad(elapsed, startPosition, distance, duration));
+        if (elapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function easeInOutQuad(time, begin, change, total) {
+        time /= total / 2;
+        if (time < 1) return change / 2 * time * time + begin;
+        time--;
+        return -change / 2 * (time * (time - 2) - 1) + begin;
+    }
+
+    requestAnimationFrame(animation);
+}
+
 async function initializeMenuPage() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');

@@ -1,4 +1,6 @@
-﻿﻿/* =================================================================
+﻿﻿@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+/* =================================================================
    1. БАЗОВІ НАЛАШТУВАННЯ ТА ЗМІННІ (ROOT, RESET, BODY)
    ================================================================= */
 
@@ -39,9 +41,6 @@ body.hotels-page {
 /* =================================================================
    ЧИСТИЙ ТЕКСТОВИЙ ЛОГОТИП ДЛЯ CARTEL (ВИНЯТКОВО ОДНЕ СЛОВО)
    ================================================================= */
-
-/* Підключаємо величний шрифт Cinzel з Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
 
 .logo-text-main {
     font-family: 'Cinzel', serif !important;
@@ -424,21 +423,27 @@ nav a.active-link, #navbar-links a.active-link {
 }
 
 /* =================================================================
-   🌟 ПОВНОЕКРАННИЙ 3D-ФОН ДЛЯ ДЕТАЛЬНОЇ СТОРІНКИ (ФІКС ОБРІЗАННЯ)
+    5. УНІВЕРСАЛЬНИЙ ПОВНОЕКРАННИЙ HERO
    ================================================================= */
-
-/* 1. Блок самого фото — розгортаємо суворо на все вікно */
-.establishment-hero-bg {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: -1 !important;
+.site-hero {
+    height: 100vh !important;       /* Жорстко задає висоту на весь екран */
+    width: 100vw !important;        /* На всю ширину вікна */
+    background-size: cover !important;      /* Масштабує фото на весь блок */
+    background-position: center !important; /* Центрує картинку */
+    background-repeat: no-repeat !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;     /* Центрує текст по вертикалі */
+    align-items: center !important;         /* Центрує текст по горизонталі */
+    box-sizing: border-box;
 }
 
-/* 2. Темна преміум-затемнювальна маска поверх фото */
-.video-overlay {
+/* =================================================================
+    6. ФОНОВЕ ЗОБРАЖЕННЯ ТА ТЕКСТ ДЕТАЛЬНОЇ СТОРІНКИ
+   ================================================================= */
+
+/* Затемнювальна маска фонового фото лише на сторінці закладу. */
+.establishment-hero-bg .video-overlay {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
@@ -448,7 +453,7 @@ nav a.active-link, #navbar-links a.active-link {
     z-index: -1 !important;
 }
 
-/* 3. Блок із великим заголовком по центру екрана */
+/* Повноекранне фонове фото детальної сторінки. */
 .establishment-hero-bg {
     position: fixed !important;
     top: 0 !important;
@@ -509,6 +514,7 @@ main.establishment-detail-container {
     margin: 0 !important;
     position: relative !important;
     left: 0 !important;
+    text-align: center !important;
     border: none !important;
     border-radius: 24px 24px 0 0 !important; 
     
@@ -538,7 +544,9 @@ main.establishment-detail-container {
     text-transform: uppercase !important;
     letter-spacing: 2px !important;
     margin-bottom: 25px !important;
-    text-align: left !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
     font-weight: 700 !important;
 }
 
@@ -563,9 +571,11 @@ main.establishment-detail-container {
 /* Сетка кнопок действий */
 .paris-actions {
     display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     gap: 15px !important;
     flex-wrap: wrap !important;
-    margin-bottom: 35px !important;
+    margin: 25px auto 35px auto !important;
     width: 100% !important;
 }
 
@@ -596,7 +606,7 @@ main.establishment-detail-container {
     font-size: 15px !important;
     line-height: 1.8 !important;
     color: #cccccc !important;
-    text-align: left !important;
+    text-align: center !important;
 }
 
 /* =================================================================
@@ -604,41 +614,20 @@ main.establishment-detail-container {
    ================================================================= */
 
 /* 1. Відцентровуємо весь текст всередині матової плашки */
-.paris-style-intro,
 .paris-intro-inner,
 #establishment-content,
 .establishment-description-content {
-    text-align: center !important; /* Примусово центрує заголовки, списки та абзаци */
-}
-
-/* 2. Вирівнюємо заголовки та лозунги строго по центру */
-.paris-title {
     text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
 }
 
-/* 3. Центруємо блок із кнопками швидкої навігації */
-.paris-actions {
-    display: flex !important;
-    justify-content: center !important; /* 🌟 ДОДАНО: Зсуває весь ряд кнопок до центру екрана */
-    align-items: center !important;
-    gap: 15px !important;
-    flex-wrap: wrap !important;
-    margin: 25px auto 35px auto !important;
-    width: 100% !important;
-}
-
-/* 4. Забезпечуємо центрування внутрішніх текстових елементів опису */
 .establishment-description-content p,
-.establishment-description-content h3,
-.paris-sub-desc {
+.establishment-description-content h3 {
     text-align: center !important;
 }
 
 
 /* =================================================================
-   5. БЛОК "ОБЕРІТЬ СВІЙ ФОРМАТ" (FORMATS SECTION)
+    7. ФОРМАТИ ВІДПОЧИНКУ НА ГОЛОВНІЙ
    ================================================================= */
 
 .formats-section {
@@ -650,6 +639,14 @@ main.establishment-detail-container {
     background-color: rgba(11, 11, 11, 0.45) !important;
     padding: 80px 20px;
     color: #fff;
+}
+
+.map-info-box,
+.formats-line,
+.formats-grid,
+.format-card {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .formats-container {
@@ -807,7 +804,7 @@ main.establishment-detail-container {
 
 
 /* =================================================================
-   6. СТОРІНКА МЕНЮ ТА ПРЕМІУМ-КАРТКИ (MENU.HTML & HERO)
+    8. СТОРІНКА МЕНЮ ТА ПРЕМІУМ-КАРТКИ
    ================================================================= */
 
 /* 🌟 ОНОВЛЕНИЙ БЛОК: ТЕПЕР HERO РОЗГОРНУТИЙ НА ВСЮ СТОРІНКУ (100vh) */
@@ -883,7 +880,7 @@ main.establishment-detail-container {
 
 .menu-card-premium:hover {
     /* Легкий нахил вперед і підйом */
-    transform: translateY(-10px) rotateX(6px) scale(1.02) !important;
+    transform: translateY(-10px) rotateX(6deg) scale(1.02) !important;
 }
 
 .menu-card-bg {
@@ -1039,7 +1036,7 @@ main.establishment-detail-container {
 
 
 /* =================================================================
-   7. ІНТЕРАКТИВНА КАРТА LEAFLET ТА ПІНИ
+    9. ІНТЕРАКТИВНА КАРТА ТА МАРКЕРИ
    ================================================================= */
 
 .interactive-map-section {
@@ -1169,26 +1166,23 @@ main.establishment-detail-container {
 }
 
 /* =================================================================
-   8. МОДАЛЬНІ ВІКНА ТА ФОРМИ БРОНЮВАННЯ
+    10. МОДАЛЬНІ ВІКНА ТА ФОРМИ
    ================================================================= */
 
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.75);
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2000;
+    z-index: 1000;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: all 0.4s ease-in-out;
+    transition: opacity 0.4s ease;
 }
 
 .modal-overlay.active {
@@ -1198,14 +1192,14 @@ main.establishment-detail-container {
 }
 
 .modal {
-    background: #161616;
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: #181818;
+    border: 1px solid #D4AF37;
     padding: 40px;
-    border-radius: 8px;
     width: 100%;
     max-width: 450px;
     position: relative;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(212, 175, 55, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     transform: scale(0.85);
     transition: transform 0.4s ease-in-out;
     box-sizing: border-box;
@@ -1219,19 +1213,20 @@ main.establishment-detail-container {
     position: absolute;
     top: 15px;
     right: 20px;
-    background: transparent;
+    background: none;
     border: none;
     color: #888;
-    font-size: 28px;
+    font-size: 24px;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .modal-close:hover {
-    color: #D4AF37;
+    color: #FFF;
 }
 
-#modal-title {
+#modal-title,
+.modal h2 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 32px;
     color: #FFF;
@@ -1246,7 +1241,7 @@ main.establishment-detail-container {
     color: #D4AF37;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     margin-bottom: 30px;
 }
 
@@ -1258,22 +1253,23 @@ main.establishment-detail-container {
 }
 
 .form-group label {
+    display: block;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #AAA;
+    color: #888;
     margin-bottom: 8px;
 }
 
 .form-group input {
     background: #222;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
     color: #FFF;
-    font-family: inherit;
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     border-radius: 4px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s;
     width: 100%;
     box-sizing: border-box;
 }
@@ -1287,30 +1283,28 @@ main.establishment-detail-container {
 
 .btn-submit {
     width: 100%;
+    background: #D4AF37;
+    color: #121212;
     padding: 15px;
-    background: transparent;
-    border: 1px solid #D4AF37;
-    color: #D4AF37;
-    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 4px;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: background 0.3s;
     margin-top: 10px;
+    border-radius: 4px;
 }
 
 .btn-submit:hover {
-    background: #D4AF37;
+    background: #FFF;
     color: #000;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
 
 
 
 /* =================================================================
-   1. БАЗОВІ СТИЛІ ТА ГОЛОВНІ ЕКРАНИ (HERO, CONTAINER, GRID, CARDS)
+    11. СПІЛЬНЕ РОЗТАШУВАННЯ ТА КАРТКИ
    ================================================================= */
 
 .hero {
@@ -1440,7 +1434,7 @@ body > main.establishment-detail-container > div#establishment-content > div {
 
 
 /* =================================================================
-   2. ЕЛЕМЕНТИ ІНТЕРФЕЙСУ ТА КНОПКИ (БРОНЮВАННЯ, ЛОГОТИПИ)
+    12. СПІЛЬНІ ЕЛЕМЕНТИ ТА КНОПКИ
    ================================================================= */
 
 /* Базовий розмір логотипа для комп'ютерів */
@@ -1479,123 +1473,7 @@ body > main.establishment-detail-container > div#establishment-content > div {
 }
 
 /* =================================================================
-   3. МОДАЛЬНІ ВІКНА ТА ФОРМИ
-   ================================================================= */
-
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(8px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    z-index: 1000;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.modal {
-    background: #181818;
-    border: 1px solid #D4AF37;
-    padding: 40px;
-    width: 100%;
-    max-width: 450px;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-    position: relative;
-}
-
-.modal-close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: none;
-    border: none;
-    color: #888;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.modal-close:hover {
-    color: #FFF;
-}
-
-.modal h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    color: #FFF;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-.modal-subtitle {
-    font-size: 13px;
-    color: #D4AF37;
-    text-align: center;
-    margin-bottom: 30px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-}
-
-.form-group input {
-    width: 100%;
-    background: #222;
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 12px;
-    color: #FFF;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    border-radius: 4px;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: #D4AF37;
-}
-
-.btn-submit {
-    width: 100%;
-    background: #D4AF37;
-    color: #121212;
-    border: none;
-    padding: 15px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: background 0.3s;
-    margin-top: 10px;
-    border-radius: 4px;
-}
-
-.btn-submit:hover {
-    background: #FFF;
-}
-
-/* =================================================================
-   4. ПІДВАЛ САЙТУ (FOOTER)
+    13. ПІДВАЛ САЙТУ
    ================================================================= */
 
 .main-footer {
@@ -1709,6 +1587,10 @@ body > main.establishment-detail-container > div#establishment-content > div {
     font-family: sans-serif;
 }
 
+/* =================================================================
+   14. ЗОБРАЖЕННЯ КАРТОК, СЛАЙДЕРИ ТА КАРУСЕЛЬ
+   ================================================================= */
+
 /* Контейнер слайдера в картці */
 .card-image, .image-slider {
     width: 100%;
@@ -1717,11 +1599,6 @@ body > main.establishment-detail-container > div#establishment-content > div {
     overflow: hidden;
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
-}
-
-.card-image {
-    background-size: cover;
-    background-position: center;
 }
 
 /* Рядок з типом закладу та стрілками */
@@ -1923,71 +1800,26 @@ body > main.establishment-detail-container > div#establishment-content > div {
 }
 
 /* =================================================================
-   5. МЕДІА-ЗАПИТИ (АДАПТИВНІСТЬ ДЛЯ ДЕСКТОПІВ ТА МОБІЛЬНИХ)
+    15. АДАПТИВНІ СТИЛІ
    ================================================================= */
 
 /* Екрани для комп'ютерів та великих моніторів (від 993px) */
 @media (min-width: 993px) {
-    /* Примусово прибираємо обмеження ширини та відступи у батьківських блоків */
-    .menu-container-premium {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding-left: 5px !important;
-        padding-right: 5px !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        box-sizing: border-box !important;
-    }
-
-    /* Сітка на всю ширину */
     #menu-items-list {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr 1frr !important;
-        width: 100% !important;
-        max-width: 100% !important;
         padding: 0 !important;
         margin: 20px 0 0 0 !important;
-        box-sizing: border-box !important;
     }
 
-    /* Розтягуємо кожну страву/картку всередині сітки від краю до краю */
-    #menu-items-list > * {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        box-sizing: border-box !important;
-    }
-
-    /* Якщо самі картки страв мають внутрішні відступи чи обмеження ширини, розтягуємо їх */
-    .menu-item-card { /* (замініть на ваш клас картки страви, якщо він інший) */
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-    
-    .restaurant-title-main {
-        font-size: 34px !important;
-    }
-
-    /* Напівпрозора шапка поверх Hero-екрана на десктопах */
+    /* Напівпрозора шапка для широких екранів. */
     #main-header, header {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
         background: rgba(11, 11, 11, 0.6) !important;
         backdrop-filter: blur(12px) !important;
         -webkit-backdrop-filter: blur(12px) !important;
-        z-index: 1000 !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
 
     .menu-hero {
         padding-top: 90px !important;
-        height: auto !important;
-        min-height: 240px !important;
     }
 
     .menu-hero-content {
@@ -2004,6 +1836,26 @@ body > main.establishment-detail-container > div#establishment-content > div {
     .menu-subtitle-main {
         font-size: 12px !important;
         letter-spacing: 1px !important;
+    }
+}
+
+@media (min-width: 993px), (max-width: 768px) {
+    .menu-container-premium {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    #menu-items-list > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
     }
 }
 
@@ -2159,16 +2011,7 @@ body > main.establishment-detail-container > div#establishment-content > div {
     .map-wrapper {
         height: 350px;
         margin: 10px auto !important;
-        max-width: 100%;
-        width: 100%;
-        box-sizing: border-box;
         border-radius: 10px;
-        overflow: hidden;
-        background: rgba(11, 11, 11, 0.55);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(212, 175, 55, 0.25);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
         -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%),
                             linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
         -webkit-mask-composite: intersect;
@@ -2190,33 +2033,21 @@ body > main.establishment-detail-container > div#establishment-content > div {
 
     .map-info-box,
     .formats-line {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        transform: none !important;
         max-width: 100% !important;
         margin-bottom: 15px;
         background: rgba(11, 11, 11, 0.95);
         padding: 15px;
     }
 
-    #menu-items-list {
-        grid-template-columns: 1fr !important; /* Робить одну колонку на мобільних */
-        padding: 0 15px !important;
+    .formats-line h2 {
+        margin-bottom: 4px;
     }
 
-    /* Примусово прибираємо обмеження ширини та відступи у батьківських блоків */
-    .menu-container-premium {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding-left: 5px !important;
-        padding-right: 5px !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        box-sizing: border-box !important;
+    .formats-line p {
+        margin-top: 0;
+        margin-bottom: 5px;
     }
 
-    /* Сітка на всю ширину */
     #menu-items-list {
         display: grid !important;
         grid-template-columns: 1fr !important;
@@ -2227,14 +2058,6 @@ body > main.establishment-detail-container > div#establishment-content > div {
         box-sizing: border-box !important;
     }
 
-    /* Розтягуємо кожну страву/картку всередині сітки від краю до краю */
-    #menu-items-list > * {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        box-sizing: border-box !important;
-    }
 }
 
 /* Маленькі екрани телефонів (до 480px) */

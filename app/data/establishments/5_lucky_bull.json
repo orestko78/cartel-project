@@ -6,5 +6,19 @@
     "rating": 5.0,
     "image_url": "/static/images/lucky_bull.jpg",
     "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
-    "description": "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Ресторан високої кухні, преміальних стейків та елітного вина.</p><p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Витримане мармурове м'ясо, азійські кулінарні хіти та винятковий європейський сервіс.</p><div class=\"desc-quick-nav\" style=\"margin: 25px 0; display: flex; gap: 12px; flex-wrap: wrap;\"><a href=\"#menu\" style=\"border: 1px solid #d4af37; color: #d4af37; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; text-transform: uppercase;\">ПЕРЕГЛЯНУТИ МЕНЮ</a><a href=\"#hours\" style=\"border: 1px solid #d4af37; color: #d4af37; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; text-transform: uppercase;\">КОНТАКТИ ТА ГОДИНИ РОБОТИ</a><a href=\"#map\" style=\"border: 1px solid #d4af37; color: #d4af37; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; text-transform: uppercase;\">РОЗТАШУВАННЯ НА МАПІ</a></div><p style=\"margin-bottom: 20px; line-height: 1.7;\">Lucky Bull — це гастрономічне серце Буковелю для справжніх цінителів розкоші. Наші стейки проходять процес сухого та вологого визрівання у спеціальних камерах, завдяки чому м'ясо стає неймовірно ніжним. Унікальна колекція вин, підібрана професійним сомельє, доповнить вашу ідеальну преміум-вечерю в атмосфері витонченого лофт-інтер'єру.</p><p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 +38 (067) 222 3344</p><p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вас</p>"
+    "description": [
+        "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Ресторан високої кухні, преміальних стейків та елітного вина.</p>",
+        "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Витримане мармурове м'ясо, азійські кулінарні хіти та винятковий європейський сервіс.</p>",
+        "<div class=\"desc-quick-nav\" style=\"margin: 25px 0; display: flex; gap: 12px; flex-wrap: wrap;\"><a href=\"#menu\" style=\"border: 1px solid #d4af37; color: #d4af37; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; text-transform: uppercase;\">ПЕРЕГЛЯНУТИ МЕНЮ</a><a href=\"#hours\" style=\"border: 1px solid #d4af37; color: #d4af37; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; text-transform: uppercase;\">КОНТАКТИ ТА ГОДИНИ РОБОТИ</a><a href=\"#map\" style=\"border: 1px solid #d4af37; color: #d4af37; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; text-transform: uppercase;\">РОЗТАШУВАННЯ НА МАПІ</a></div>",
+        "<p style=\"margin-bottom： 20px; line-height： 1.7;\">Lucky Bull — це гастрономічне серце Буковелю для справжніх цінителів розкоші. Наші стейки проходять процес сухого та вологого визрівання у спеціальних камерах, завдяки чому м'ясо стає неймовірно ніжним. Унікальна колекція вин, підібрана професійним сомельє, доповнить вашу ідеальну преміум-вечерю в атмосфері витонченого лофт-інтер'єру.</p>",
+        "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight： bold;\">📞 +38 (067) 222 3344</p>",
+        "<p style=\"color: #2ecc71; font-weight： bold; text-transform： uppercase; letter-spacing： 1px; margin-top： 15px;\">🟢 Відчинено • Чекаємо на вас</p>"
+    ],
+    "images": [
+        "/static/images/lucky_bull1.jpg",
+        "/static/images/lucky_bull2.jpg",
+        "/static/images/lucky_bull3.jpg",
+        "/static/images/lucky_bull4.jpg",
+        "/static/images/lucky_bull5.jpg"
+    ]
 }

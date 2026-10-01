@@ -6,5 +6,19 @@
     "rating": 5.0,
     "image_url": "/static/images/voda_club.jpg",
     "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
-    "description": "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Унікальний всесезонний термальний СПА-комплекс посеред гір.</p><p style=\"margin-bottom: 20px; line-height: 1.7;\">VODA Club — це епіцентр преміального водного релаксу в Буковелі. Великий відкритий басейн із постійною температурою води +32°C...+34°C, джакузі з панорамним видом на засніжені схили, середземноморська та фінська сауни, римська парна та професійні масажні кабінети. Ідеальне місце для повного відновлення сил тіла та духу в будь-яку пору року.</p><p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 +38 (067) 888 0011</p><p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Доступно для бронювання СПА-сеансів та шезлонгів</p>"
-}
+    "description": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Унікальний всесезонний термальний СПА-комплекс посеред гір.</p>",
+        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">VODA Club — це епіцентр преміального водного релаксу в Буковелі. Великий відкритий басейн із постійною температурою води +32°C...+34°C, джакузі з панорамним видом на засніжені схили, середземноморська та фінська сауни, римська парна та професійні масажні кабінети. Ідеальне місце для повного відновлення сил тіла та духу в будь-яку пору року.</p>",
+        
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380678880011\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 888 0011</a></p>",
+        
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Доступно для бронювання СПА-сеансів та шезлонгів</p>"
+    ],
+    "images": [
+        "/static/images/voda_club1.jpg",
+        "/static/images/voda_club2.jpg",
+        "/static/images/voda_club3.jpg",
+        "/static/images/voda_club4.jpg",
+        "/static/images/voda_club5.jpg"
+    ]}
