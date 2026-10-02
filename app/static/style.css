@@ -35,6 +35,44 @@ body.hotels-page {
 }
 
 /* =================================================================
+   🚀 ЗАЛІЗОБЕТОННИЙ ФІКС ДЛЯ ХОСТИНГУ: ЗАБОРОНА БІЧНОГО ХИТАННЯ КАТАЛОГІВ
+   ================================================================= */
+
+/* 1. Модернізуємо блоки body для сторінок каталогів, які ви надіслали */
+html,
+body.restaurants-page,
+body.hotels-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important; /* 🔥 ГОЛОВНИЙ ФІКС: Повністю зрізає горизонтальний виліт на хостингу */
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+}
+
+/* 2. Коригуємо контейнер сітки ресторанів та готелів, щоб він не брав ширину скроллбару */
+.restaurants-page .container,
+.hotels-page .container {
+    width: 100% !important; /* 🌟 Замість 100vw робимо чисті 100% від меж екрана смартфона */
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Підстраховка для внутрішньої матової сітки */
+.restaurants-page .grid,
+.restaurants-page #establishments-grid,
+.hotels-page .grid,
+.hotels-page #establishments-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+
+/* =================================================================
    2. ШАПКА САЙТУ ТА НАВІГАЦІЯ (HEADER, NAV, LANG, HAMBURGER)
    ================================================================= */
 
