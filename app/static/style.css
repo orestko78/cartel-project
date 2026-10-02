@@ -39,7 +39,17 @@ a,
 button, 
 input, 
 select, 
-textarea, 
+textarea,
+p,
+.grid, 
+#menu-categories-container,
+#menu-categories-container *,
+#spa-grid *, 
+span,
+.lang-switch, 
+.lang-switch span, 
+#lang-uk, 
+#lang-en,
 .scroll-down-arrow, 
 .btn-toggle-map, 
 .paris-link-btn, 
@@ -360,6 +370,20 @@ nav a.active-link, #navbar-links a.active-link {
     gap: 40px;
 }
 
+@media (min-width: 993px) {
+    .restaurants-page #establishments-grid,
+    .hotels-page #establishments-grid,
+    .hotels-page #spa-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(24px, 3vw, 40px);
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px 40px 60px;
+        box-sizing: border-box;
+    }
+}
+
 .restaurants-page .card,
 .hotels-page .card {
     background: #1A1A1A;
@@ -373,9 +397,11 @@ nav a.active-link, #navbar-links a.active-link {
 }
 
 .restaurants-page .card-image,
+.restaurants-page .image-slider,
+.hotels-page .image-slider,
 .hotels-page .card-image {
     width: 100%;
-    height: 200px;
+    height: 380px;
     background-size: cover;
     background-position: center;
     margin-bottom: 25px;

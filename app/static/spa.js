@@ -30,8 +30,7 @@ const translations = {
         hero_title: "SPA та відпочинок <span>CARTEL</span>",
         hero_desc: "Термальні басейни, карпатські чани та простір для повного відновлення.",
         
-        card_spa: "🌿 SPA & Wellness",
-        btn_visit_spa: "Резерв сеансу"
+        card_spa: "🌿 SPA & Wellness"
     },
     en: {
         nav_about: "About Us", 
@@ -46,8 +45,7 @@ const translations = {
         hero_title: "SPA & Wellness <span>CARTEL</span>",
         hero_desc: "Thermal pools, Carpathian hot tubs, and a space to fully recharge.",
         
-        card_spa: "🌿 SPA & Wellness",
-        btn_visit_spa: "Book a session"
+        card_spa: "🌿 SPA & Wellness"
     }
 };
 
@@ -149,10 +147,11 @@ async function loadSpaEstablishments() {
 
         const data = await response.json();
         
-        // Фільтруємо строго новий преміум тип SPA
+        // Фільтруємо строго преміум тип SPA
         const spaList = data.filter(item => {
             if (!item.type) return false;
-            return item.type.toLowerCase() === 'spa';
+            const t = item.type.toLowerCase();
+            return t === 'spa' || t === 'спас' || t === 'спа';
         });
 
         if (spaList.length === 0) {
@@ -167,62 +166,78 @@ async function loadSpaEstablishments() {
         spaList.forEach((item, index) => {
             const card = document.createElement('div'); 
             card.className = 'card';
-            card.onclick = () => { window.location.href = `/static/establishment_detail.html?id=${item.id}`; };
             
-            // Інтеграція вашої фірмової логіки слайдера картинок
+            const spaName = item.name || 'Premium SPA';
+            const spaCuisine = item.cuisine ? item.cuisine : 'Преміум відпочинок';
+            const spaLocation = item.location || 'Буковель';
+            const spaRating = item.rating ? item.rating.toFixed(1) : '5.0';
+            const spaId = item.id;
+            const nameLower = spaName.toLowerCase();
+
+            // Автоматично обираємо розкішне тимчасове фото, якщо ви ще не завантажили власні
+            let defaultPlaceholder = '/static/images/SPA/VODA.jpg';
+            if (nameLower.includes('чан')) {
+                defaultPlaceholder = 'https://unsplash.com';
+            } else if (nameLower.includes('voda') || nameLower.includes('вода')) {
+                defaultPlaceholder = 'https://unsplash.com';
+            }
+
             let images = [];
             if (item.images && Array.isArray(item.images) && item.images.length > 0) {
                 images = item.images;
-            } else if (item.image_url) {
+            } else if (item.image_url && item.image_url !== "null" && item.image_url.trim() !== "") {
                 images = [item.image_url];
             } else {
-                images = ['/static/images/voda_club.jpg'];
+                images = [defaultPlaceholder];
             }
 
             let imageSectionHtml = '';
             let sliderControlsHtml = '';
-            const sliderId = `spa-slider-${index}`;
+            const sliderId = 'spa-slider-' + index;
 
             if (images.length > 1) {
-                let slidesHtml = images.map(imgUrl => `
-                    <div class="slide"><img src="${imgUrl}" alt="${item.name}"></div>
-                `).join('');
+                let slidesHtml = images.map(imgUrl =>
+                    '<div class="slide"><img src="' + imgUrl + '" alt="' + spaName + '"></div>'
+                ).join('');
 
-                imageSectionHtml = `
-                    <div class="image-slider" id="${sliderId}">
-                        <div class="slider-track">
-                            ${slidesHtml}
-                        </div>
-                    </div>
-                `;
+                imageSectionHtml =
+                    '<div class="image-slider" id="' + sliderId + '">' +
+                        '<div class="slider-track">' +
+                            slidesHtml +
+                        '</div>' +
+                    '</div>';
 
-                sliderControlsHtml = `
-                    <div class="slider-controls">
-                        <button class="slider-btn prev-btn" onclick="moveSlide('${sliderId}', -1, event)" title="Попереднє фото"><span></span></button>
-                        <button class="slider-btn next-btn" onclick="moveSlide('${sliderId}', 1, event)" title="Наступне фото"><span></span></button>
-                    </div>
-                `;
+                sliderControlsHtml =
+                    '<div class="slider-controls">' +
+                        '<button class="slider-btn prev-btn" onclick="moveSlide(\'' + sliderId + '\', -1, event)" title="Попереднє фото"><span></span></button>' +
+                        '<button class="slider-btn next-btn" onclick="moveSlide(\'' + sliderId + '\', 1, event)" title="Наступне фото"><span></span></button>' +
+                    '</div>';
             } else {
-                imageSectionHtml = `<div class="card-image" style="background-image: url('${images[0]}');"></div>`;
+                imageSectionHtml = '<div class="card-image" style="background-image: url(\'' + images + '\');"></div>';
                 sliderControlsHtml = '';
             }
             
-            card.innerHTML = `
-                ${imageSectionHtml}
-                <div class="card-content">
-                    <div class="card-header-row">
-                        <div class="card-type" data-i18n="card_spa">${t.card_spa}</div>
-                        ${sliderControlsHtml}
-                    </div>
-                    <div class="card-title">${item.name}</div>
-                    <div class="card-cuisine">${item.cuisine ? item.cuisine : 'Преміум відпочинок'}</div>
-                    <button class="btn-visit" data-i18n="btn_visit_spa">${t.btn_visit_spa}</button>
-                    <div class="card-footer" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; margin-top: 15px; font-size: 13px; color: #a0a0a0;">
-                        <span>📍 ${item.location || 'Буковель'}</span>
-                        <span style="color: #d4af37; font-weight: bold;">★ ${(item.rating || 5.0).toFixed(1)}</span>
-                    </div>
-                </div>
-            `;
+            // 1. Спочатку РЕНДЕРИМО HTML-код картки (Безпечний шаблон як у готелях)
+            card.innerHTML =
+                imageSectionHtml +
+                '<div class="card-content">' +
+                    '<div class="card-header-row">' +
+                        '<div class="card-type" data-i18n="card_spa">' + (t.card_spa || '🌿 SPA & WELLNESS') + '</div>' +
+                        sliderControlsHtml +
+                    '</div>' +
+                    '<div class="card-title">' + spaName + '</div>' +
+                    '<div class="card-cuisine">' + spaCuisine + '</div>' +
+                    '<div class="card-footer" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; margin-top: 15px; font-size: 13px; color: #a0a0a0;">' +
+                        '<span>📍 ' + spaLocation + '</span>' +
+                        '<span style="color: #d4af37; font-weight: bold;">★ ' + spaRating + '</span>' +
+                    '</div>' +
+                '</div>';
+
+            // 🏛️ ЛОГІКА ЯК У ГОТЕЛЯХ КРОК 1: Клік по всій плашці веде на нашу внутрішню детальну сторінку деталей
+            card.onclick = () => {
+                window.location.href = '/static/establishment_detail.html?id=' + spaId;
+            };
+
             grid.appendChild(card);
         });
 
@@ -230,6 +245,8 @@ async function loadSpaEstablishments() {
         console.error("Помилка завантаження каталогів SPA:", error);
     }
 }
+
+
 
 window.addEventListener('DOMContentLoaded', async () => {
     await loadHeader();

@@ -16,7 +16,7 @@
         "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Доступно для бронювання номерів</p>"
     ],
     "images": [
-        "/static/images/buka1.jpg",
+        "/static/images/buka/buka1.jpg",
         "/static/images/buka2.jpg",
         "/static/images/buka3.jpg",
         "/static/images/buka4.jpg",

@@ -1,6 +1,4 @@
-let lastScrollTop = 0;
-
-/* Розумне приховування та поява хедера при скролі */
+let lastScrollTop = 0; /* Розумне приховування та поява хедера при скролі */
 window.addEventListener('scroll', function() {
     const header = document.getElementById('main-header') || document.getElementById('header-placeholder') || document.querySelector('header');
     if (!header) return; 
@@ -172,8 +170,14 @@ async function loadEstablishments() {
         hotels.forEach((item, index) => {
             const card = document.createElement('div'); 
             card.className = 'card';
-            card.onclick = () => { window.location.href = `/static/establishment_detail.html?id=${item.id}`; };
             
+            const hotelName = item.name || 'Premium Hotel';
+            const hotelCuisine = item.cuisine ? item.cuisine : 'Преміум сервіс';
+            const hotelLocation = item.location || 'Буковель';
+            const hotelRating = item.rating ? item.rating.toFixed(1) : '5.0';
+            const hotelId = item.id;
+
+            // Визначаємо масив зображень (item.images)
             let images = [];
             if (item.images && Array.isArray(item.images) && item.images.length > 0) {
                 images = item.images;
@@ -185,53 +189,67 @@ async function loadEstablishments() {
 
             let imageSectionHtml = '';
             let sliderControlsHtml = '';
-            const sliderId = `slider-${index}`;
+            const sliderId = 'slider-' + index;
 
             if (images.length > 1) {
-                let slidesHtml = images.map(imgUrl => `
-                    <div class="slide"><img src="${imgUrl}" alt="${item.name}"></div>
-                `).join('');
+                let slidesHtml = images.map(imgUrl => 
+                    '<div class="slide"><img src="' + imgUrl + '" alt="' + hotelName + '"></div>'
+                ).join('');
 
-                imageSectionHtml = `
-                    <div class="image-slider" id="${sliderId}">
-                        <div class="slider-track">
-                            ${slidesHtml}
-                        </div>
-                    </div>
-                `;
+                imageSectionHtml = 
+                    '<div class="image-slider" id="' + sliderId + '">' +
+                        '<div class="slider-track">' +
+                            slidesHtml +
+                        '</div>' +
+                    '</div>';
 
-                sliderControlsHtml = `
-                    <div class="slider-controls">
-                        <button class="slider-btn prev-btn" onclick="moveSlide('${sliderId}', -1, event)" title="Попереднє фото"><span></span></button>
-                        <button class="slider-btn next-btn" onclick="moveSlide('${sliderId}', 1, event)" title="Наступне фото"><span></span></button>
-                    </div>
-                `;
+                sliderControlsHtml = 
+                    '<div class="slider-controls">' +
+                        '<button class="slider-btn prev-btn" onclick="moveSlide(\'' + sliderId + '\', -1, event)" title="Попереднє фото"><span></span></button>' +
+                        '<button class="slider-btn next-btn" onclick="moveSlide(\'' + sliderId + '\', 1, event)" title="Наступне фото"><span></span></button>' +
+                    '</div>';
             } else {
-                imageSectionHtml = `<div class="card-image" style="background-image: url('${images[0]}');"></div>`;
+                imageSectionHtml = '<div class="card-image" style="background-image: url(\'' + images[0] + '\');"></div>';
                 sliderControlsHtml = '';
             }
             
-            card.innerHTML = `
-                ${imageSectionHtml}
-                <div class="card-content">
-                    <div class="card-header-row">
-                        <div class="card-type" data-i18n="card_hotel">${t.card_hotel}</div>
-                        ${sliderControlsHtml}
-                    </div>
-                    <div class="card-title">${item.name}</div>
-                    <div class="card-cuisine">${item.cuisine ? item.cuisine : 'Преміум сервіс'}</div>
-                    <button class="btn-visit" data-i18n="btn_visit">${t.btn_visit}</button>
-                    <div class="card-footer">
-                        <span>📍 ${item.location}</span>
-                        <span class="rating">★ ${item.rating.toFixed(1)}</span>
-                    </div>
-                </div>`;
+            card.innerHTML = 
+                imageSectionHtml +
+                '<div class="card-content">' +
+                    '<div class="card-header-row">' +
+                        '<div class="card-type" data-i18n="card_hotel">' + t.card_hotel + '</div>' +
+                        sliderControlsHtml +
+                    '</div>' +
+                    '<div class="card-title">' + hotelName + '</div>' +
+                    '<div class="card-cuisine">' + hotelCuisine + '</div>' +
+                    '<button class="btn-visit" data-i18n="btn_visit">' + t.btn_visit + '</button>' +
+                    '<div class="card-footer">' +
+                        '<span>📍 ' + hotelLocation + '</span>' +
+                        '<span class="rating">★ ' + hotelRating + '</span>' +
+                    '</div>' +
+                '</div>';
+
+            card.onclick = () => {
+                window.location.href = '/static/establishment_detail.html?id=' + hotelId;
+            };
 
             const visitBtn = card.querySelector('.btn-visit');
-            visitBtn.onclick = (event) => {
-                event.stopPropagation(); 
-                window.location.href = `/static/establishment_detail.html?id=${item.id}`;
-            };
+            if (visitBtn) {
+                visitBtn.onclick = (event) => {
+                    event.stopPropagation(); 
+                    
+                    const nameLower = hotelName.toLowerCase();
+                    let externalBookingUrl = 'https://bukahotel.com.ua';
+
+                    if (nameLower.includes('mountain') || nameLower.includes('residence')) {
+                        externalBookingUrl = 'https://mountain-residence.com/booking';
+                    } else if (nameLower.includes('buka')) {
+                        externalBookingUrl = 'https://bukahotel.com.ua/booking';
+                    }
+
+                    window.open(externalBookingUrl, '_blank');
+                };
+            }
 
             grid.appendChild(card);
         });
@@ -243,20 +261,20 @@ async function loadEstablishments() {
     }
 }
 
-window.addEventListener('DOMContentLoaded', async () => { 
+window.addEventListener('DOMContentLoaded', async () => {
     await loadHeader();
-    await loadHero('/static/images/Hotels.jpg');
-    await loadFooter(); 
-    loadEstablishments(); 
-    
+    if (typeof loadHero === 'function') {
+        await loadHero('/static/images/Hotels.jpg');
+    }
+    await loadFooter();
+    loadEstablishments();
     const currentLang = localStorage.getItem('cartel_lang') || 'uk';
-    setLanguage(currentLang); 
+    setLanguage(currentLang);
 });
 
-function toggleMenu() { 
+function toggleMenu() {
     const links = document.getElementById('navbar-links');
     const hamburger = document.getElementById('hamburger-btn');
-    if (links) links.classList.toggle('mobile-active'); 
-    if (hamburger) hamburger.classList.toggle('open'); 
+    if (links) links.classList.toggle('mobile-active');
+    if (hamburger) hamburger.classList.toggle('open');
 }
-

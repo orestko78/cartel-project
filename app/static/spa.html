@@ -14,26 +14,25 @@
     <!-- Динамічна шапка сайту CARTEL -->
     <div id="header-placeholder"></div>
 
+    <!-- 🌟 УНІВЕРСАЛЬНИЙ HERO-ПЛЕЙСХОЛДЕР (підтягується автоматично з hero.html) -->
     <div id="hero-placeholder"></div>
 
-    <main class="container" id="spa-intro">
-        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 42px; color: #d4af37; text-align: center; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">
-            SPA & RELAX COMPLEXES
-        </h1>
-        <p style="text-align: center; color: #aaa; font-size: 15px; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-            Преміальний відпочинок, всесезонні термальні басейни та автентичні карпатські чани для вашого повного відновлення.
-        </p>
+    <section class="hero" id="spa-intro">
+        <h1 data-i18n="hotels_hero_title">Наші готелі у <span>Буковелі</span></h1>
+        <p data-i18n="hotels_hero_desc"> Преміальний відпочинок, всесезонні термальні басейни та автентичні карпатські чани для вашого повного відновлення.</p>
+    </section>
 
-        <!-- Сітка, куди завантажаться картки типу SPA -->
+    <!-- Сітка, куди завантажаться картки типу SPA -->
+    <div class="container">
         <div class="grid" id="spa-grid">
-            <p style="color: #fff; text-align: center; grid-column: 1/-1;">Завантаження релакс-комплексів...</p>
+            <!-- Сюди автоматично завантажуються картки SPA -->
         </div>
-    </main>
+    </div>
 
     <!-- Динамічний підвал сайту CARTEL -->
     <div id="footer-placeholder"></div>
 
     <script src="/static/hero.js?v=1"></script>
-    <script src="/static/spa.js?v=2"></script>
+    <script src="/static/spa.js?v=3"></script>
 </body>
 </html>
