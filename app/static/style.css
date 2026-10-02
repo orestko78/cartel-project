@@ -34,6 +34,20 @@ body.hotels-page {
     overflow-y: auto;
 }
 
+/* Повністю вимикаємо стандартне мобільне підсвічування для всіх клікабельних елементів */
+a, 
+button, 
+input, 
+select, 
+textarea, 
+.scroll-down-arrow, 
+.btn-toggle-map, 
+.paris-link-btn, 
+.format-card {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important; /* Робимо спалах на 100% прозорим */
+    -webkit-tap-highlight-color: transparent !important;       /* Дублюємо для повної гарантії */
+    outline: none !important;                                  /* Прибираємо синю рамку на комп'ютерах */
+}
 
 /* =================================================================
    2. ШАПКА САЙТУ ТА НАВІГАЦІЯ (HEADER, NAV, LANG, HAMBURGER)
