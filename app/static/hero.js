@@ -9,7 +9,6 @@ async function loadHero(bgImageUrl = '') {
 
                 const heroContainer = placeholder.querySelector('.site-hero');
                 if (heroContainer) {
-                    heroContainer.style.height = '100vh';
                     if (bgImageUrl) heroContainer.style.backgroundImage = `url('${bgImageUrl}')`;
                 }
             }
