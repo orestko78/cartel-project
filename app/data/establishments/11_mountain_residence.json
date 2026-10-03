@@ -4,21 +4,28 @@
     "type": "Hotel",
     "cuisine": "Premium Apartments & Resort",
     "rating": 4.9,
-    "location": "Bukovel, Ukraine",
+    
+    "location_uk": "Буковель, Україна",
+    "location_en": "Bukovel, Ukraine",
+    
     "image_url": "/static/images/mountain_residence.jpg",
-    "map_iframe": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.532711384632!2d24.401034826327674!3d48.354952421268294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473719199decf337%3A0x7b930be1678d600c!2sMountain%20Residence%20Reception!5e1!3m2!1suk!2sua!4v1790687802062!5m2!1suk!2sua\" width=\"100%\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe>",
-    "description": [
-    "<p><strong>Mountain Residence Apartments</strong> — це розкішні апартаменти преміумкласу серед мальовничих Карпатських гір, створені для тих, хто цінує бездоганний сервіс, естетику та усамітнення. Ідеальне місце для незабутнього відпочинку з панорамними краєвидами на величні вершини та високим рівнем комфорту.</p>",
-        
-    "<p>Кожні апартаменти поєднують у собі сучасний дизайн у стилі гірського лофту, продуману ергономіку та затишну атмосферу. Панорамні вікна наповнюють простір природним світлом і дозволяють насолоджуватися неймовірними пейзажами Карпат у будь-яку пору року, не виходячи з кімнати.</p>",
-        
-    "<p>До ваших послуг просторі житлові зони, повністю обладнана сучасна кухня для улюблених кулінарних експериментів, комфортні спальні з ортопедичними матрацами та преміальним текстилем, а також стильна ванна кімната з набором усіх необхідних аксесуарів.</p>",
-        
-    "<p>Це ідеальний вибір як для романтичної подорожі чи сімейного відпочинку, так і для активного туризму. Поруч розташовані головні інфраструктурні об'єкти, витяги та туристичні стежки, що робить ваше перебування максимально зручним та насиченим.</p>",
-        
-    "<p>Подаруйте собі елітний відпочинок у серці Карпат, де кожен момент наповнений гармонією, затишком та першокласною турботою.</p>"
+    "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe>",
+    
+    "description_uk": [
+        "<p><strong>Mountain Residence Apartments</strong> — це розкішні апартаменти преміумкласу серед мальовничих Карпатських гір, створені для тих, хто цінує бездоганний сервіс, естетику та усамітнення. Ідеальне місце для незабутнього відпочинку з панорамними краєвидами на величні вершини та високим рівнем комфорту.</p>",
+        "<p>Кожні апартаменти поєднують у собі сучасний дизайн у стилі гірського лофту, продуману ергономіку та затишну атмосферу. Панорамні вікна наповнюють простір природним світлом і дозволяють насолоджуватися неймовірними пейзажами Карпат у будь-яку пору року, не виходячи з кімнати.</p>",
+        "<p>До ваших послуг просторі житлові зони, повністю обладнана сучасна кухня для улюблених кулінарних експериментів, комфортні спальні з ортопедичними матрацами та преміальним текстилем, а також стильна ванна кімната з набором усіх необхідних аксесуарів.</p>",
+        "<p>Це ідеальний вибір як для романтичної подорожі чи сімейного відпочинку, так і для активного туризму. Поруч розташовані головні інфраструктурні об'єкти, витяги та touristичні стежки, що робить ваше перебування максимально зручним та насиченим.</p>",
+        "<p>Подаруйте собі елітний відпочинок у серці Карпат, де кожен момент наповнений гармонією, затишком та першокласною турботою.</p>"
     ],
- "images": [
+    "description_en": [
+        "<p><strong>Mountain Residence Apartments</strong> are luxury premium-class apartments surrounded by the picturesque Carpathian Mountains, designed for those who value flawless service, aesthetics, and privacy. The perfect setting for an unforgettable vacation with panoramic views of majestic peaks and a supreme level of comfort.</p>",
+        "<p>Each apartment combines modern mountain loft-style design, thoughtful ergonomics, and a cozy ambiance. Panoramic windows fill the space with natural light and allow you to enjoy the incredible Carpathian landscapes at any time of the year without leaving your room.</p>",
+        "<p>At your service are spacious living areas, a fully equipped modern kitchen for your favorite culinary experiments, comfortable bedrooms with orthopedic mattresses and premium textiles, and a stylish bathroom with a set of all necessary amenities.</p>",
+        "<p>This is an ideal choice for a romantic getaway, family vacation, or active tourism. Nearby are the main infrastructure spots, ski lifts, and hiking trails, making your stay as convenient and exciting as possible.</p>",
+        "<p>Treat yourself to an elite vacation in the heart of the Carpathians, where every single moment is filled with harmony, comfort, and first-class care.</p>"
+    ],
+    "images": [
         "/static/images/mountain_residence1.jpg",
         "/static/images/mountain_residence2.jpg",
         "/static/images/mountain_residence3.jpg",

@@ -2,19 +2,34 @@
     "name": "Filvarok",
     "type": "Restaurant",
     "cuisine": "Ukrainian Traditional",
-    "location": "Буковель, верхні станції витягів",
+    
+    "location_uk": "Буковель, верхні станції витягів",
+    "location_en": "Bukovel, upper stations of ski lifts",
+    
     "rating": 4.7,
     "image_url": "/static/images/filvarok.jpg",
     "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
-        "description": [
+    
+    "description_uk": [
         "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Легендарна українська гостинність та автентична карпатська кухня.</p>",
         
-        "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Етно-ресторан Filvarok — це унікальне місце, де карпатські tradition оживають у кожній страві. Ми готуємо традиційний гуцульський банош на справжньому вогні, випікаємо домашній хліб та частуємо гостей фірмовими карпатськими настоянками в атмосфері старовинного дерев'яного куреня.</p>",
+        "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Етно-ресторан Filvarok — це унікальне місце, де карпатські традиції оживають у кожній страві. Ми готуємо традиційний гуцульський банош на справжньому вогні, випікаємо домашній хліб та частуємо гостей фірмовими карпатськими настоянками в атмосфері старовинного дерев'яного куреня.</p>",
         
         "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380674445566\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 444 5566</a></p>",
         
         "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вас</p>"
     ],
+
+    "description_en": [
+        "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Legendary Ukrainian hospitality and authentic Carpathian cuisine.</p>",
+        
+        "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Filvarok ethno-restaurant is a unique place where Carpathian traditions come alive in every dish. We cook traditional Hutsul banosh over an open fire, bake homemade bread, and treat our guests to signature Carpathian liqueurs in the atmosphere of an ancient wooden cabin.</p>",
+        
+        "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380674445566\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 444 5566</a></p>",
+        
+        "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Open • Welcome</p>"
+    ],
+
     "images": [
         "/static/images/filvarok1.jpg",
         "/static/images/filvarok2.jpg",

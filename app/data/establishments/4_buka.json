@@ -1,12 +1,16 @@
 {
     "name": "BUKA Apart-Hotel",
     "type": "Hotel",
-    "cuisine": "Апартготель у центральній локації",
-    "location": "Буковель, центр",
+    "cuisine": "Apart-hotel in the central location",
+    
+    "location_uk": "Буковель, центр",
+    "location_en": "Bukovel, center",
+    
     "rating": 5.0,
     "image_url": "/static/images/buka.jpg",
     "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
-    "description": [
+    
+    "description_uk": [
         "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Преміальний апарт-готель у самому серці курорту Буковель.</p>",
         
         "<p style=\"margin-bottom: 20px; line-height: 1.7;\">BUKA Apart-Hotel пропонує ексклюзивний формат відпочинку преміум-класу. Сучасний дизайнерський інтер'єр, просторі апартаменти з панорамними вікнами на гори, власна розкішна спа-зона та безпосередній вихід до найкращих гірськолижних трас курорту.</p>",
@@ -14,6 +18,15 @@
         "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380677778899\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 777 8899</a></p>",
         
         "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Доступно для бронювання номерів</p>"
+    ],
+    "description_en": [
+        "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Premium apart-hotel in the very heart of Bukovel resort.</p>",
+        
+        "<p style=\"margin-bottom: 20px; line-height: 1.7;\">BUKA Apart-Hotel offers an exclusive format of premium-class recreation. Modern interior design, spacious apartments with panoramic windows overlooking the mountains, its own luxurious spa area, and direct access to the resort's best ski slopes.</p>",
+        
+        "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380677778899\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 777 8899</a></p>",
+        
+        "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Available for room booking</p>"
     ],
     "images": [
         "/static/images/buka/buka1.jpg",

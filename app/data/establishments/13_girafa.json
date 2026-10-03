@@ -2,27 +2,34 @@
   "id": 13,
   "name": "GIRAFA restaurant & lounge",
   "type": "Restaurant",
-  "cuisine": "Європейська / Lounge",
-  "location": "Буковель, Поляниця",
+  "cuisine": "European / Lounge",
+  
+  "location_uk": "Буковель, Поляниця",
+  "location_en": "Bukovel, Polyanytsya",
+  
   "rating": 4.7,
   "image_url": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
-  
   "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
-  "description": [
-  "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Елегантний епіцентр нічного лаунжу, димної культури та смачних вечорів.</p>",
-  "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Авторська європейська кухня, ф'южн-закуски, преміальні кальяни та розкішна коктейльна мапа від кращих міксологів.</p>",
-        
-  "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей затишний ресто-лаунж створений для тих, хто прагне сповільнити шалений ритм гірськолижного дня і зануритися в атмосферу повного релаксу. М'яке дизайнерське освітлення, глибокі комфортні дивани, лофт-камін та заворожливі панорамні краєвиди на засніжені схили Карпат створюють ідеальну синергію для незабутнього відпочинку великою та веселою компанією друзів.</p>",
-        
-  "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Гастрономічний ф'южн та міксологія найвищого рівня</h3>",
-        
-  "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Наша кухня пропонує сучасний погляд на європейську класику: соковиті преміум-стейки, вишукані морепродукти на грилі та оригінальні закуски для компаній. Окрема гордість закладу — це наша коктейльна лабораторія, де кожен напій є витвором мистецтва з додаванням карпатських трав та екзотичних екстрактів. Професійні кальянні майстри здивують вас величезною колекцією преміум-тютюну з усього світу та авторськими подачами на свіжих фруктах.</p>",
-        
-  "<p style=\"margin-top: 25px; color: #aaa;\">Слідкуйте за виступами DJ, бронюйте м'які зони та дивіться фотозвіти у нашому <strong>Instagram</strong></p>",
-        
-  "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380671110022\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 111 0022</a></p>",
-        
-  "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вашу компанію</p>"
+  
+  "description_uk": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Елегантний епіцентр нічного лаунжу, димної культури та смачних вечорів.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Авторська європейська кухня, ф'южн-закуски, преміальні кальяни та розкішна коктейльна мапа від кращих міксологів.</p>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей затишний ресто-лаунж створений для тих, хто прагне сповільнити шалений ритм гірськолижного дня і зануритися в atmosphere повного релаксу. М'яке дизайнерське освітлення, глибокі комфортні дивани, лофт-камін та заворожливі панорамні краєвиди на засніжені схили Карпат створюють ідеальну синергію для незабутнього відпочинку великою та веселою компанією друзів.</p>",
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Гастрономічний ф'южн та міксологія найвищого рівня</h3>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Наша кухня пропонує сучасний погляд на європейську класику: соковиті преміум-стейки, вишукані морепродукти на грилі та оригінальні закуски для компаній. Окрема гордість закладу — це наша коктейльна лабораторія, де кожен напій є витвором мистецтва з додаванням карпатських трав та екзотичних екстрактів. Професійні кальянні майстри здивують вас величезною колекцією преміум-тютюну з усього світу та авторськими подачами на свіжих фруктах.</p>",
+    "<p style=\"margin-top: 25px; color: #aaa;\">Слідкуйте за виступами DJ, бронюйте м'які зони та дивіться фотозвіти у нашому <strong>Instagram</strong></p>",
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380671110022\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 111 0022</a></p>",
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вашу компанію</p>"
+  ],
+  "description_en": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">An elegant epicenter of night lounge, hookah culture, and delicious evenings.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Signature European cuisine, fusion appetizers, premium hookahs, and a lavish cocktail map from top mixologists.</p>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">This cozy resto-lounge is designed for those who wish to slow down the frantic rhythm of a skiing day and immerse themselves in an atmosphere of complete relaxation. Soft designer lighting, deep comfortable sofas, a loft fireplace, and mesmerizing panoramic views of the snow-covered slopes of the Carpathians create the perfect synergy for an unforgettable vacation with a large and cheerful company of friends.</p>",
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Gastronomic Fusion and Highest Level Mixology</h3>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Our kitchen offers a modern take on European classics: juicy premium steaks, exquisite grilled seafood, and original platters for groups. A special pride of the venue is our cocktail laboratory, where each drink is a work of art infused with Carpathian herbs and exotic extracts. Professional hookah masters will surprise you with a huge collection of premium tobacco from around the world and signature presentations on fresh fruits.</p>",
+    "<p style=\"margin-top: 25px; color: #aaa;\">Follow DJ performances, book soft zones, and check out photo reports on our <strong>Instagram</strong></p>",
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380671110022\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 111 0022</a></p>",
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Open • Waiting for your company</p>"
   ],
   "images": [
     "/static/images/girafa1.jpg",

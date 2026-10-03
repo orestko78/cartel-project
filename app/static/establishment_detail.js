@@ -1,4 +1,29 @@
+// =================================================================// 👑 ПРЕМІУМ МУЛЬТИМОВНИЙ СКРИПТ СТОРІНКИ ДЕТАЛЕЙ (ESTABLISHMENT_DETAIL.JS)// =================================================================// 1. СТАТИЧНІ ПЕРЕКЛАДИ ЕЛЕМЕНТІВ (Завжди на початку файлу проти ReferenceError)
+const translations = {
+    uk: {
+        nav_about: "Про нас", nav_restaurants: "Ресторани", nav_hotels: "Готелі", nav_spa: "SPA",
+        nav_team: "Команда", nav_jobs: "Вакансії", nav_blog: "Блог", nav_contact: "Контакти",
+        btn_view_menu: "ПЕРЕГЛЯНУТИ МЕНЮ", btn_contacts: "КОНТАКТИ ТА ГОДИНИ РОБОТИ",
+        btn_map_show: "Подивитись на карті ▼", btn_map_hide: "Сховати карту ▲",
+        title_address: "📍 НАША АДРЕСА", text_rating: "★ Рейтинг:",
+        btn_order_table: "Замовити столик", btn_book_room: "Забронювати номер", btn_book_spa: "Забронювати сеанс",
+        desc_loading: "Опис закладу наразі оновлюється. Скоро тут з'явиться детальна інформація.",
+        map_unavailable: "Карта тимчасово недоступна"
+    },
+    en: {
+        nav_about: "About Us", nav_restaurants: "Restaurants", nav_hotels: "Hotels", nav_spa: "SPA",
+        nav_team: "Team", nav_jobs: "Careers", nav_blog: "Blog", nav_contact: "Contacts",
+        btn_view_menu: "VIEW MENU", btn_contacts: "CONTACTS & HOURS",
+        btn_map_show: "View on map ▼", btn_map_hide: "Hide map ▲",
+        title_address: "📍 OUR ADDRESS", text_rating: "★ Rating:",
+        btn_order_table: "Book a table", btn_book_room: "Book a room", btn_book_spa: "Book a session",
+        desc_loading: "The establishment description is currently being updated. Detailed information will appear soon.",
+        map_unavailable: "Map is temporarily unavailable"
+    }
+};
+
 let lastScrollTop = 0;
+let currentEstablishment = null; // Глобальна змінна для збереження даних закладу
 
 /* Скрол-функція: розумне приховування та поява хедера */
 window.addEventListener('scroll', function() {
@@ -6,33 +31,106 @@ window.addEventListener('scroll', function() {
     if (!header) return; 
 
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
     if (scrollTop > lastScrollTop && scrollTop > 50) {
         header.classList.add('header-hidden');
     } else {
         header.classList.remove('header-hidden');
     }
-
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
+// 🌍 ФУНКЦІЯ ДИНАМІЧНОГО ПЕРЕКЛАДУ ВЕЛИКОГО ТЕКСТУ ОПИСУ ТА ЕЛЕМЕНТІВ ПЛАШКИ
+function renderEstablishmentDescription() {
+    if (!currentEstablishment) return;
+
+    const currentLang = localStorage.getItem('cartel_lang') || 'uk';
+    const t = translations[currentLang] || translations['uk'];
+
+    // 1. 🧠 ПРЯМИЙ ФІКС КОНТЕЙНЕРА: Отримуємо потрібне мовне поле опису з бази даних
+    let finalDescription = currentLang === 'en' ? currentEstablishment.description_en : currentEstablishment.description_uk;
+    
+    if (!finalDescription || finalDescription === "null" || finalDescription.trim() === "") {
+        finalDescription = `<p style="font-size: 16px; line-height: 1.6; color: #ddd; text-align: left;">${t.desc_loading}</p>`;
+    }
+    
+    // Підміна посилання на внутрішнє меню
+    if (finalDescription.includes('href="#menu"')) {
+        finalDescription = finalDescription.replace('href="#menu"', `href="/menu.html?id=${currentEstablishment.id}"`);
+    }
+
+    // 2. 🌟 ВСТАВЛЯЄМО ТЕКСТ БЕЗПОСЕРЕДНЬО У ВАШУ ОРИГІНАЛЬНУ ВЕРСТКУ ПЛАШКИ
+    const descContentBlock = document.getElementById('establishment-description-content-block');
+    if (descContentBlock) {
+        descContentBlock.innerHTML = finalDescription;
+    }
+
+    const addressValueEl = document.querySelector('.address-value');
+    if (addressValueEl) {
+        // Якщо мова англійська — беремо чисте поле location_en, інакше — location_uk
+        addressValueEl.innerText = currentLang === 'en' ? currentEstablishment.location_en : currentEstablishment.location_uk;
+    }
+
+    // 3. Перекладаємо текст головної золотої кнопки резерву
+    const reserveBtn = document.querySelector('.btn-main-reserve');
+    if (reserveBtn) {
+        let buttonText = t.btn_order_table;
+        if (currentEstablishment.type === 'Hotel') {
+            buttonText = t.btn_book_room;
+        } else if (currentEstablishment.type === 'SPA') {
+            buttonText = t.btn_book_spa;
+        }
+        reserveBtn.innerText = buttonText;
+    }
+
+    // 4. Перекладаємо статичні текстові блоки плашки адреси та кнопок
+    const ratingLabel = document.querySelector('.rating-label-text');
+    if (ratingLabel) ratingLabel.innerHTML = `${t.text_rating} <span style="color: #d4af37; font-weight: bold;">${currentEstablishment.rating.toFixed(1)}</span>`;
+
+    const addressTitle = document.querySelector('.address-title-text');
+    if (addressTitle) addressTitle.innerText = t.title_address;
+
+    const menuBtn = document.querySelector('.btn-menu-link');
+    if (menuBtn) menuBtn.innerText = t.btn_view_menu;
+
+    const contactBtn = document.querySelector('.btn-contact-link');
+    if (contactBtn) contactBtn.innerText = t.btn_contacts;
+
+    // Коригуємо мову на кнопці карти
+    const mapContainer = document.getElementById('map-dropdown-container');
+    const toggleBtn = document.querySelector('.btn-toggle-map');
+    if (mapContainer && toggleBtn) {
+        if (mapContainer.style.maxHeight === "0px" || !mapContainer.style.maxHeight) {
+            toggleBtn.innerHTML = t.btn_map_show;
+        } else {
+            toggleBtn.innerHTML = t.btn_map_hide;
+        }
+    }
+}
+
 function setLanguage(lang) {
     localStorage.setItem('cartel_lang', lang);
+    
+    // Перекладаємо статичні елементи з атрибутом data-i18n
     const elements = document.querySelectorAll('[data-i18n]');
-    elements.forEach(el => {
-        const key = el.getAttribute('data-i18n');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            element.innerHTML = translations[lang][key];
+        }
     });
 
-    const btnUk = document.getElementById('lang-uk');
-    const btnEn = document.getElementById('lang-en');
-    if (btnUk && btnEn) {
-        if (lang === 'uk') {
-            btnUk.classList.add('active');
-            btnEn.classList.remove('active');
-        } else {
-            btnEn.classList.add('active');
-            btnUk.classList.remove('active');
-        }
+    const langUk = document.getElementById('lang-uk');
+    const langEn = document.getElementById('lang-en');
+    if (langUk && langEn) {
+        langUk.classList.remove('active-lang'); 
+        langEn.classList.remove('active-lang');
+        const activeLangBtn = document.getElementById('lang-' + lang);
+        if (activeLangBtn) activeLangBtn.classList.add('active-lang');
+    }
+
+    // 🌟 ЗАЛІЗОБЕТОННА ПІДСТРАХОВКА: Оновлюємо опис ресторану ТІЛЬКИ якщо дані вже завантажились із бази
+    if (currentEstablishment) {
+        renderEstablishmentDescription();
     }
 }
 
@@ -159,8 +257,8 @@ async function loadHeader() {
                 setLanguage(currentLang);
             }
         }
-    } catch (error) { 
-        console.error("Помилка завантаження шапки:", error); 
+    } catch (error) {
+        console.error("Помилка завантаження шапки:", error);
     }
 }
 
@@ -177,140 +275,222 @@ async function loadFooter() {
     }
 }
 
-async function loadEstablishmentDetail() {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
+// 🌍 ФУНКЦІЯ ДИНАМІЧНОГО ПЕРЕКЛАДУ ВЕЛИКОГО ТЕКСТУ ОПИСУ ТА ЕЛЕМЕНТІВ ПЛАШКИ
+function renderEstablishmentDescription() {
+    if (!currentEstablishment) return;
+
+    const currentLang = localStorage.getItem('cartel_lang') || 'uk';
+    const t = translations[currentLang] || translations['uk'];
+
+    // 1. 🧠 ПРЯМИЙ ФІКС КОНТЕЙНЕРА: Отримуємо потрібне мовне поле опису з бази даних
+    let finalDescription = currentLang === 'en' ? currentEstablishment.description_en : currentEstablishment.description_uk;
     
-    const bgBlock = document.getElementById('establishment-hero-bg');
-    const titleBlock = document.getElementById('detail-title');
-    const cuisineBlock = document.getElementById('detail-cuisine');
-    const container = document.getElementById('establishment-content');
+    if (!finalDescription || finalDescription === "null" || finalDescription.trim() === "") {
+        finalDescription = `<p style="font-size: 16px; line-height: 1.6; color: #ddd; text-align: left;">${t.desc_loading}</p>`;
+    }
     
-    if (!id) {
-        if (container) container.innerHTML = '<p style="color:red; text-align: center;">Заклад не знайдено.</p>';
-        return;
+    // Підміна посилання на внутрішнє меню
+    if (finalDescription.includes('href="#menu"')) {
+        finalDescription = finalDescription.replace('href="#menu"', `href="/menu.html?id=${currentEstablishment.id}"`);
     }
 
+    // 2. 🌟 ВСТАВЛЯЄМО ТЕКСТ БЕЗПОСЕРЕДНЬО У ВАШУ ОРИГІНАЛЬНУ ВЕРСТКУ ПЛАШКИ
+    const descContentBlock = document.getElementById('establishment-description-content-block');
+    if (descContentBlock) {
+        descContentBlock.innerHTML = finalDescription;
+    }
+
+    // 🌟 2.5. БЕЗДОГАННИЙ ФІКС МУЛЬТИМОВНОЇ АДРЕСИ НАПРЯМУ З БАЗИ ДАНИХ (БЕЗ ПОШУКІВ ТЕКСТУ)
+    const addressValueEl = document.querySelector('.address-value');
+    if (addressValueEl) {
+        // Якщо мова англійська — беремо чисте поле location_en, інакше — location_uk
+        addressValueEl.innerText = currentLang === 'en' ? currentEstablishment.location_en : currentEstablishment.location_uk;
+    }
+
+    // 3. Перекладаємо текст головної золотої кнопки резерву
+    const reserveBtn = document.querySelector('.btn-main-reserve');
+    if (reserveBtn) {
+        let buttonText = t.btn_order_table;
+        if (currentEstablishment.type === 'Hotel') {
+            buttonText = t.btn_book_room;
+        } else if (currentEstablishment.type === 'SPA') {
+            buttonText = t.btn_book_spa;
+        }
+        reserveBtn.innerText = buttonText;
+    }
+
+    // 4. Перекладаємо статичні текстові блоки плашки адреси та кнопок
+    const ratingLabel = document.querySelector('.rating-label-text');
+    if (ratingLabel) ratingLabel.innerHTML = `${t.text_rating} <span style="color: #d4af37; font-weight: bold;">${currentEstablishment.rating.toFixed(1)}</span>`;
+
+    const addressTitle = document.querySelector('.address-title-text');
+    if (addressTitle) addressTitle.innerText = t.title_address;
+
+    const menuBtn = document.querySelector('.btn-menu-link');
+    if (menuBtn) menuBtn.innerText = t.btn_view_menu;
+
+    const contactBtn = document.querySelector('.btn-contact-link');
+    if (contactBtn) contactBtn.innerText = t.btn_contacts;
+
+    // Коригуємо мову на кнопці карти
+    const mapContainer = document.getElementById('map-dropdown-container');
+    const toggleBtn = document.querySelector('.btn-toggle-map');
+    if (mapContainer && toggleBtn) {
+        if (mapContainer.style.maxHeight === "0px" || !mapContainer.style.maxHeight) {
+            toggleBtn.innerHTML = t.btn_map_show;
+        } else {
+            toggleBtn.innerHTML = t.btn_map_hide;
+        }
+    }
+}
+
+
+// 🏛️ ВАША ФУНКЦІЯ ЗАВАНТАЖЕННЯ ДЕТАЛЕЙ З ОФІЦІЙНИМ МУЛЬТИМОВНИМ КАРКАСОМ
+async function loadEstablishmentDetail() {
+    console.log("🚀 Скрипт loadEstablishmentDetail запущен!");
+    
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    console.log("🔍 Полученный ID из URL:", id);
+    
+    const bgBlock = document.getElementById('establishment-hero-bg');
+    const container = document.getElementById('establishment-content');
+    
+    const titleBlock = document.getElementById('detail-title');
+    const cuisineBlock = document.getElementById('detail-cuisine');
+    
+    if (!id) {
+        console.error("❌ Критическая ошибка: ID не найден в адресной строке!");
+        if (container) container.innerHTML = 'Заклад не знайдено.';
+        return;
+    }
+    
     try {
+        console.log("🌐 Отправляем запрос к API /api/establishments/...");
         const response = await fetch('/api/establishments/');
         const data = await response.json();
-        const item = data.find(est => est.id == id);
-
-        if (!item) {
-            if (container) container.innerHTML = '<p style="color:red; text-align: center;">Заклад не знайдено.</p>';
+        console.log("📦 Данные успешно получены от сервера API:", data);
+        
+        currentEstablishment = data.find(est => est.id == id);
+        console.log("🎯 Найденный объект заведения в базе данных:", currentEstablishment);
+        
+        if (!currentEstablishment) {
+            console.error(`❌ Критическая ошибка: Заведение с ID ${id} отсутствует в базе данных!`);
+            if (container) container.innerHTML = 'Заклад не знайдено.';
             return;
         }
-
-        const currentLang = localStorage.getItem('cartel_lang') || 'uk';
         
-        // Налаштування повноформатного заднього фону
-        if (bgBlock && item.image_url) bgBlock.style.backgroundImage = `url('${item.image_url}')`;
-        if (titleBlock) titleBlock.innerText = item.name.toUpperCase();
-        if (cuisineBlock) cuisineBlock.innerText = item.cuisine || (item.type === 'SPA' ? 'SPA & Wellness' : 'Premium Service');
-
-        let finalDescription = item.description;
-        if (!finalDescription || finalDescription === "null" || finalDescription.trim() === "") {
-            finalDescription = `<p style="font-size: 16px; line-height: 1.6; color: #ddd; text-align: left;">Опис закладу наразі оновлюється. Скоро тут з'явиться детальна інформація.</p>`;
+        const currentLang = localStorage.getItem('cartel_lang') || 'uk';
+        const t = translations[currentLang] || translations['uk'];
+        
+        if (bgBlock && currentEstablishment.image_url) {
+            bgBlock.style.backgroundImage = `url('${currentEstablishment.image_url}')`;
         }
+        
+        if (titleBlock) titleBlock.innerText = currentEstablishment.name.toUpperCase();
+        if (cuisineBlock) cuisineBlock.innerText = currentEstablishment.cuisine || (currentEstablishment.type === 'SPA' ? 'SPA & Wellness' : 'Premium Service');
+        
+        let buttonText = t.btn_order_table;
+        if (currentEstablishment.type === 'Hotel') buttonText = t.btn_book_room;
+        else if (currentEstablishment.type === 'SPA') buttonText = t.btn_book_spa;
 
-        if (finalDescription.includes('href="#menu"')) {
-            finalDescription = finalDescription.replace('href="#menu"', `href="/menu.html?id=${id}"`);
-        }
-
-        // Автоматичне визначення напису кнопки за типом
-        let buttonText = "Замовити столик";
-        if (item.type === 'Hotel') {
-            buttonText = "Забронювати номер";
-        } else if (item.type === 'SPA') {
-            buttonText = "Забронювати сеанс";
-        }
-
-        let mapCode = item.map_iframe || '<p style="color: #aaa; text-align: center; padding: 20px;">Карта тимчасово недоступна</p>';
-
-        // 🌟 ГЕНЕРУЄМО ІДЕАЛЬНУ ПРЕМІУМ ПОСЛІДОВНІСТЬ ВМІСТУ ПЛАШКИ:
+        let mapCode = currentEstablishment.map_iframe || `<p style="color: #aaa; text-align: center; padding: 20px;">${t.map_unavailable}</p>`;
+        
+        console.log("🧱 Начинаем рендеринг HTML-каркаса плашки...");
         if (container) {
             container.innerHTML = `
-                <!-- 1. Кнопки швидких дій (Paris Style) — розташовані СТРОГО НАД текстом опису -->
-                <div class="paris-actions" style="display: flex !important; gap: 15px !important; flex-wrap: wrap !important; margin: 10px 0 35px 0 !important; width: 100% !important; background: transparent !important;">
-                    <a href="/menu.html?id=${id}" class="paris-link-btn" style="border: 1px solid #d4af37 !important; color: #d4af37 !important; padding: 12px 24px !important; text-decoration: none !important; font-weight: bold !important; border-radius: 4px !important; font-size: 13px !important; text-transform: uppercase !important; letter-spacing: 1px; transition: all 0.3s ease; background: transparent !important;">ПЕРЕГЛЯНУТИ МЕНЮ</a>
-                    <a href="#" class="paris-link-btn" onclick="openModal('${item.name}', '${item.type}')" style="border: 1px solid #d4af37 !important; color: #d4af37 !important; padding: 12px 24px !important; text-decoration: none !important; font-weight: bold !important; border-radius: 4px !important; font-size: 13px !important; text-transform: uppercase !important; letter-spacing: 1px; transition: all 0.3s ease; background: transparent !important;">КОНТАКТИ ТА ГОДИНИ РОБОТИ</a>
-                </div>
-
-                <!-- 2. Головний довгий опис закладу з бази даних -->
-                <div class="establishment-description-content" style="font-size: 16px; line-height: 1.8; color: #e0e0e0; margin-bottom: 35px; text-align: left; background: transparent !important;">
-                    ${finalDescription}
-                </div>
-
-                <!-- 3. Панель локації, рейтингу та великої кнопки онлайн-резерву -->
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 25px; flex-wrap: wrap; gap: 20px; margin-bottom: 40px; background: transparent !important;">
-                    <div style="text-align: left; background: transparent !important;">
-                        <p style="margin: 6px 0 0 0; color: #aaa; font-size: 14px; text-align: left;">★ Рейтинг: <span style="color: #d4af37; font-weight: bold;">${item.rating.toFixed(1)}</span></p>
-                    </div>
-                        
-                    <div style="background: transparent !important;">
-                        <button onclick="openModal('${item.name}', '${item.type}')" style="background: #d4af37; color: #000; border: none; padding: 14px 32px; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 15px; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#d4af37'">
-                            ${buttonText}
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 🌟 ОНОВЛЕНО: Нова преміум-плашка Адреси з кнопкою та висувною картою -->
-                <div class="address-premium-block" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 30px; width: 100%; background: transparent !important;">
+                <div class="establishment-info-card" style="width: 100% !important; background: transparent !important;">
                     
-                    <h2 style="font-size: 22px; color: #d4af37; font-family: 'Cormorant Garamond', serif; margin-bottom: 10px; font-weight: 600; letter-spacing: 0.5px;">
-                        📍 НАША АДРЕСА
-                    </h2>
+                    <h1 style="font-family: 'Cinzel', serif !important; font-size: 32px !important; font-weight: 700 !important; color: #ffffff !important; letter-spacing: 2px !important; text-transform: uppercase !important; text-shadow: 0 4px 15px rgba(0,0,0,0.8) !important; margin-bottom: 5px !important; text-align: center !important; line-height: 1.3 !important;">
+                        ${currentEstablishment.name.toUpperCase()}
+                    </h1>
                     
-                    <!-- Динамічний вивід адреси з бази даних -->
-                    <p style="font-size: 15px; color: #ffffff; font-family: 'Montserrat', sans-serif; margin-bottom: 20px;">
-                        ${item.location || 'Буковель, Івано-Франківська область'}
+                    <p style="font-family: 'Cormorant Garamond', serif !important; font-size: 18px !important; color: #d4af37 !important; text-align: center !important; margin: 0 0 30px 0 !important; letter-spacing: 1px !important; font-style: italic !important;">
+                        ${currentEstablishment.cuisine || (currentEstablishment.type === 'SPA' ? 'SPA & Wellness' : 'Premium Service')}
                     </p>
-                    
-                    <!-- Золота кнопка-перемикач для карти -->
-                    <button onclick="toggleMapDropdown()" class="btn-toggle-map" style="background: transparent; border: 1px solid #d4af37; color: #d4af37; padding: 12px 28px; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 13px; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">
-                        Подивитись на карті ▼
-                    </button>
 
-                    <!-- 🔮 Прихований контейнер карти з плавним розгортанням -->
-                    <div id="map-dropdown-container" style="max-height: 0px; overflow: hidden; opacity: 0; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease; margin-top: 0px;">
-                        <div class="google-map-wrapper" style="width: 100%; overflow: hidden; border-radius: 12px; line-height: 0; padding-top: 20px;">
-                            ${mapCode}
+                    <div class="info-row" style="display: flex !important; gap: 15px !important; flex-wrap: wrap !important; justify-content: center !important; margin-bottom: 35px !important; width: 100% !important;">
+                        <a href="/menu.html?id=${currentEstablishment.id}" class="btn-menu-link" style="border: 1px solid #d4af37 !important; color: #d4af37 !important; padding: 12px 24px !important; text-decoration: none !important; font-weight: bold !important; border-radius: 4px !important; font-size: 13px !important; text-transform: uppercase !important; letter-spacing: 1px !important; transition: all 0.3s ease !important; background: transparent !important; display: inline-block !important;">
+                            ${t.btn_view_menu}
+                        </a>
+                        <a href="#" class="btn-contact-link" onclick="openModal('${currentEstablishment.name}', '${currentEstablishment.type}')" style="border: 1px solid #d4af37 !important; color: #d4af37 !important; padding: 12px 24px !important; text-decoration: none !important; font-weight: bold !important; border-radius: 4px !important; font-size: 13px !important; text-transform: uppercase !important; letter-spacing: 1px !important; transition: all 0.3s ease !important; background: transparent !important; display: inline-block !important;">
+                            ${t.btn_contacts}
+                        </a>
+                    </div>
+                    
+                    <div id="establishment-description-content-block" style="font-size: 16px !important; line-height: 1.8 !important; color: #e0e0e0 !important; margin: 25px 0 !important; text-align: left !important; background: transparent !important; width: 100% !important;"></div>
+
+                    <div style="display: flex !important; justify-content: space-between !important; align-items: center !important; border-top: 1px solid rgba(255,255,255,0.08) !important; border-bottom: 1px solid rgba(255,255,255,0.08) !important; padding: 20px 0 !important; margin: 25px 0 !important; flex-wrap: wrap !important; gap: 15px !important; width: 100% !important; background: transparent !important;">
+                        <div style="text-align: left !important; background: transparent !important;">
+                            <p class="rating-label-text" style="margin: 0 !important; color: #aaa !important; font-size: 14px !important; font-family: 'Montserrat', sans-serif !important;">
+                                ${t.text_rating} <span style="color: #d4af37 !important; font-weight: bold !important;">${currentEstablishment.rating.toFixed(1)}</span>
+                            </p>
+                        </div>
+                        <div style="background: transparent !important;">
+                            <button class="btn-main-reserve" onclick="openModal('${currentEstablishment.name}', '${currentEstablishment.type}')" style="background: #d4af37 !important; color: #000000 !important; border: none !important; padding: 14px 32px !important; font-weight: bold !important; border-radius: 6px !important; cursor: pointer !important; font-size: 14px !important; font-family: 'Montserrat', sans-serif !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; transition: all 0.3s !important;" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#d4af37'">
+                                ${buttonText}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="address-row" style="width: 100% !important; text-align: left !important; margin-bottom: 15px !important; background: transparent !important;">
+                        <span class="address-title-text" style="display: block !important; font-size: 20px !important; color: #d4af37 !important; font-family: 'Cormorant Garamond', serif !important; margin-bottom: 5px !important; font-weight: 600 !important; letter-spacing: 0.5px !important;">
+                            ${t.title_address}
+                        </span>
+                        <span class="address-value" style="font-size: 15px !important; color: #ffffff !important; font-family: 'Montserrat', sans-serif !important;">
+                            ${currentEstablishment.location || 'Буковель, Івано-Франківська область'}
+                        </span>
+                    </div>
+                    
+                    <div class="map-toggle-wrapper" style="width: 100% !important; text-align: left !important; background: transparent !important;">
+                        <button class="btn-toggle-map" onclick="toggleMapDropdown()" style="background: transparent !important; border: 1px solid #d4af37 !important; color: #d4af37 !important; padding: 12px 28px !important; font-weight: bold !important; border-radius: 6px !important; cursor: pointer !important; font-size: 13px !important; font-family: 'Montserrat', sans-serif !important; text-transform: uppercase !important; letter-spacing: 1px !important; transition: all 0.3s ease !important;">
+                            ${t.btn_map_show}
+                        </button>
+                        <div id="map-dropdown-container" class="map-dropdown" style="max-height: 0px; opacity: 0; overflow: hidden; transition: all 0.4s ease; background: transparent !important;">
+                            <div style="border-radius: 12px !important; overflow: hidden !important; margin-top: 15px !important; line-height: 0 !important;">
+                                ${mapCode}
+                            </div>
                         </div>
                     </div>
 
                 </div>
             `;
+            console.log("✅ Каркас плашки успешно вмонтирован в DOM!");
+        } else {
+            console.error("❌ Критическая ошибка: Элемент с id='establishment-content' не найден в вашем HTML!");
         }
-
+        
+        console.log("📢 Вызываем renderEstablishmentDescription()...");
+        renderEstablishmentDescription();
     } catch (err) {
-        console.error("Помилка завантаження деталей закладу:", err);
-        if (container) container.innerHTML = '<p style="color:red; text-align: center;">Помилка завантаження даних.</p>';
+        console.error("❌ Перехват ошибки внутри блока catch:", err);
+        if (container) container.innerHTML = 'Помилка завантаження даних.';
     }
 }
+
+
 
 // 🌟 ФУНКЦІЯ ДЛЯ ПЛАВНОГО ВИЇЖДЖАННЯ КАРТИ ПРИ КЛІКУ
 function toggleMapDropdown() {
     const mapContainer = document.getElementById('map-dropdown-container');
     const toggleBtn = document.querySelector('.btn-toggle-map');
-    
     if (!mapContainer || !toggleBtn) return;
-
+    
+    const currentLang = localStorage.getItem('cartel_lang') || 'uk';
+    const t = translations[currentLang] || translations['uk'];
+    
     if (mapContainer.style.maxHeight === "0px" || !mapContainer.style.maxHeight) {
-        // Розгортаємо карту (задаємо достатню висоту для iframe + відступи)
         mapContainer.style.maxHeight = "500px";
         mapContainer.style.opacity = "1";
-        toggleBtn.innerHTML = "Сховати карту ▲";
+        toggleBtn.innerHTML = t.btn_map_hide;
         toggleBtn.style.background = "rgba(212, 175, 55, 0.1)";
     } else {
-        // Плавно згортаємо назад
         mapContainer.style.maxHeight = "0px";
         mapContainer.style.opacity = "0";
-        toggleBtn.innerHTML = "Подивитись на карті ▼";
+        toggleBtn.innerHTML = t.btn_map_show;
         toggleBtn.style.background = "transparent";
     }
 }
-
-
 
 window.addEventListener('DOMContentLoaded', async () => {
     await loadHeader();

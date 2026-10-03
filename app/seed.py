@@ -29,23 +29,33 @@ def seed_data(db: Session):
                 existing = db.query(Establishment).filter(Establishment.name == data["name"]).first()
                 if not existing:
                     
-                    # 🌟 ГОЛОВНИЙ ІНЖЕНЕРНИЙ ФІКС: Обробка опису, розбитого на масив рядків у JSON
-                    raw_description = data.get("description")
-                    if isinstance(raw_description, list):
-                        # Склеюємо рядки через перенос, щоб зберегти красиву структуру в VS Code
-                        final_description = "\n".join(raw_description)
+                    # 🌟 ГОЛОВНИЙ ІНЖЕНЕРНИЙ ФІКС ДЛЯ МУЛЬТИМОВНОСТІ БАЗИ ДАНИХ
+                    # Окремо витягуємо українську та англійську версії з JSON-масивів
+                    raw_desc_uk = data.get("description_uk")
+                    raw_desc_en = data.get("description_en")
+
+                    # Склеюємо рядки через перенос, щоб зберегти красиву структуру в VS Code
+                    if isinstance(raw_desc_uk, list):
+                        final_description_uk = "\n".join(raw_desc_uk)
                     else:
-                        final_description = raw_description
+                        final_description_uk = raw_desc_uk
+
+                    if isinstance(raw_desc_en, list):
+                        final_description_en = "\n".join(raw_desc_en)
+                    else:
+                        final_description_en = raw_desc_en
 
                     new_est = Establishment(
                         name=data["name"],
                         type=data["type"],
                         cuisine=data.get("cuisine"),
-                        location=data.get("location", "Bukovel"),
+                        location_uk=data.get("location_uk", "Буковель"),
+                        location_en=data.get("location_en", "Bukovel"),
                         rating=data.get("rating", 5.0),
                         image_url=data.get("image_url"),
                         images=data.get("images"),
-                        description=final_description, # 🌟 Тепер сюди записується чистий монолітний текст
+                        description_uk=final_description_uk, # 🌟 Записуємо чистий український текст у БД
+                        description_en=final_description_en, # 🌟 Записуємо чистий англійський текст у БД
                         map_iframe=data.get("map_iframe")
                     )
                     db.add(new_est)

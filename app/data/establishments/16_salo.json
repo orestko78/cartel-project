@@ -2,27 +2,40 @@
   "id": 16,
   "name": "Salo",
   "type": "Restaurant",
-  "cuisine": "Українська кухня",
-  "location": "Буковель",
+  "cuisine": "Ukrainian Cuisine",
+  
+  "location_uk": "Буковель",
+  "location_en": "Bukovel",
+  
   "rating": 4.6,
   "image_url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5",
-  
   "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
-  "description": [
+  
+  "description_uk": [
     "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Гастрономічна революція: сучасний погляд на національні кулінарні шедеври.</p>",
     "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Крафтові українські закуски, модернізований борщ із копченою грушею, авторські вареники та вишукані десерти.</p>",
-        
     "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей концептуальний ресторан пропонує гостям Буковелю унікальний гастрономічний досвід — переосмислення багатих українських традицій через призму світових трендів високої кухні. Тут класичні національні смаколики трансформуються у витончені кулінарні арт-об'єкти. Атмосфера затишного сучасного етно-лофту з елементами з натурального дерева, льону та теплого вогню створює ідеальний простір для затишних вечорів.</p>",
-        
     "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Локальні фермерські продукти та сміливі гастрономічні експерименти</h3>",
-        
     "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Ми пишаємося тим, що кожна страва базується на екологічно чистих продуктах від найкращих локальних фермерських господарств Карпат. Наші кухарі використовують сучасні техніки текстурування та подачі, щоб здивувати навіть найдосвідченіших гурманів: ніжне сало у вигляді мусу з травами, традиційні закуски з додаванням трюфельної олії та легкі повітряні десерти на основі карпатських лісових ягід. Це справжній маніфест нової української кухні, яка закохує в себе з першого шматочка.</p>",
-        
     "<p style=\"margin-top: 25px; color: #aaa;\">Переглянути розклад гастровечорів та забронювати столик можна у нашому <strong>Instagram</strong></p>",
-        
     "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380674440055\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 444 0055</a></p>",
-        
     "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вас</p>"
+  ],
+  "description_en": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">A gastronomic revolution: a modern take on national culinary masterpieces.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Craft Ukrainian appetizers, modernized borscht with smoked pear, signature varenyky, and exquisite desserts.</p>",
+    
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">This conceptual restaurant offers Bukovel guests a unique gastronomic experience — a reimagining of rich Ukrainian traditions through the lens of global fine dining trends. Here, classic national delicacies are transformed into elegant culinary art objects. The cozy atmosphere of a modern ethno-loft with elements of natural wood, linen, and warm fire creates an ideal space for comfortable evenings.</p>",
+    
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Local Farm Products and Bold Gastronomic Experiments</h3>",
+    
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">We pride ourselves on the fact that each dish is based on ecologically clean products from the best local farms in the Carpathians. Our chefs use modern texturing and presentation techniques to surprise even the most demanding gourmands: tender salo in the form of a mousse with herbs, traditional appetizers infused with truffle oil, and light, airy desserts based on Carpathian wild berries. This is a true manifesto of the new Ukrainian cuisine, which wins you over from the very first bite.</p>",
+    
+    "<p style=\"margin-top: 25px; color: #aaa;\">View the schedule of gastro-evenings and book a table on our <strong>Instagram</strong></p>",
+    
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380674440055\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 444 0055</a></p>",
+    
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Open • Welcome</p>"
   ],
   "images": [
     "/static/images/salo1.jpg",

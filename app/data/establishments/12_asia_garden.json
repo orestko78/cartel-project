@@ -2,27 +2,40 @@
   "id": 12,
   "name": "Asia Garden",
   "type": "Restaurant",
-  "cuisine": "Азійська кухня",
-  "location": "Буковель, ділянка Вишні",
+  "cuisine": "Asian Cuisine",
+  
+  "location_uk": "Буковель, ділянка Вишні",
+  "location_en": "Bukovel, Vyshni Area",
+  
   "rating": 4.8,
   "image_url": "https://images.unsplash.com/photo-1541696432-82c6da8ce7bf",
-  
   "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
-  "description": [
-  "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Екзотичний оазис паназійської гастрономії та яскравої атмосфери Сходу.</p>",
-  "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Автентичний вок, легендарна качка по-пекінськи, свіжі суші-преміум та авторська малайзійська локшина.</p>",
-        
-  "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Ресторан Asia Garden запрошує гостей Буковелю у захопливу кулінарну подорож країнами Азії. Наша концепція — це гармонійне поєднання п'яти основних смаків: гострого, солодкого, кислого, гіркого та солоного. Інтер'єр закладу виконаний у стилі сучасного східного мінімалізму з елементами живого тропічного саду, що створює неповторну атмосферу затишку та преміального комфорту посеред карпатських гір.</p>",
-        
-  "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Майстерність відкритого вогню та традиції Сходу</h3>",
-        
-  "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Серце нашої кухні — це відкрита зона WOK, де шеф-кухарі віртуозно обсмажують локшину та свіжі морепродукти на шаленому вогні за лічені секунди, зберігаючи всю соковитість та корисні властивості інгредієнтів. Ми привозимо автентичні соуси, прянощі та спеції безпосередньо з Таїланду, Японії та Китаю. Наші суші та роли готуються виключно з риби преміум-якості та спеціального рису правильної температури. А для поціновувачів класики ми випікаємо качку по-пекінськи за старовинним рецептом династії Мін.</p>",
-        
-  "<p style=\"margin-top: 25px; color: #aaa;\">Актуальне меню, резерв столів та гастрономічні анонси у нашому <strong>Instagram</strong></p>",
-        
-  "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380672220011\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 222 0011</a></p>",
-        
-  "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вас</p>"
+  
+  "description_uk": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Екзотичний оазис паназійської гастрономії та яскравої атмосфери Сходу.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Автентичний вок, legendaрна качка по-пекінськи, свіжі суші-преміум та авторська малайзійська локшина.</p>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Ресторан Asia Garden запрошує гостей Буковелю у захопливу кулінарну подорож країнами Азії. Наша концепція — це гармонійне поєднання п'яти основних смаків: гострого, солодкого, кислого, гіркого та солоного. Інтер'єр закладу виконаний у стилі сучасного східного мінімалізму з елементами живого тропічного саду, що створює неповторну атмосферу затишку та преміального комфорту посеред карпатських гір.</p>",
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Майстерність відкритого вогню та традиції Сходу</h3>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Серце нашої кухні — це відкрита зона WOK, де шеф-кухарі віртуозно обсмажують локшину та свіжі морепродукти на шаленому вогні за лічені секунди, зберігаючи всю соковитість та корисні властивості інгредієнтів. Ми привозимо автентичні соуси, прянощі та спеції безпосередньо з Таїланду, Японії та Китаю. Наші суші та роли готуються виключно з риби преміум-якості та спеціального рису правильної температури. А для поціновувачів класики ми випікаємо качку по-пекінськи за старовинним рецептом династії Мін.</p>",
+    "<p style=\"margin-top: 25px; color: #aaa;\">Актуальне меню, резерв столів та гастрономічні анонси у нашому <strong>Instagram</strong></p>",
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380672220011\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 222 0011</a></p>",
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вас</p>"
+  ],
+  "description_en": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">An exotic oasis of Pan-Asian gastronomy and the vibrant atmosphere of the East.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Authentic wok, legendary Peking duck, fresh premium sushi, and signature Malaysian noodles.</p>",
+    
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Asia Garden restaurant invites Bukovel guests on an exciting culinary journey through Asian countries. Our concept is a harmonious combination of five basic tastes: spicy, sweet, sour, bitter, and salty. The interior is designed in the style of modern Oriental minimalism with elements of a living tropical garden, creating a unique atmosphere of comfort and premium relaxation amidst the Carpathian Mountains.</p>",
+    
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Mastery of Open Fire and Eastern Traditions</h3>",
+    
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">The heart of our kitchen is the open WOK area, where chefs masterfully stir-fry noodles and fresh seafood over a blazing fire in seconds, preserving all the juiciness and healthy properties of the ingredients. We import authentic sauces, herbs, and spices directly from Thailand, Japan, and China. Our sushi and rolls are prepared exclusively from premium-quality fish and special rice at the exact proper temperature. For classics connoisseurs, we roast Peking duck according to an ancient recipe of the Ming Dynasty.</p>",
+    
+    "<p style=\"margin-top: 25px; color: #aaa;\">Current menu, table reservations, and gastronomic announcements on our <strong>Instagram</strong></p>",
+    
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380672220011\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 222 0011</a></p>",
+    
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Open • Welcome</p>"
   ],
   "images": [
     "/static/images/asia_garden1.jpg",

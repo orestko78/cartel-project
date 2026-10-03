@@ -2,18 +2,25 @@
     "name": "Veranda Lounge Zone",
     "type": "Restaurant",
     "cuisine": "European & European Seafood",
-    "location": "Буковель, VIP-зона, біля озера Молодості",
+    
+    "location_uk": "Буковель, VIP-зона, біля озера Молодості",
+    "location_en": "Bukovel, VIP Zone, near the Lake of Youth",
+    
     "rating": 4.9,
     "image_url": "/static/images/veranda.jpg",
     "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
-    "description": [
-    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Затишний ресторан-лаунж із панорамним видом на Карпати.</p>",
-        
-    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Ресторан Veranda розташований у мальовничій зоні Буковелю. Це ідеальне місце для релаксу після активного дня в горах. Легка європейська кухня, великий вибір страв із морепродуктів, авторські коктейлі та ексклюзивна кальянна карта створюють атмосферу повної гармонії та відпочинку преміум-класу.</p>",
-        
-    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380675551122\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 555 1122</a></p>",
-        
-    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Працює лаунж-зона</p>"
+    
+    "description_uk": [
+        "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Затишний ресторан-лаунж із панорамним видом на Карпати.</p>",
+        "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Ресторан Veranda розташований у мальовничій зоні Буковелю. Це ідеальне місце для релаксу після активного дня в горах. Легка європейська кухня, великий вибір страв із морепродуктів, авторські коктейлі та ексклюзивна кальянна карта створюють атмосферу повної гармонії та відпочинку преміум-класу.</p>",
+        "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380675551122\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 555 1122</a></p>",
+        "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Працює лаунж-зона</p>"
+    ],
+    "description_en": [
+        "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">A cozy restaurant-lounge with a panoramic view of the Carpathians.</p>",
+        "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Veranda restaurant is located in a picturesque area of Bukovel. It is an ideal place to relax after an active day in the mountains. Light European cuisine, a wide selection of seafood dishes, signature cocktails, and an exclusive hookah menu create an atmosphere of perfect harmony and premium-class relaxation.</p>",
+        "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380675551122\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 555 1122</a></p>",
+        "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Open • Lounge zone is working</p>"
     ],
     "images": [
         "/static/images/veranda1.jpg",

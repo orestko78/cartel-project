@@ -1,19 +1,26 @@
 {
     "name": "Буковельські Чани SPA",
     "type": "SPA",
-    "cuisine": "Автентичний карпатський гідро-масаж",
-    "location": "Буковель, лісова VIP-зона біля річки",
+    "cuisine": "Authentic Carpathian hydro-massage",
+    
+    "location_uk": "Буковель, лісова VIP-зона біля річки",
+    "location_en": "Bukovel, forest VIP zone near the river",
+    
     "rating": 4.9,
     "image_url": "/static/images/chany.jpg",
     "map_iframe": "<iframe src=\"https://google.com\" width=\"100%\" height=\"450\" style=\"border:0; border-radius: 12px;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
-    "description": [
-    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Традиційне карпатське паріння у чавунних чанах на дровах.</p>",
-        
-    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Буковельські Чани пропонують унікальний лікувальний ритуал паріння під відкритим небом. Чавунні казани наповнюються чистою джерельною водою з додаванням цілющих карпатських трав, дикого меду та хвої, після чого вода розігрівається живим вогнем на дровах до +40°C. Контрастне занурення у крижану гірську річку после чану дарує винятковий заряд бадьорості, покращує сон та очищає шкіру.</p>",
-        
-    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380675558800\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 555 8800</a></p>",
-        
-    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Доступно для резерву приватних куренів з чанами</p>"
+    
+    "description_uk": [
+        "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Традиційне карпатське паріння у чавунних чанах на дровах.</p>",
+        "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Буковельські Чани пропонують унікальний лікувальний ритуал паріння під відкритим небом. Чавунні казани наповнюються чистою джерельною водою з додаванням цілющих карпатських трав, дикого меду та хвої, після чого вода розігрівається живим вогнем на дровах до +40°C. Контрастне занурення у крижану гірську річку после чану дарує винятковий заряд бадьорості, покращує сон та очищає шкіру.</p>",
+        "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380675558800\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 555 8800</a></p>",
+        "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Доступно для резерву приватних куренів з чанами</p>"
+    ],
+    "description_en": [
+        "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Traditional Carpathian bathing in cast-iron vats over a wood fire.</p>",
+        "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Bukovel Vats offer a unique therapeutic bathing ritual under the open sky. Cast-iron cauldrons are filled with pure spring water infused with healing Carpathian herbs, wild honey, and pine needles, after which the water is heated by an open wood fire to +40°C. A contrasting immersion into the icy mountain river after the vat provides an exceptional boost of energy, improves sleep, and purifies the skin.</p>",
+        "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380675558800\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 555 8800</a></p>",
+        "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Available for private vat cabin reservations</p>"
     ],
     "images": [
         "/static/images/chany1.jpg",
@@ -21,4 +28,5 @@
         "/static/images/chany3.jpg",
         "/static/images/chany4.jpg",
         "/static/images/chany5.jpg"
-    ]}
+    ]
+}

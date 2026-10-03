@@ -2,27 +2,34 @@
   "id": 17,
   "name": "Ambasada",
   "type": "Restaurant",
-  "cuisine": "Європейська кухня",
-  "location": "Івано-Франківськ, пл. Міцкевича, 4",
+  "cuisine": "European Cuisine",
+  
+  "location_uk": "Івано-Франківськ, пл. Міцкевича, 4",
+  "location_en": "Ivano-Frankivsk, 4 Mickiewicza Sq.",
+  
   "rating": 4.9,
   "image_url": "https://images.unsplash.com/photo-1552566626-52f8b828add9",
-  
   "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
-  "description": [
+  
+  "description_uk": [
     "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Вишуканий флагман високої гастрономії від мережі CARTEL у самому серці Івано-Франківська.</p>",
     "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Авторська європейська класика, преміальні мармурові стейки, свіжі морепродукти та колекційна винна карта світового рівня.</p>",
-        
     "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей концептуальний ресторан вишуканої кухні переносить легендарні преміум-стандарти гостинності мережі CARTEL із серця Карпат до центру Івано-Франківська. Інтер'єр закладу є справжнім витвором мистецтва у стилі величного міського лофту: високі стелі, оздоблення з рідкісних порід дерева та натурального каменю, м'яке камерне світло та витончені золоті акценти. Ідеальний простір для проведення важливих ділових переговорів, статусних бенкетів чи незабутніх романтичних вечорів.</p>",
-        
     "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Кулінарна естетика, локальні шедеври та шедеври міксології</h3>",
-        
     "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Кожна страва у нашому меню — це гармонія бездоганного смаку та витонченої візуальної подачі від шеф-кухаря. Ми використовуємо виключно найкращі світові інгредієнти та екологічно чисті фермерські продукти Прикарпаття. Наша гордість — відкрита гриль-зона, де на розпеченому вугіллі готуються соковиті стейки сухого визрівання. Професійний сомельє допоможе підібрати ідеальну пару до вашої вечері з нашої унікальної винотеки, а барна мапа здивує вас авторськими коктейлями преміум-класу.</p>",
-        
     "<p style=\"margin-top: 25px; color: #aaa;\">Забронювати VIP-кімнату, ознайомитися з бенкетним меню та дізнатися про гастровечори можна у нашому <strong>Instagram</strong></p>",
-        
     "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673400011\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 340 0011</a></p>",
-        
     "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Чекаємо на вас у центрі міста</p>"
+  ],
+  "description_en": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">An exquisite flagship of fine dining by the CARTEL network in the very heart of Ivano-Frankivsk.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Signature European classics, premium marbled steaks, fresh seafood, and a world-class collectible wine map.</p>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">This conceptual fine dining restaurant brings the legendary premium hospitality standards of the CARTEL network from the heart of the Carpathians to the center of Ivano-Frankivsk. The venue's interior is a true masterpiece in the majestic urban loft style: high ceilings, rare wood and natural stone finishes, soft ambient lighting, and sophisticated gold accents. It offers the ideal setting for crucial business negotiations, high-status banquets, or unforgettable romantic evenings.</p>",
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Culinary Aesthetics, Local Masterpieces, and Mixology Art</h3>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Each dish on our menu represents a harmony of flawless taste and exquisite visual presentation by the executive chef. We use only the world's finest ingredients alongside ecologically clean farm products from the Prykarpattia region. Our pride is the open grill area, where juicy dry-aged steaks are cooked over red-hot coals. A professional sommelier will always help you choose the ideal pairing for your dinner from our unique wine vault, while the bar selection will surprise you with premium-class signature cocktails.</p>",
+    "<p style=\"margin-top: 25px; color: #aaa;\">Book a VIP room, review the banquet menu, and find out about gastro-evenings on our <strong>Instagram</strong></p>",
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673400011\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 340 0011</a></p>",
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Open • Welcome to the city center</p>"
   ],
   "images": [
     "/static/images/ambasada1.jpg",

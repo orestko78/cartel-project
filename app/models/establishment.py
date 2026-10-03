@@ -12,13 +12,15 @@ class Establishment(Base):
     type = Column(String)  
     
     cuisine = Column(String, nullable=True)
-    location = Column(String, default="Bukovel")
+    location_uk = Column(String, default="Буковель")
+    location_en = Column(String, default="Bukovel")
     rating = Column(Float, default=5.0)
     image_url = Column(String, nullable=True)  # Залишаємо для сумісності з одним фото
     images = Column(JSON, nullable=True)       # Поле для масиву фотографій (слайдера)
     
     # Поле для довгого техаського та інших текстів закладу
-    description = Column(String, nullable=True)
+    description_uk = Column(String, nullable=True)
+    description_en = Column(String, nullable=True)
     
     # Поле для збереження HTML-коду вбудованої карти Google
     map_iframe = Column(String, nullable=True)

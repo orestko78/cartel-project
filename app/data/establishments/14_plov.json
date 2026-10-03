@@ -2,27 +2,40 @@
   "id": 14,
   "name": "Plov",
   "type": "Restaurant",
-  "cuisine": "Схiдна кухня",
-  "location": "Буковель, Нижня станція витягу 13",
+  "cuisine": "Eastern Cuisine",
+  
+  "location_uk": "Буковель, Нижня станція витягу 13",
+  "location_en": "Bukovel, Near Lower Station of Ski Lift No. 13",
+  
   "rating": 4.7,
   "image_url": "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9",
-  
   "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
-  "description": [
-  "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Автентична магія східної гастрономії та гарячого плову біля підніжжя гір.</p>",
-  "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Традиційний ферганський плов на багатті, соковитий шашлик із тандира, ароматна шурпа та гарячі коржики.</p>",
-        
-  "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей концептуальний ресторан східної кухні розташований у найзручнішій точці курорту — прямо біля гірськолижного підйомника. Це ідеальне місце, щоб зробити колоритну гастрономічну паузу під час активного катання. Щойно ви переступаєте поріг, вас огортає затишна лофт-атмосфера Сходу: аромат натуральних дров, спецій куміну, коріандру та гарячого м'яса, що запікається на живому вогні.</p>",
-        
-  "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Ритуал приготування на багаті та таємниці тандиру</h3>",
-        
-  "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Головна гордість нашого ресторану — справжній узбецький плов, який наш шеф-кухар щоранку повільно готує у величезному чавунному казані на відкритому багатті за класичним ферганським рецептом. Ми використовуємо виключно преміальний рис девзіра, соковиту добірну баранину та автентичні східні спеції. Усі м'ясні хіти — від ніжних люля-кебабів до шашликів — готуються на розпеченому вугіллі, а традиційні східні коржики випікаються прямо перед вашою подачею у розігрітій глиняній печі-тандирі.</p>",
-        
-  "<p style=\"margin-top: 25px; color: #aaa;\">Переглянути повне гриль-меню, забронювати стіл та замовити доставку можна у нашому <strong>Instagram</strong></p>",
-        
-  "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673330044\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 333 0044</a></p>",
-        
-  "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Плов готовий, чекаємо на вас</p>"
+  
+  "description_uk": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Автентична магія східної гастрономії та гарячого плову біля підніжжя гір.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Традиційний ферганський плов на багатті, соковитий шашлик із тандира, ароматна шурпа та гарячі коржики.</p>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей концептуальний ресторан східної кухні розташований у найзручнішій точці курорту — прямо біля гірськолижного підйомника. Це ідеальне місце, щоб зробити колоритну гастрономічну паузу під час активного катання. Щойно ви переступаєте поріг, вас огортає затишна лофт-атмосфера Сходу: аромат натуральних дров, спецій куміну, коріандру та гарячого м'яса, що запікається на живому вогні.</p>",
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Ритуал приготування на багаті та таємниці тандиру</h3>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Головна гордість нашого ресторану — справжній узбецький плов, який наш шеф-кухар щоранку повільно готує у величезному чавунному казані на відкритому багатті за класичним ферганським рецептом. Ми використовуємо виключно преміальний рис девзіра, соковиту добірну баранину та автентичні східні спеції. Усі м'ясні хіти — від ніжних люля-кебабів до шашликів — готуються на розпеченому вугіллі, а традиційні східні коржики випікаються прямо перед вашою подачею у розігрітій глиняній печі-тандирі.</p>",
+    "<p style=\"margin-top: 25px; color: #aaa;\">Переглянути повне гриль-меню, забронювати стіл та замовити доставку можна у нашому <strong>Instagram</strong></p>",
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673330044\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 333 0044</a></p>",
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Плов готовий, чекаємо на вас</p>"
+  ],
+  "description_en": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Authentic magic of Oriental gastronomy and hot pilaf at the foot of the mountains.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Traditional Fergana pilaf over an open fire, juicy tandoor shish kebab, aromatic shurpa, and hot flatbreads.</p>",
+    
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">This conceptual Eastern cuisine restaurant is located at the most convenient spot of the resort — right next to the ski lift. It is the perfect place to take a flavorful gastronomic break during active skiing. The moment you step over the threshold, you are embraced by a cozy loft atmosphere of the Orient: the aroma of natural wood, spices like cumin, coriander, and hot meat roasting over an open fire.</p>",
+    
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Bathing Ritual Over the Open Fire and Secrets of Tandoor</h3>",
+    
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">The main pride of our restaurant is the authentic Uzbek pilaf, which our chef masterfully slow-cooks every morning in a huge cast-iron cauldron over an open wood fire according to the classic Fergana recipe. We use exclusively premium Devzira rice, select juicy lamb, and authentic Eastern spices. All meat hits — from tender lyulya kebabs to shish kebabs — are prepared over glowing coals, while traditional Eastern flatbreads are baked right before your serving in a preheated clay tandoor oven.</p>",
+    
+    "<p style=\"margin-top: 25px; color: #aaa;\">View the full grill menu, book a table, and order delivery on our <strong>Instagram</strong></p>",
+    
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673330044\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 333 0044</a></p>",
+    
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Open • Pilaf is ready, waiting for you</p>"
   ],
   "images": [
     "/static/images/plov1.jpg",

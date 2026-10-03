@@ -2,27 +2,34 @@
   "id": 18,
   "name": "Mangalica",
   "type": "Restaurant",
-  "cuisine": "М'ясний ресторан",
-  "location": "Яремче, вул. І. Петраша, 62",
+  "cuisine": "Meat Restaurant",
+  
+  "location_uk": "Яремче, вул. І. Петраша, 62",
+  "location_en": "Yaremche, 62 I. Petrasha St.",
+  
   "rating": 4.8,
   "image_url": "https://images.unsplash.com/photo-1544025162-d76694265947",
-  
   "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
-  "description": [
+  
+  "description_uk": [
     "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Фірмовий м'ясний ресторан мережі CARTEL — гастрономічне серце та легендарні стейки в Яремче.</p>",
     "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">М'ясо сухого визрівання, соковиті ребра BBQ, фірмові бургери на дровах та затишна атмосфера карпатського лофту.</p>",
-        
     "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей концептуальний м'ясний ресторан розташований у самому мальовничому куточку Яремче, пропонуючи мешканцям та гостям міста фірмові преміум-стандарти якості мережі CARTEL. Дизайнерський інтер'єр закладу гармонійно поєднує монументальність гірського каменю, тепло натурального дуба та сучасний індустріальний лофт. Це ідеальне місце для того, щоб зупинитися на вишуканий обід під час подорожі Карпатами або провести смачний вечір у колі близьких людей.</p>",
-        
     "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Культ м'яса, власна камера визрівання та магія відкритого грилю</h3>",
-        
-    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">У нашому ресторані панує справжній культ м'яса. Ми використовуємо добірну яловичину преміум-якості та витримуємо її у власній спеціальній камері сухого визрівання, завдяки чому стейки набувають неймовірної ніжності та глибокого насиченого смаку. Головне дійство відбувається на відкритому грилі, де на розпеченому карпатському вугіллі наші майстри доводять м'ясні шедеври до ідеального рівня прожарювання. До м'яса ми пропонуємо авторські соуси, фірмове крафтове пиво та вишукану колекцію міцних напоїв з усього світу.</p>",
-        
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">У нашому ресторані панує справжній культ м'яса. We використовуємо добірну яловичину преміум-якості та витримуємо її у власній спеціальній камері сухого визрівання, завдяки чому стейки набувають неймовірної ніжності та глибокого насиченого смаку. Головне дійство відбувається на відкритому грилі, де на розпеченому карпатському вугіллі наші майстри доводять м'ясні шедеври до ідеального рівня прожарювання. До м'яса ми пропонуємо авторські соуси, фірмове крафтове пиво та вишукану колекцію міцних напоїв з усього світу.</p>",
     "<p style=\"margin-top: 25px; color: #aaa;\">Переглянути карту стейків, забронювати столик або замовити бенкет можна у нашому <strong>Instagram</strong></p>",
-        
     "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673430022\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 343 0022</a></p>",
-        
     "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Мангал розпалено, чекаємо на вас</p>"
+  ],
+  "description_en": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">The signature meat restaurant of the CARTEL network — the gastronomic heart and legendary steaks in Yaremche.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Dry-aged meat, juicy BBQ ribs, signature wood-fired burgers, and a cozy atmosphere of a Carpathian loft.</p>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">This conceptual meat restaurant is located in the most picturesque corner of Yaremche, offering residents and guests of the city the signature premium quality standards of the CARTEL network. The venue's designer interior harmoniously combines the monumentality of mountain stone, the warmth of natural oak, and a modern industrial loft. It is the perfect place to stop for an exquisite lunch while traveling through the Carpathians or to spend a delicious evening with loved ones.</p>",
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">The Cult of Meat, In-House Aging Chamber, and the Magic of an Open Grill</h3>",
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">A true cult of meat reigns in our restaurant. We use select premium-quality beef and mature it in our own specialized dry-aging chamber, which gives the steaks incredible tenderness and a deep, rich flavor. The main action takes place on the open grill, where our masters bring meat masterpieces to the perfect level of doneness over hot Carpathian charcoal. To accompany the meat, we offer signature sauces, local craft beer, and an exquisite collection of spirits from around the world.</p>",
+    "<p style=\"margin-top: 25px; color: #aaa;\">View the steak menu, book a table, or order a banquet on our <strong>Instagram</strong></p>",
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380673430022\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 343 0022</a></p>",
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Open • The grill is lit, we are waiting for you</p>"
   ],
   "images": [
     "/static/images/mangalica1.jpg",

@@ -2,27 +2,40 @@
   "id": 15,
   "name": "РИБА GRILL",
   "type": "Restaurant",
-  "cuisine": "Рибний ресторан / Grill",
-  "location": "Буковель, озеро Молодості",
+  "cuisine": "Fish Restaurant / Grill",
+  
+  "location_uk": "Буковель, озеро Молодості",
+  "location_en": "Bukovel, Lake of Youth",
+  
   "rating": 4.8,
   "image_url": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb",
-  
   "map_iframe": "<iframe src='https://www.google.com/maps/embed?...'></iframe>",
-  "description": [
+  
+  "description_uk": [
     "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">Гастрономічний оазис свіжої риби та морепродуктів на березі гірського озера.</p>",
     "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Гірська форель на вугіллі, королівські креветки, ніжний стейк із лосося та автентична уха на дровах.</p>",
-        
     "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Цей преміальний ресторан розташований у наймальовничішій зоні курорту — безпосередньо біля кристально чистого озера. Тут панує особлива атмосфера умиротворення: заворожливі водні краєвиди, свіже карпатське повітря та витончений інтер'єр у стилі сучасного озерного лофту. Ідеальне місце як для затишної сімейної вечері, так і для романтичного вечора під тихий шум прибою.</p>",
-        
     "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Свіжий вилов та майстерність відкритого вогню</h3>",
-        
     "<p style=\"margin-bottom: 20px; line-height: 1.7;\">Головний акцент нашого меню — це кришталева свіжість та бездоганна якість. Наша гірська форель потрапляє на кухню безпосередньо з чистих карпатських водойм, а вишукані морепродукти привозяться за спеціальним замовленням. Кухарі віртуозно обсмажують рибу на відкритому грилі, додаючи лише делікатні пряні трави, свіжий лимон та краплю оливкової олії, щоб максимально підкреслити її природний чистий смак. А фірмова рибна юшка, яка повільно мліє на справжніх дровах, уже стала легендою серед постійних гостей Буковелю.</p>",
-        
     "<p style=\"margin-top: 25px; color: #aaa;\">Переглянути карту вин, забронювати столик біля панорамного вікна можна у нашому <strong>Instagram</strong></p>",
-        
     "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380675550066\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 555 0066</a></p>",
-        
     "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Відчинено • Риба на грилі, чекаємо на вас</p>"
+  ],
+  "description_en": [
+    "<p class=\"desc-slogan\" style=\"font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;\">A gastronomic oasis of fresh fish and seafood on the shore of a mountain lake.</p>",
+    "<p class=\"desc-sub-slogan\" style=\"font-size: 16px; color: #ccc; margin-bottom: 25px;\">Mountain trout over charcoal, king prawns, tender salmon steak, and authentic wood-fired fish soup.</p>",
+    
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">This premium restaurant is located in the most picturesque area of the resort — right next to the crystal-clear lake. A special atmosphere of tranquility reigns here: mesmerizing water views, fresh Carpathian air, and a refined interior designed in a modern lakeside loft style. It is the perfect place for a cozy family dinner or a romantic evening to the gentle sound of the waves.</p>",
+    
+    "<h3 style=\"color: #d4af37; margin-top: 30px; margin-bottom: 15px; font-size: 22px; font-family: 'Cormorant Garamond', serif;\">Fresh Catch and Mastery of Open Fire</h3>",
+    
+    "<p style=\"margin-bottom: 20px; line-height: 1.7;\">The main focus of our menu is pristine freshness and flawless quality. Our mountain trout arrives in the kitchen directly from clean Carpathian reservoirs, and exquisite seafood is brought by special order. The chefs masterfully grill the fish over an open fire, adding only delicate herbs, fresh lemon, and a drop of olive oil to maximize its natural pure taste. Our signature fish soup, slowly simmered over real wood logs, has already become a legend among regular guests of Bukovel.</p>",
+    
+    "<p style=\"margin-top: 25px; color: #aaa;\">View the wine list and book a table by the panoramic window on our <strong>Instagram</strong></p>",
+    
+    "<p style=\"font-size: 20px; color: #fff; margin: 15px 0; font-weight: bold;\">📞 <a href=\"tel:+380675550066\" style=\"color: #fff; text-decoration: none; transition: color 0.3s;\" onmouseover=\"this.style.color='#d4af37'\" onmouseout=\"this.style.color='#fff'\">+38 (067) 555 0066</a></p>",
+    
+    "<p style=\"color: #2ecc71; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px;\">🟢 Open • Grilled fish is ready, waiting for you</p>"
   ],
   "images": [
     "/static/images/ryba_grill1.jpg",
